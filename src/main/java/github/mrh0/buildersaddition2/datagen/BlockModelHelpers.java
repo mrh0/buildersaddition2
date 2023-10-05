@@ -6,7 +6,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class BlockModelHelpers {
-    public static ModelFile parent(ResourceLocation rl, ExistingFileHelper efh, ResourceLocation baseModel) {
+    public static BlockModelBuilder parent(ResourceLocation rl, ExistingFileHelper efh, ResourceLocation baseModel) {
         return new BlockModelBuilder(rl, efh).parent(new ModelFile.ExistingModelFile(baseModel, efh));
     }
 }

@@ -8,11 +8,27 @@ public class WoodVariant extends ResourceVariant{
     public final Block log;
     public final Block stripped;
 
-    public WoodVariant(String name, String displayName, Block planks, Block log, Block stripped) {
+    public final String texturePlanks;
+    public final String textureLog;
+    public final String textureStripped;
+
+    public WoodVariant(
+            String name,
+            String displayName,
+            Block planks,
+            Block log,
+            Block stripped,
+            String texturePlanks,
+            String textureLog,
+            String textureStripped
+    ) {
         super(name, displayName);
         this.planks = planks;
         this.log = log;
         this.stripped = stripped;
 
+        this.texturePlanks = texturePlanks;
+        this.textureLog = textureLog;
+        this.textureStripped = textureStripped;
     }
 }

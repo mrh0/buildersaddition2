@@ -8,7 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceVariants {
-    public static WoodVariant OAK = new WoodVariant("oak", "Oak", Blocks.OAK_PLANKS, Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+    public static WoodVariant OAK = new WoodVariant(
+            "oak",
+            "Oak",
+            Blocks.OAK_PLANKS,
+            Blocks.OAK_LOG,
+            Blocks.STRIPPED_OAK_LOG,
+            "minecraft:block/oak_planks",
+            "minecraft:block/oak_log",
+            "minecraft:block/stripped_oak_log"
+    );
     public static WoodVariant[] ALL_WOOD = {
             OAK
     };
