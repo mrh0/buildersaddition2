@@ -1,0 +1,6 @@
+{
+  "parent": "buildersaddition2:block/base_stool_pillow",
+  "textures": {
+    "wool": "minecraft:block/white_wool"
+  }
+}

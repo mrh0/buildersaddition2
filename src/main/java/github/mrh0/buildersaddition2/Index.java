@@ -3,10 +3,16 @@ package github.mrh0.buildersaddition2;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
+import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
+import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.ResourceVariants;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 
+import github.mrh0.buildersaddition2.common.variants.WoolVariant;
+import github.mrh0.buildersaddition2.entity.SeatEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -32,8 +38,14 @@ public class Index {
         return BA2.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }*/
 
+    public static RegistryObject<EntityType<?>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
+            .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
+
     public static BlockBlueprint<WoodVariant, ChairBlock> CHAIR =
-            new ChairBlueprint(List.of(ResourceVariants.ALL_WOOD));
+            new ChairBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoolVariant, PillowBlock> PILLOW =
+            new PillowBlueprint(WoolVariant.ALL);
 
     public static void load() {}
 }

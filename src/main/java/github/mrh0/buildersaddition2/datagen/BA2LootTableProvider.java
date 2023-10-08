@@ -17,6 +17,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
+import java.util.function.Function;
 
 public class BA2LootTableProvider extends BlockLootSubProvider {
     public BA2LootTableProvider() {
@@ -33,6 +34,7 @@ public class BA2LootTableProvider extends BlockLootSubProvider {
             switch (blueprint.getLootTableType(pair.getSecond())) {
                 case NONE: break;
                 case SELF: this.dropSelf(pair.getFirst().get()); break;
+                case CUSTOM: blueprint.buildLootTable(this, pair.getFirst(), pair.getSecond());
             }
         });
     }
@@ -48,5 +50,13 @@ public class BA2LootTableProvider extends BlockLootSubProvider {
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
                                 .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+    }
+
+    public void add(Block block, Function<Block, LootTable.Builder> builder) {
+        this.add(block, builder.apply(block));
+    }
+
+    public void add(Block block, LootTable.Builder builder) {
+        this.map.put(block.getLootTable(), builder);
     }
 }

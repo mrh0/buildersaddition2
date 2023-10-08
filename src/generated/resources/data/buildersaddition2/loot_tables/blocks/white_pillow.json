@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "buildersaddition2:chair_oak"
+          "name": "buildersaddition2:white_pillow"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "buildersaddition2:blocks/chair_oak"
+  "random_sequence": "buildersaddition2:blocks/white_pillow"
 }

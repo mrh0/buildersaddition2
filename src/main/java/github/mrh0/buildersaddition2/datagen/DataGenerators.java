@@ -17,7 +17,6 @@ import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = BA2.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
-
     public static LootTableProvider createLootTableProvider(PackOutput output) {
         return new LootTableProvider(output, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(BA2LootTableProvider::new, LootContextParamSets.BLOCK)
@@ -38,8 +37,8 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new BA2ItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new BA2BlockModelProvider(packOutput, existingFileHelper));
 
-        /*ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
-                new ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new ModItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));*/
+        BA2BlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(),
+                new BA2BlockTagProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new BA2ItemTagProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), existingFileHelper));
     }
 }
