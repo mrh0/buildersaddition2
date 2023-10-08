@@ -1,4 +1,4 @@
-package github.mrh0.buildersaddition2.entity;
+package github.mrh0.buildersaddition2.entity.seat;
 
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;

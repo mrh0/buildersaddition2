@@ -1,6 +1,7 @@
 package github.mrh0.buildersaddition2.datagen;
 
 import github.mrh0.buildersaddition2.BA2;
+import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -30,7 +31,7 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        //generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
+        //generator.addProvider(event.includeServer(), new BA2RecipeProvider(packOutput));
         generator.addProvider(event.includeServer(), createLootTableProvider(packOutput));
 
         generator.addProvider(event.includeClient(), new BA2BlockStateProvider(packOutput, existingFileHelper));
@@ -40,5 +41,11 @@ public class DataGenerators {
         BA2BlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(),
                 new BA2BlockTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new BA2ItemTagProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(), existingFileHelper));
+
+        System.out.println("==========================LANG===========================");
+        BlockBlueprint.translationKeyPairs.forEach(pair -> {
+            System.out.println("\"" + pair.getFirst() + "\": \"" + pair.getSecond() + "\",");
+        });
+        System.out.println("=========================================================");
     }
 }

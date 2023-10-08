@@ -37,7 +37,7 @@
     },
     {
       "apply": {
-        "model": "buildersaddition2:block/white_seat_pillow"
+        "model": "buildersaddition2:block/white_stool_pillow"
       },
       "when": {
         "pillow": "white"

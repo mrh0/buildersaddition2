@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.pillow;
 
 import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;
-import github.mrh0.buildersaddition2.entity.SeatEntity;
+import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PillowBlock extends AbstractSeatBlock {

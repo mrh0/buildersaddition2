@@ -1,7 +1,8 @@
-package github.mrh0.buildersaddition2.blocks.chair;
+package github.mrh0.buildersaddition2.blocks.stool;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
+import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
@@ -27,19 +28,19 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
-    public ChairBlueprint(Iterable<WoodVariant> variants) {
+public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
+    public StoolBlueprint(Iterable<WoodVariant> variants) {
         super(variants);
     }
 
     @Override
     public String getBaseName() {
-        return "chair";
+        return "stool";
     }
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Chair";
+        return variant.displayName + " Stool";
     }
 
     @Override
@@ -48,12 +49,12 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    protected Supplier<ChairBlock> getBlock(WoodVariant variant) {
-        return () -> new ChairBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+    protected Supplier<StoolBlock> getBlock(WoodVariant variant) {
+        return () -> new StoolBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -61,22 +62,18 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
-        var bs = provider.multipartHorizontalFacing(
-                provider.getMultipartBuilder(block.get()),
-                model(getBlockModelPath(variant)),
-                180,
-                false
-        );
+    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+        var bs = provider.getMultipartBuilder(block.get())
+                .part().modelFile(model(getBlockModelPath(variant))).addModel().end();
 
         for (int i = 0; i < WoolVariant.ALL.size(); i++) {
             var wool = WoolVariant.ALL.get(i);
-            bs.part().modelFile(model("block/" + wool.name + "_stool_pillow")).addModel().condition(ChairBlock.PILLOW, PillowState.fromIndex(i)).end();
+            bs.part().modelFile(model("block/" + wool.name + "_stool_pillow")).addModel().condition(StoolBlock.PILLOW, PillowState.fromIndex(i)).end();
         }
     }
 
@@ -86,7 +83,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
@@ -100,7 +97,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
                     .when(ExplosionCondition.survivesExplosion())
                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block.get())
                             .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(ChairBlock.PILLOW, PillowState.fromIndex(i)))));
+                                    .hasProperty(StoolBlock.PILLOW, PillowState.fromIndex(i)))));
         }
         provider.add(block.get(), builder);
     }

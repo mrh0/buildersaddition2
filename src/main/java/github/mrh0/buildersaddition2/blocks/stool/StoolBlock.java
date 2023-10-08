@@ -1,4 +1,4 @@
-package github.mrh0.buildersaddition2.blocks.chair;
+package github.mrh0.buildersaddition2.blocks.stool;
 
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;
@@ -27,55 +27,25 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
-
-public class ChairBlock extends AbstractSeatBlock {
+public class StoolBlock extends AbstractSeatBlock {
 
     public static final EnumProperty<PillowState> PILLOW = EnumProperty.create("pillow", PillowState.class);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    private static final VoxelShape SHAPE_PILLOW = Block.box(3d, 8d, 3d, 13d, 9d, 13d);
-    private static final VoxelShape SHAPE_BASE = Block.box(2d, 6d, 2d, 14d, 8d, 14d);
-    private final Map<BlockState, VoxelShape> shapesCache;
+    private static VoxelShape SHAPE_BASE = Block.box(2d, 6d, 2d, 14d, 8d, 14d);
+    private static VoxelShape SHAPE_PILLOW = Shapes.or(SHAPE_BASE, Block.box(3d, 0d, 3d, 13d, 9d, 13d));
+    private static VoxelShape SHAPE_NO_PILLOW = Shapes.or(SHAPE_BASE, Block.box(3d, 0d, 3d, 13d, 8d, 13d));
 
-    public ChairBlock(Properties props) {
+    public StoolBlock(Properties props) {
         super(props);
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PILLOW, PillowState.None));
-        this.shapesCache = getShapeForEachState(ChairBlock::buildShape);
-    }
-
-    private static VoxelShape getLegShape(int x, int z, boolean tall) {
-        return Block.box(x, 0d, z, x+2d, tall?16d:6d, z+2d);
-    }
-
-    private static VoxelShape getBackShape(Direction dir) {
-        return switch (dir) {
-            case NORTH -> Block.box(4d, 12d, 12d, 12d, 18d, 14d);
-            case WEST -> Block.box(12d, 12d, 4d, 14d, 18d, 12d);
-            case EAST -> Block.box(2d, 12d, 4d, 4d, 18d, 12d);
-            default -> Block.box(4d, 12d, 2d, 12d, 18d, 4d);
-        };
-    }
-
-    private static VoxelShape getLegsShape(Direction dir) {
-        return switch (dir) {
-            case NORTH -> Shapes.or(getLegShape(2, 2, false), getLegShape(12, 2, false), getLegShape(2, 12, true), getLegShape(12, 12, true));
-            case WEST -> Shapes.or(getLegShape(2, 2, false), getLegShape(12, 2, true), getLegShape(2, 12, false), getLegShape(12, 12, true));
-            case EAST -> Shapes.or(getLegShape(2, 2, true), getLegShape(12, 2, false), getLegShape(2, 12, true), getLegShape(12, 12, false));
-            default -> Shapes.or(getLegShape(2, 2, true), getLegShape(12, 2, true), getLegShape(2, 12, false), getLegShape(12, 12, false));
-        };
-    }
-
-    private static VoxelShape buildShape(BlockState state) {
-        Direction dir = state.getValue(FACING);
-        if(state.getValue(PILLOW) == PillowState.None)
-            return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
-        return Shapes.or(SHAPE_PILLOW, SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext col) {
-        return this.shapesCache.get(state);
+        if(state.getValue(PILLOW) == PillowState.None)
+            return SHAPE_NO_PILLOW;
+        return SHAPE_PILLOW;
     }
 
     @Override

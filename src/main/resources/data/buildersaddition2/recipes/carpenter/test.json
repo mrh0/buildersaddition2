@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_log"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "buildersaddition2:oak_chair"
+  }
+}

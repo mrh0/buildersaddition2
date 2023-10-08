@@ -24,6 +24,7 @@ import java.util.function.Supplier;
 
 public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block> {
 
+    public static List<Pair<String, String>> translationKeyPairs = new ArrayList<>();
     public static List<BlockBlueprint<? extends ResourceVariant, ? extends Block>> ALL_BLUEPRINTS = new ArrayList<>();
 
     public BlockBlueprint(Iterable<V> variants) {
@@ -83,6 +84,8 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return "block." + BA2.MODID + "." + getRegistryName(variant);
     }
 
+    public abstract String getLangName(V variant);
+
     public void buildLootTable(BA2LootTableProvider provider, RegistryObject<B> block, V variant) {
 
     }
@@ -93,6 +96,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         var block = BA2.BLOCKS.register(name, getBlock(variant));
         if(hasItem(variant))
             BA2.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        translationKeyPairs.add(Pair.of(getLangKey(variant), getLangName(variant)));
         return block;
     }
 
