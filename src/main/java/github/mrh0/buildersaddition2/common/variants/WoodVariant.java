@@ -122,26 +122,38 @@ public class WoodVariant extends ResourceVariant{
 
     public static WoodVariant BAMBOO = new WoodVariant(
             "bamboo",
+            "Bamboo",
             Blocks.BAMBOO_PLANKS,
             Blocks.BAMBOO_BLOCK,
             Blocks.STRIPPED_BAMBOO_BLOCK,
-            Blocks.BAMBOO_SLAB
+            Blocks.BAMBOO_SLAB,
+            "minecraft:block/bamboo_planks",
+            "minecraft:block/bamboo_block",
+            "minecraft:block/stripped_bamboo_block"
     );
 
     public static WoodVariant CRIMSON = new WoodVariant(
             "crimson",
+            "Crimson",
             Blocks.CRIMSON_PLANKS,
             Blocks.CRIMSON_STEM,
             Blocks.STRIPPED_CRIMSON_STEM,
-            Blocks.CRIMSON_SLAB
+            Blocks.CRIMSON_SLAB,
+            "minecraft:block/crimson_planks",
+            "minecraft:block/crimson_stem",
+            "minecraft:block/stripped_crimson_stem"
     );
 
     public static WoodVariant WARPED = new WoodVariant(
             "warped",
+            "Warped",
             Blocks.WARPED_PLANKS,
             Blocks.WARPED_STEM,
             Blocks.STRIPPED_WARPED_STEM,
-            Blocks.WARPED_SLAB
+            Blocks.WARPED_SLAB,
+            "minecraft:block/warped_planks",
+            "minecraft:block/warped_stem",
+            "minecraft:block/stripped_warped_stem"
     );
 
     public static List<WoodVariant> ALL = List.of(

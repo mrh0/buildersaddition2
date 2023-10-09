@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:mangrove_chair"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:mangrove_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "white"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:white_pillow"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "buildersaddition2:blocks/mangrove_chair"
+}

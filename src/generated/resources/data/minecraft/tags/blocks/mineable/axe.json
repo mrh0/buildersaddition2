@@ -1,6 +1,26 @@
 {
   "values": [
     "buildersaddition2:oak_chair",
-    "buildersaddition2:oak_stool"
+    "buildersaddition2:spruce_chair",
+    "buildersaddition2:birch_chair",
+    "buildersaddition2:jungle_chair",
+    "buildersaddition2:acacia_chair",
+    "buildersaddition2:dark_oak_chair",
+    "buildersaddition2:mangrove_chair",
+    "buildersaddition2:cherry_chair",
+    "buildersaddition2:bamboo_chair",
+    "buildersaddition2:crimson_chair",
+    "buildersaddition2:warped_chair",
+    "buildersaddition2:oak_stool",
+    "buildersaddition2:spruce_stool",
+    "buildersaddition2:birch_stool",
+    "buildersaddition2:jungle_stool",
+    "buildersaddition2:acacia_stool",
+    "buildersaddition2:dark_oak_stool",
+    "buildersaddition2:mangrove_stool",
+    "buildersaddition2:cherry_stool",
+    "buildersaddition2:bamboo_stool",
+    "buildersaddition2:crimson_stool",
+    "buildersaddition2:warped_stool"
   ]
 }

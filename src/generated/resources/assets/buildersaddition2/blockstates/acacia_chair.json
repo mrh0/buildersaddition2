@@ -1,0 +1,47 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "buildersaddition2:block/acacia_chair"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/acacia_chair",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/acacia_chair",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/acacia_chair",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/white_stool_pillow"
+      },
+      "when": {
+        "pillow": "white"
+      }
+    }
+  ]
+}

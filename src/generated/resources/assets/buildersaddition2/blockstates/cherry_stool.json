@@ -1,0 +1,17 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "buildersaddition2:block/cherry_stool"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/white_stool_pillow"
+      },
+      "when": {
+        "pillow": "white"
+      }
+    }
+  ]
+}

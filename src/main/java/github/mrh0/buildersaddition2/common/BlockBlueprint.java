@@ -157,10 +157,12 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         registryList.forEach((pair) -> {
             addBlockTags(pair.getSecond()).forEach(key -> {
                 if(map.containsKey(key)) {
-                    map.getOrDefault(key, List.of()).add(pair.getFirst().get());
+                    map.getOrDefault(key, new ArrayList<>()).add(pair.getFirst().get());
                 }
                 else {
-                    map.putIfAbsent(key, List.of(pair.getFirst().get()));
+                    var list = new ArrayList<Block>();
+                    list.add(pair.getFirst().get());
+                    map.putIfAbsent(key, list);
                 }
             });
         });
