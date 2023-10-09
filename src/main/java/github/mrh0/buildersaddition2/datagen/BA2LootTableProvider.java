@@ -37,6 +37,8 @@ public class BA2LootTableProvider extends BlockLootSubProvider {
                 case CUSTOM: blueprint.buildLootTable(this, pair.getFirst(), pair.getSecond());
             }
         });
+
+        this.dropSelf(Index.CARPENTER_TABLE.get());
     }
 
     @Override

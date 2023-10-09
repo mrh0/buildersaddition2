@@ -6,10 +6,12 @@ import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
 import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
 import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
@@ -48,5 +50,15 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
     @Override
     protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<PillowBlock> block, WoolVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
+    }
+
+    @Override
+    public int getRecipeResultCount(WoolVariant variant) {
+        return 3;
+    }
+
+    @Override
+    public List<ItemLike> getRecipeRequired(WoolVariant variant) {
+        return List.of(variant.wool);
     }
 }

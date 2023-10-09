@@ -3,6 +3,7 @@ package github.mrh0.buildersaddition2.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import github.mrh0.buildersaddition2.BA2;
+import mezz.jei.api.gui.drawable.IDrawable;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,13 +13,11 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 
 public class CarpenterRecipe implements Recipe<SimpleContainer> {
-
-    public static final String RECIPE_NAME = "carpenter";
+    public static final String RECIPE_TYPE_NAME = "carpenter";
 
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
@@ -28,6 +27,11 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return inputItems;
     }
 
     @Override
@@ -56,6 +60,10 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
         return output.copy();
     }
 
+    public ItemStack getResultItem() {
+        return output.copy();
+    }
+
     @Override
     public ResourceLocation getId() {
         return id;
@@ -73,16 +81,16 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
     public static class Type implements RecipeType<CarpenterRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID = RECIPE_NAME;
+        public static final String ID = RECIPE_TYPE_NAME;
     }
 
     public static class Serializer implements RecipeSerializer<CarpenterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(BA2.MODID, RECIPE_NAME);
+        public static final ResourceLocation ID = new ResourceLocation(BA2.MODID, RECIPE_TYPE_NAME);
 
         @Override
         public CarpenterRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
+            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);

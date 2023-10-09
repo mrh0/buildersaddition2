@@ -3,14 +3,13 @@ package github.mrh0.buildersaddition2.common;
 import com.mojang.datafixers.util.Pair;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.variants.ResourceVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2LootTableProvider;
+import github.mrh0.buildersaddition2.datagen.*;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -20,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block> {
@@ -90,6 +90,18 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
 
     }
 
+    public List<ItemLike> getRecipeRequired(V variant) {
+        return List.of();
+    }
+
+    public int getRecipeResultCount(V variant) {
+        return 1;
+    }
+
+    public void buildRecipe(BA2RecipeProvider provider, Consumer<FinishedRecipe> consumer, RegistryObject<B> block, V variant) {
+        BA2RecipeProvider.carpenter(consumer, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
+    }
+
     // Backend
     private RegistryObject<B> registerOne(V variant) {
         var name = getRegistryName(variant);
@@ -121,6 +133,12 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     public final void generateAllItemModels(BA2ItemModelProvider provider) {
         registryList.forEach((pair) -> {
             buildItemModel(provider, pair.getFirst(), pair.getSecond());
+        });
+    }
+
+    public final void generateAllRecipes(BA2RecipeProvider provider, Consumer<FinishedRecipe> consumer) {
+        registryList.forEach((pair) -> {
+            buildRecipe(provider, consumer, pair.getFirst(), pair.getSecond());
         });
     }
 

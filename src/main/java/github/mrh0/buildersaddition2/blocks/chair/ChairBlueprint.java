@@ -13,6 +13,7 @@ import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -103,5 +104,15 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
                                     .hasProperty(ChairBlock.PILLOW, PillowState.fromIndex(i)))));
         }
         provider.add(block.get(), builder);
+    }
+
+    @Override
+    public int getRecipeResultCount(WoodVariant variant) {
+        return 1;
+    }
+
+    @Override
+    public List<ItemLike> getRecipeRequired(WoodVariant variant) {
+        return List.of(variant.stripped);
     }
 }

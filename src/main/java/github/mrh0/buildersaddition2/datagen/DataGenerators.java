@@ -31,7 +31,7 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        //generator.addProvider(event.includeServer(), new BA2RecipeProvider(packOutput));
+        generator.addProvider(event.includeServer(), new BA2RecipeProvider(packOutput));
         generator.addProvider(event.includeServer(), createLootTableProvider(packOutput));
 
         generator.addProvider(event.includeClient(), new BA2BlockStateProvider(packOutput, existingFileHelper));

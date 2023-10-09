@@ -52,7 +52,7 @@ public class Index {
 
     // Recipe
     public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
-            BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
+            BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

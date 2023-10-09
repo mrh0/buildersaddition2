@@ -1,12 +1,12 @@
 {
   "type": "buildersaddition2:carpenter",
+  "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:oak_log"
+      "item": "minecraft:stripped_oak_log"
     }
   ],
-  "output": {
-    "count": 1,
+  "result": {
     "item": "buildersaddition2:oak_chair"
   }
 }
