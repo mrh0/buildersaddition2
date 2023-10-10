@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.entity.seat;
 
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;
+import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -48,7 +48,7 @@ public class SeatEntity extends Entity {
     public void tick() {
         super.tick();
         if(level().isClientSide()) return;
-        if(this.getPassengers().isEmpty() || !(level().getBlockState(getCheckPos()).getBlock() instanceof AbstractSeatBlock)) {
+        if(this.getPassengers().isEmpty() || !(level().getBlockState(getCheckPos()).getBlock() instanceof ISeatBlock)) {
             this.setRemoved(RemovalReason.KILLED);
         }
     }

@@ -1,5 +1,13 @@
 package github.mrh0.buildersaddition2;
 
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utils {
     public static String capitalizeWords(String input) {
         // Split the input string into an array of words using underscores as the delimiter
@@ -16,5 +24,69 @@ public class Utils {
 
         // Remove the trailing space and return the result
         return result.toString().trim();
+    }
+
+    public static VoxelShape rotateBox(double x1, double y1, double z1, double x2, double y2, double z2, Direction direction) {
+        // Rotation origin
+        double originX = 8d, originY = 8d, originZ = 8d;
+
+        // Calculate the new coordinates based on the specified direction
+        double rotatedX1 = x1, rotatedY1 = y1, rotatedZ1 = z1;
+        double rotatedX2 = x2, rotatedY2 = y2, rotatedZ2 = z2;
+
+        switch (direction) {
+            case NORTH:
+                // No rotation needed for the "NORTH" direction (facing south initially)
+                break;
+            case EAST:
+                // Rotate 90 degrees clockwise in the y-z plane (around the y-axis)
+                rotatedX1 = originX - (z2 - originZ);
+                rotatedZ1 = originZ + (x1 - originX);
+                rotatedX2 = originX - (z1 - originZ);
+                rotatedZ2 = originZ + (x2 - originX);
+                break;
+            case SOUTH:
+                // Rotate 180 degrees (flip in both x and z directions)
+                rotatedX1 = originX - (x2 - originX);
+                rotatedZ1 = originZ - (z2 - originZ);
+                rotatedX2 = originX - (x1 - originX);
+                rotatedZ2 = originZ - (z1 - originZ);
+                break;
+            case WEST:
+                // Rotate 90 degrees counterclockwise in the y-z plane (around the y-axis)
+                rotatedX1 = originX + (z1 - originZ);
+                rotatedZ1 = originZ - (x2 - originX);
+                rotatedX2 = originX + (z2 - originZ);
+                rotatedZ2 = originZ - (x1 - originX);
+                break;
+            case UP:
+                // Rotate 90 degrees counterclockwise in the x-y plane (around the x-axis)
+                rotatedY1 = originY + (z1 - originZ);
+                rotatedZ1 = originZ - (y2 - originY);
+                rotatedY2 = originY + (z2 - originZ);
+                rotatedZ2 = originZ - (y1 - originY);
+                break;
+            case DOWN:
+                // Rotate 90 degrees clockwise in the x-y plane (around the x-axis)
+                rotatedY1 = originY - (z2 - originZ);
+                rotatedZ1 = originZ + (y1 - originY);
+                rotatedY2 = originY - (z1 - originZ);
+                rotatedZ2 = originZ + (y2 - originY);
+                break;
+        }
+
+        return Block.box(rotatedX1, rotatedY1, rotatedZ1, rotatedX2, rotatedY2, rotatedZ2);
+    }
+
+    public static VoxelShape fromSouthFacing(VoxelShape input, Direction dir) {
+        List<VoxelShape> shapes = new ArrayList<>();
+        VoxelShape output = Shapes.empty();
+        input.forAllBoxes((x1, y1, z1, x2, y2, z2) -> {
+            shapes.add(rotateBox(x1, y1, z1, x2, y2, z2, dir));
+        });
+        for(VoxelShape shape : shapes) {
+            output = Shapes.or(output, shape);
+        }
+        return output;
     }
 }

@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.common.variants;
 
+import github.mrh0.buildersaddition2.Utils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -25,13 +26,22 @@ public class WoolVariant extends ResourceVariant{
         this.textureWool = textureWool;
     }
 
+    public WoolVariant(String name, Block wool) {
+        this(name, Utils.capitalizeWords(name), wool, "minecraft:block/" + name + "_wool");
+    }
+
     public static WoolVariant WHITE = new WoolVariant(
             "white",
-            "White",
-            Blocks.WHITE_WOOL,
-            "minecraft:block/white_wool"
+            Blocks.WHITE_WOOL
     );
+
+    public static WoolVariant ORANGE = new WoolVariant(
+            "orange",
+            Blocks.ORANGE_WOOL
+    );
+
     public static List<WoolVariant> ALL = List.of(
-            WHITE
+            WHITE,
+            ORANGE
     );
 }

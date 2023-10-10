@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.chair;
 
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;
+import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class ChairBlock extends AbstractSeatBlock {
+public class ChairBlock extends Block implements ISeatBlock {
 
     public static final EnumProperty<PillowState> PILLOW = EnumProperty.create("pillow", PillowState.class);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

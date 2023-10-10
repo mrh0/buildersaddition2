@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.stool;
 
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.base.AbstractSeatBlock;
+import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
@@ -27,7 +27,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class StoolBlock extends AbstractSeatBlock {
+public class StoolBlock extends Block implements ISeatBlock {
 
     public static final EnumProperty<PillowState> PILLOW = EnumProperty.create("pillow", PillowState.class);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

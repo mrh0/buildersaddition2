@@ -76,6 +76,10 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return  "block/" + getRegistryName(variant);
     }
 
+    public String getBlockModelPath(V variant, String ext) {
+        return  "block/" + getRegistryName(variant) + ext;
+    }
+
     public List<TagKey<Block>> addBlockTags(V variant) {
         return List.of();
     }
@@ -171,6 +175,10 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
 
     public final ModelFile model(String model) {
         return new ModelFile.UncheckedModelFile(BA2.get(model));
+    }
+
+    public final ModelFile blockModel(String model) {
+        return new ModelFile.UncheckedModelFile(BA2.get("block/" + model));
     }
 
     public final Block getBlock(int index) {

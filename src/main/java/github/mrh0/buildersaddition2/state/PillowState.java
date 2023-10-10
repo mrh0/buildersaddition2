@@ -42,7 +42,7 @@ public enum PillowState implements StringRepresentable {
             Black
     };
 
-    private PillowState(String name) {
+    PillowState(String name) {
         this.name = name;
     }
 
