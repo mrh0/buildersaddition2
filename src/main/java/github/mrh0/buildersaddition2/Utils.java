@@ -1,7 +1,10 @@
 package github.mrh0.buildersaddition2;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -88,5 +91,9 @@ public class Utils {
             output = Shapes.or(output, shape);
         }
         return output;
+    }
+
+    public static boolean eq(BlockPos a, BlockPos b) {
+        return a.getX() == b.getX() && a.getY() == b.getY() && a.getZ() == b.getZ();
     }
 }

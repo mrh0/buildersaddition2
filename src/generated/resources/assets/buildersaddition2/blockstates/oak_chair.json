@@ -42,6 +42,14 @@
       "when": {
         "pillow": "white"
       }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_stool_pillow"
+      },
+      "when": {
+        "pillow": "orange"
+      }
     }
   ]
 }

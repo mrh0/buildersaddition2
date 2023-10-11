@@ -1,0 +1,6 @@
+{
+  "parent": "buildersaddition2:block/base_pillow",
+  "textures": {
+    "wool": "minecraft:block/orange_wool"
+  }
+}

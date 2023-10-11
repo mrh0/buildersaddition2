@@ -27,4 +27,16 @@ public enum CupboardState implements StringRepresentable {
     public String getSerializedName() {
         return this.name;
     }
+
+    public boolean isSingle() {
+        return this == Single;
+    }
+
+    public boolean isTop() {
+        return this == Top;
+    }
+
+    public boolean isBottom() {
+        return this == Bottom;
+    }
 }

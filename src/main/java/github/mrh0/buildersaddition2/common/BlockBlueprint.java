@@ -188,4 +188,12 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     public final int getBlockCount() {
         return registryList.size();
     }
+
+    public final Block[] getAllBlocks() {
+        Block[] blocks = new Block[registryList.size()];
+        for (int i = 0; i < blocks.length; i++) {
+            blocks[i] = getBlock(i);
+        }
+        return blocks;
+    }
 }

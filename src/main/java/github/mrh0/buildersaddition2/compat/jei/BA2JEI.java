@@ -33,7 +33,6 @@ public class BA2JEI implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        System.out.println("registerCategories!!");
         var guiHelper = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(
                 new CarpenterRecipeCategory(guiHelper)
@@ -42,12 +41,8 @@ public class BA2JEI implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        System.out.println("registerRecipes!!");
         ingredientManager = registration.getIngredientManager();
         var recipes = getLevel().getRecipeManager().getAllRecipesFor(CarpenterRecipe.Type.INSTANCE);
-        recipes.forEach(recipe -> {
-            System.out.println("recipe:" + recipe);
-        });
         registration.addRecipes(CarpenterRecipeCategory.type, recipes);
     }
 

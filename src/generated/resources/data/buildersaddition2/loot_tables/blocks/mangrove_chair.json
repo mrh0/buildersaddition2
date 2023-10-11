@@ -37,6 +37,28 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:mangrove_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "orange"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:orange_pillow"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "buildersaddition2:blocks/mangrove_chair"

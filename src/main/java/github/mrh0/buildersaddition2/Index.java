@@ -3,6 +3,9 @@ package github.mrh0.buildersaddition2;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
+import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
+import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlockEntity;
+import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
@@ -24,6 +27,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.network.IContainerFactory;
@@ -59,6 +63,7 @@ public class Index {
         return BA2.MENUS.register(name, () -> IForgeMenuType.create(factory));
     }
 
+    // Block
     public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 
     public static BlockBlueprint<WoodVariant, ChairBlock> CHAIR =
@@ -70,6 +75,12 @@ public class Index {
     public static BlockBlueprint<WoolVariant, PillowBlock> PILLOW =
             new PillowBlueprint(WoolVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, CupboardBlock> CUPBOARD =
+            new CupboardBlueprint(WoodVariant.ALL);
+
+    // Block Entity
+    public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
+            BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
 
     public static void load() {
 

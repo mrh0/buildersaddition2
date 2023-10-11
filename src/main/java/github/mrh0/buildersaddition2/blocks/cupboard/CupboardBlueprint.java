@@ -52,18 +52,22 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
         provider.withParent(getBlockModelPath(variant, "_single"), BA2.get("block/base_cupboard_single"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
+                //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
         provider.withParent(getBlockModelPath(variant, "_single_mirror"), BA2.get("block/base_cupboard_single_mirror"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
+                //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
         provider.withParent(getBlockModelPath(variant, "_top"), BA2.get("block/base_cupboard_top"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
+                //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
         provider.withParent(getBlockModelPath(variant, "_top_mirror"), BA2.get("block/base_cupboard_top_mirror"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
+                //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
         provider.withParent(getBlockModelPath(variant, "_bottom"), BA2.get("block/base_cupboard_bottom"))
                 .texture("planks", variant.texturePlanks)

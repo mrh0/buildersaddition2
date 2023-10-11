@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=east,mirror=false,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 90
+    },
+    "facing=east,mirror=false,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single",
+      "y": 90
+    },
+    "facing=east,mirror=false,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top",
+      "y": 90
+    },
+    "facing=east,mirror=true,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 90
+    },
+    "facing=east,mirror=true,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single_mirror",
+      "y": 90
+    },
+    "facing=east,mirror=true,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top_mirror",
+      "y": 90
+    },
+    "facing=north,mirror=false,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom"
+    },
+    "facing=north,mirror=false,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single"
+    },
+    "facing=north,mirror=false,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top"
+    },
+    "facing=north,mirror=true,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom"
+    },
+    "facing=north,mirror=true,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single_mirror"
+    },
+    "facing=north,mirror=true,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top_mirror"
+    },
+    "facing=south,mirror=false,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 180
+    },
+    "facing=south,mirror=false,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single",
+      "y": 180
+    },
+    "facing=south,mirror=false,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top",
+      "y": 180
+    },
+    "facing=south,mirror=true,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 180
+    },
+    "facing=south,mirror=true,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single_mirror",
+      "y": 180
+    },
+    "facing=south,mirror=true,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top_mirror",
+      "y": 180
+    },
+    "facing=west,mirror=false,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 270
+    },
+    "facing=west,mirror=false,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single",
+      "y": 270
+    },
+    "facing=west,mirror=false,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top",
+      "y": 270
+    },
+    "facing=west,mirror=true,variant=bottom": {
+      "model": "buildersaddition2:block/oak_cupboard_bottom",
+      "y": 270
+    },
+    "facing=west,mirror=true,variant=single": {
+      "model": "buildersaddition2:block/oak_cupboard_single_mirror",
+      "y": 270
+    },
+    "facing=west,mirror=true,variant=top": {
+      "model": "buildersaddition2:block/oak_cupboard_top_mirror",
+      "y": 270
+    }
+  }
+}
