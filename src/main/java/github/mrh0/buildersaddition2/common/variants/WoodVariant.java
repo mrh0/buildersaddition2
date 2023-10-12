@@ -10,7 +10,9 @@ public class WoodVariant extends ResourceVariant{
     public final Block planks;
     public final Block log;
     public final Block stripped;
+    public final Block stripped2;
     public final Block slab;
+    public final Block stairs;
 
     public final String texturePlanks;
     public final String textureLog;
@@ -22,7 +24,9 @@ public class WoodVariant extends ResourceVariant{
             Block planks,
             Block log,
             Block stripped,
+            Block stripped2,
             Block slab,
+            Block stairs,
             String texturePlanks,
             String textureLog,
             String textureStripped
@@ -31,7 +35,9 @@ public class WoodVariant extends ResourceVariant{
         this.planks = planks;
         this.log = log;
         this.stripped = stripped;
+        this.stripped2 = stripped2;
         this.slab = slab;
+        this.stairs = stairs;
 
         this.texturePlanks = texturePlanks;
         this.textureLog = textureLog;
@@ -43,13 +49,17 @@ public class WoodVariant extends ResourceVariant{
             Block planks,
             Block log,
             Block stripped,
-            Block slab
+            Block stripped2,
+            Block slab,
+            Block stairs
     ) {
         super(name, Utils.capitalizeWords(name));
         this.planks = planks;
         this.log = log;
         this.stripped = stripped;
+        this.stripped2 = stripped2;
         this.slab = slab;
+        this.stairs = stairs;
 
         this.texturePlanks = "minecraft:block/"+name+"_planks";
         this.textureLog = "minecraft:block/"+name+"_log";
@@ -61,7 +71,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.OAK_PLANKS,
             Blocks.OAK_LOG,
             Blocks.STRIPPED_OAK_LOG,
-            Blocks.OAK_SLAB
+            Blocks.STRIPPED_OAK_WOOD,
+            Blocks.OAK_SLAB,
+            Blocks.OAK_STAIRS
     );
 
     public static WoodVariant SPRUCE = new WoodVariant(
@@ -69,7 +81,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.SPRUCE_PLANKS,
             Blocks.SPRUCE_LOG,
             Blocks.STRIPPED_SPRUCE_LOG,
-            Blocks.SPRUCE_SLAB
+            Blocks.STRIPPED_SPRUCE_WOOD,
+            Blocks.SPRUCE_SLAB,
+            Blocks.SPRUCE_STAIRS
     );
 
     public static WoodVariant BIRCH = new WoodVariant(
@@ -77,7 +91,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.BIRCH_PLANKS,
             Blocks.BIRCH_LOG,
             Blocks.STRIPPED_BIRCH_LOG,
-            Blocks.BIRCH_SLAB
+            Blocks.STRIPPED_BIRCH_WOOD,
+            Blocks.BIRCH_SLAB,
+            Blocks.BIRCH_STAIRS
     );
 
     public static WoodVariant JUNGLE = new WoodVariant(
@@ -85,7 +101,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.JUNGLE_PLANKS,
             Blocks.JUNGLE_LOG,
             Blocks.STRIPPED_JUNGLE_LOG,
-            Blocks.JUNGLE_SLAB
+            Blocks.STRIPPED_JUNGLE_WOOD,
+            Blocks.JUNGLE_SLAB,
+            Blocks.JUNGLE_STAIRS
     );
 
     public static WoodVariant ACACIA = new WoodVariant(
@@ -93,7 +111,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.ACACIA_PLANKS,
             Blocks.ACACIA_LOG,
             Blocks.STRIPPED_ACACIA_LOG,
-            Blocks.ACACIA_SLAB
+            Blocks.STRIPPED_ACACIA_WOOD,
+            Blocks.ACACIA_SLAB,
+            Blocks.ACACIA_STAIRS
     );
 
     public static WoodVariant DARK_OAK = new WoodVariant(
@@ -101,7 +121,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.DARK_OAK_PLANKS,
             Blocks.DARK_OAK_LOG,
             Blocks.STRIPPED_DARK_OAK_LOG,
-            Blocks.DARK_OAK_SLAB
+            Blocks.STRIPPED_DARK_OAK_WOOD,
+            Blocks.DARK_OAK_SLAB,
+            Blocks.DARK_OAK_STAIRS
     );
 
     public static WoodVariant MANGROVE = new WoodVariant(
@@ -109,7 +131,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.MANGROVE_PLANKS,
             Blocks.MANGROVE_LOG,
             Blocks.STRIPPED_MANGROVE_LOG,
-            Blocks.MANGROVE_SLAB
+            Blocks.STRIPPED_MANGROVE_WOOD,
+            Blocks.MANGROVE_SLAB,
+            Blocks.MANGROVE_STAIRS
     );
 
     public static WoodVariant CHERRY = new WoodVariant(
@@ -117,7 +141,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.CHERRY_PLANKS,
             Blocks.CHERRY_LOG,
             Blocks.STRIPPED_CHERRY_LOG,
-            Blocks.CHERRY_SLAB
+            Blocks.STRIPPED_CHERRY_WOOD,
+            Blocks.CHERRY_SLAB,
+            Blocks.CHERRY_STAIRS
     );
 
     public static WoodVariant BAMBOO = new WoodVariant(
@@ -126,7 +152,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.BAMBOO_PLANKS,
             Blocks.BAMBOO_BLOCK,
             Blocks.STRIPPED_BAMBOO_BLOCK,
+            Blocks.STRIPPED_BAMBOO_BLOCK, // Bamboo has no stripped variant 2
             Blocks.BAMBOO_SLAB,
+            Blocks.BAMBOO_STAIRS,
             "minecraft:block/bamboo_planks",
             "minecraft:block/bamboo_block",
             "minecraft:block/stripped_bamboo_block"
@@ -138,7 +166,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.CRIMSON_PLANKS,
             Blocks.CRIMSON_STEM,
             Blocks.STRIPPED_CRIMSON_STEM,
+            Blocks.STRIPPED_CRIMSON_HYPHAE,
             Blocks.CRIMSON_SLAB,
+            Blocks.CRIMSON_STAIRS,
             "minecraft:block/crimson_planks",
             "minecraft:block/crimson_stem",
             "minecraft:block/stripped_crimson_stem"
@@ -150,7 +180,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.WARPED_PLANKS,
             Blocks.WARPED_STEM,
             Blocks.STRIPPED_WARPED_STEM,
+            Blocks.STRIPPED_WARPED_HYPHAE,
             Blocks.WARPED_SLAB,
+            Blocks.WARPED_STAIRS,
             "minecraft:block/warped_planks",
             "minecraft:block/warped_stem",
             "minecraft:block/stripped_warped_stem"

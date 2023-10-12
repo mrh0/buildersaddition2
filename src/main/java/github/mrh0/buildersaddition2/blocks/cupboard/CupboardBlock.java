@@ -1,19 +1,24 @@
 package github.mrh0.buildersaddition2.blocks.cupboard;
 
-import github.mrh0.buildersaddition2.Utils;
+import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.state.CupboardState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.*;
+import net.minecraft.world.entity.monster.piglin.PiglinAi;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +28,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.function.BiPredicate;
 
 public class CupboardBlock extends Block implements EntityBlock {
     public static final EnumProperty<CupboardState> VARIANT = EnumProperty.create("variant", CupboardState.class);
@@ -50,7 +58,18 @@ public class CupboardBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return AbstractStorageBlockEntity.useOpen(state, level, pos, player);
+        //return AbstractStorageBlockEntity.useOpen(state, level, pos, player);
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        } else {
+            MenuProvider menuprovider = this.getMenuProvider(state, level, pos);
+            if (menuprovider != null) {
+                player.openMenu(menuprovider);
+                PiglinAi.angerNearbyPiglins(player, true);
+            }
+
+            return InteractionResult.CONSUME;
+        }
     }
 
     @Override
@@ -138,7 +157,6 @@ public class CupboardBlock extends Block implements EntityBlock {
                         .setValue(MIRROR, currentState.getValue(MIRROR));
             }
         }
-
         return super.updateShape(currentState, direction, newState, level, myPos, otherPos);
     }
 
@@ -147,4 +165,72 @@ public class CupboardBlock extends Block implements EntityBlock {
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new CupboardBlockEntity(pos, state);
     }
+
+    // Combiner
+
+    public static DoubleBlockCombiner.BlockType getBlockType(BlockState state) {
+        CupboardState type = state.getValue(VARIANT);
+        if (type == CupboardState.Single) return DoubleBlockCombiner.BlockType.SINGLE;
+        else return type == CupboardState.Top ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
+    }
+
+    public static Direction getConnectedDirection(BlockState state) {
+        return state.getValue(VARIANT) == CupboardState.Bottom ? Direction.UP :  Direction.DOWN;
+    }
+
+    public static Container getContainer(CupboardBlock block, BlockState state, Level level, BlockPos pos, boolean flag) {
+        return block.combine(state, level, pos, flag).apply(CUPBOARD_COMBINER).orElse((Container)null);
+    }
+
+    public DoubleBlockCombiner.NeighborCombineResult<? extends CupboardBlockEntity> combine(BlockState p_51544_, Level p_51545_, BlockPos p_51546_, boolean p_51547_) {
+        BiPredicate<LevelAccessor, BlockPos> bipredicate = (level, pos) -> false;
+        //if (p_51547_) bipredicate = (p_51578_, p_51579_) -> false;
+        //else bipredicate = ChestBlock::isChestBlockedAt;
+
+        return DoubleBlockCombiner.combineWithNeigbour(Index.CUPBOARD_ENTITY_TYPE.get(), CupboardBlock::getBlockType, CupboardBlock::getConnectedDirection, FACING, p_51544_, p_51545_, p_51546_, bipredicate);
+    }
+
+    public MenuProvider getMenuProvider(BlockState p_51574_, Level p_51575_, BlockPos p_51576_) {
+        return this.combine(p_51574_, p_51575_, p_51576_, false).apply(MENU_PROVIDER_COMBINER).orElse((MenuProvider)null);
+    }
+
+    private static final DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<Container>> CUPBOARD_COMBINER = new DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<Container>>() {
+        public Optional<Container> acceptDouble(CupboardBlockEntity be1, CupboardBlockEntity be2) {
+            return Optional.of(new CompoundContainer(be1, be2));
+        }
+        public Optional<Container> acceptSingle(CupboardBlockEntity be) {
+            return Optional.of(be);
+        }
+        public Optional<Container> acceptNone() {
+            return Optional.empty();
+        }
+    };
+    private static final DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<MenuProvider>> MENU_PROVIDER_COMBINER = new DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<MenuProvider>>() {
+        public Optional<MenuProvider> acceptDouble(final CupboardBlockEntity be1, final CupboardBlockEntity be2) {
+            final Container container = new CompoundContainer(be1, be2);
+            return Optional.of(new MenuProvider() {
+                @javax.annotation.Nullable
+                public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
+                    if (be1.canOpen(player) && be2.canOpen(player)) {
+                        be1.unpackLootTable(inv.player);
+                        be2.unpackLootTable(inv.player);
+                        return ChestMenu.sixRows(id, inv, container);
+                    } else return null;
+                }
+
+                public Component getDisplayName() {
+                    if (be1.hasCustomName()) return be1.getDisplayName();
+                    else return (Component)(be2.hasCustomName() ? be2.getDisplayName() : Component.translatable("container.chestDouble"));
+                }
+            });
+        }
+
+        public Optional<MenuProvider> acceptSingle(CupboardBlockEntity be) {
+            return Optional.of(be);
+        }
+
+        public Optional<MenuProvider> acceptNone() {
+            return Optional.empty();
+        }
+    };
 }

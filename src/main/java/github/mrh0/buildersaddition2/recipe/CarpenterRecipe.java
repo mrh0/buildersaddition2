@@ -36,13 +36,15 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer container, Level pLevel) {
-        boolean match = true;
         for (int i = 0; i < inputItems.size(); i++) {
-            if(inputItems.get(i).isEmpty()) continue;
-            if(container.getItem(i).isEmpty()) continue;
-            if(!inputItems.get(i).test(container.getItem(i))) match = false;
+            if(inputItems.get(i).isEmpty()) break;
+            boolean match = false;
+            for(int j = 0; j < 4; j++) {
+                if(inputItems.get(i).test(container.getItem(j))) match = true;
+            }
+            if(!match) return false;
         }
-        return match;
+        return true;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -93,9 +95,9 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
 
-            for(int i = 0; i < inputs.size(); i++) {
+            for(int i = 0; i < ingredients.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 

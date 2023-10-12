@@ -67,13 +67,21 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
                 CarpenterTableMenu.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
 
-                for (Slot slot : CarpenterTableMenu.this.inputSlots) {
-                    ItemStack itemstack = slot.remove(1);
-                    if (!itemstack.isEmpty()) {
-                        CarpenterTableMenu.this.setupResultSlot();
-                        break;
-                    }
+                if(selectedRecipeIndex.get() < 0) {
+                    CarpenterTableMenu.this.setupResultSlot();
+                    return;
                 }
+                CarpenterTableMenu.this.recipes.get(selectedRecipeIndex.get()).getIngredients().forEach(ingredient -> {
+                    for (Slot slot : CarpenterTableMenu.this.inputSlots) {
+                        if(ingredient.test(slot.getItem())) {
+                            ItemStack itemstack = slot.remove(1);
+                            if (!itemstack.isEmpty()) {
+                                CarpenterTableMenu.this.setupResultSlot();
+                                break;
+                            }
+                        }
+                    }
+                });
 
                 long l = level.getGameTime();
                 if (CarpenterTableMenu.this.lastSoundTime != l) {
@@ -194,16 +202,14 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo(itemstack1, INV_SLOT_START, USE_ROW_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.level.getRecipeManager().getRecipeFor(CarpenterRecipe.Type.INSTANCE, new SimpleContainer(itemstack1), this.level).isPresent()) {
-                if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, RESULT_SLOT, false)) {
-                    return ItemStack.EMPTY;
-                }
             } else if (slotTo >= INV_SLOT_START && slotTo < INV_SLOT_END) {
-                if (!this.moveItemStackTo(itemstack1, INV_SLOT_END, USE_ROW_SLOT_END, false)) {
+                if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, RESULT_SLOT, false) && !this.moveItemStackTo(itemstack1, INV_SLOT_END, USE_ROW_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (slotTo >= USE_ROW_SLOT_START && slotTo < USE_ROW_SLOT_END && !this.moveItemStackTo(itemstack1, INV_SLOT_START, INV_SLOT_END, false)) {
-                return ItemStack.EMPTY;
+            } else if (slotTo >= INV_SLOT_END && slotTo < USE_ROW_SLOT_END) {
+                if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, RESULT_SLOT, false) && !this.moveItemStackTo(itemstack1, INV_SLOT_START, INV_SLOT_END, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (itemstack1.isEmpty()) {

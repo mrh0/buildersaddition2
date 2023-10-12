@@ -89,10 +89,10 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
         return this.result;
     }
 
-    public void save(Consumer<FinishedRecipe> p_126205_, ResourceLocation p_126206_) {
-        this.ensureValid(p_126206_);
-        this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126206_)).rewards(AdvancementRewards.Builder.recipe(p_126206_)).requirements(RequirementsStrategy.OR);
-        p_126205_.accept(new CarpenterRecipeBuilder.Result(p_126206_, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, p_126206_.withPrefix("recipes/" + this.category.getFolderName() + "/")));
+    public void save(Consumer<FinishedRecipe> consumer, ResourceLocation rl) {
+        this.ensureValid(rl);
+        this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl)).rewards(AdvancementRewards.Builder.recipe(rl)).requirements(RequirementsStrategy.OR);
+        consumer.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 
     private void ensureValid(ResourceLocation p_126208_) {

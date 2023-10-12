@@ -110,6 +110,6 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     public List<ItemLike> getRecipeRequired(WoodVariant variant) {
-        return List.of(variant.stripped, variant.stripped);
+        return List.of(variant.stripped, Blocks.CHEST.asItem());
     }
 }
