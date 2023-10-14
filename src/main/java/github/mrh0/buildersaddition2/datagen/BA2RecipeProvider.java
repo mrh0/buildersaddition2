@@ -3,6 +3,7 @@ package github.mrh0.buildersaddition2.datagen;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.datagen.builder.CarpenterRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -26,6 +27,13 @@ public class BA2RecipeProvider extends RecipeProvider implements IConditionBuild
             blueprint.generateAllRecipes(this, consumer);
         });
         //carpenter(consumer, "test_recipe", Index.STOOL.getBlock(0).asItem(), 1, Items.OAK_PLANKS);
+
+        WoodVariant.ALL.forEach(wood -> {
+            carpenter(consumer, wood.name + "_stairs_carpentry", wood.stairs, 1, wood.planks);
+            carpenter(consumer, wood.name + "_slab_carpentry", wood.slab, 2, wood.planks);
+            //if(wood != WoodVariant.BAMBOO)
+            //    carpenter(consumer, wood.name + "_stripped_variant_carpentry", wood.stripped2, 1, wood.stripped);
+        });
     }
 
     public static void carpenter(Consumer<FinishedRecipe> consumer, String name, ItemLike result, int count, ItemLike...required) {

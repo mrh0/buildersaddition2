@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_planks"
+    }
+  ],
+  "result": {
+    "item": "minecraft:mangrove_slab"
+  }
+}

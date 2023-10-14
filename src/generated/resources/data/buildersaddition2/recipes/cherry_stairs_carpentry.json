@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:cherry_planks"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cherry_stairs"
+  }
+}

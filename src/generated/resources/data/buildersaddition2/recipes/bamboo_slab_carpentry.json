@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bamboo_planks"
+    }
+  ],
+  "result": {
+    "item": "minecraft:bamboo_slab"
+  }
+}

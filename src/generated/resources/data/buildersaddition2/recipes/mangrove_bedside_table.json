@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_mangrove_log"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:mangrove_bedside_table"
+  }
+}

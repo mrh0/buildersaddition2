@@ -1,0 +1,8 @@
+{
+  "parent": "buildersaddition2:block/base_bedside_table",
+  "textures": {
+    "particle": "minecraft:block/crimson_planks",
+    "planks": "minecraft:block/crimson_planks",
+    "stripped": "minecraft:block/stripped_crimson_stem"
+  }
+}

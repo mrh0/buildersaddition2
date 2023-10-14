@@ -1,5 +1,8 @@
 package github.mrh0.buildersaddition2;
 
+import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
+import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntity;
+import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
@@ -78,9 +81,15 @@ public class Index {
     public static BlockBlueprint<WoodVariant, CupboardBlock> CUPBOARD =
             new CupboardBlueprint(WoodVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, BedsideTableBlock> BEDSIDE_TABLE =
+            new BedsideTableBlueprint(WoodVariant.ALL);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<BedsideTableBlockEntity>> BEDSIDE_TABLE_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bedside_table", () ->
+            BlockEntityType.Builder.of(BedsideTableBlockEntity::new, BEDSIDE_TABLE.getAllBlocks()).build(null));
 
     public static void load() {
 
