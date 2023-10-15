@@ -54,6 +54,17 @@
     "buildersaddition2:cherry_table",
     "buildersaddition2:bamboo_table",
     "buildersaddition2:crimson_table",
-    "buildersaddition2:warped_table"
+    "buildersaddition2:warped_table",
+    "buildersaddition2:oak_cabinet",
+    "buildersaddition2:spruce_cabinet",
+    "buildersaddition2:birch_cabinet",
+    "buildersaddition2:jungle_cabinet",
+    "buildersaddition2:acacia_cabinet",
+    "buildersaddition2:dark_oak_cabinet",
+    "buildersaddition2:mangrove_cabinet",
+    "buildersaddition2:cherry_cabinet",
+    "buildersaddition2:bamboo_cabinet",
+    "buildersaddition2:crimson_cabinet",
+    "buildersaddition2:warped_cabinet"
   ]
 }

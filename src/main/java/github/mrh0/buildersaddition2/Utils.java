@@ -96,4 +96,6 @@ public class Utils {
     public static boolean eq(BlockPos a, BlockPos b) {
         return a.getX() == b.getX() && a.getY() == b.getY() && a.getZ() == b.getZ();
     }
+
+    public static final Direction[] HORIZONTAL_DIRECTIONS = { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST };
 }

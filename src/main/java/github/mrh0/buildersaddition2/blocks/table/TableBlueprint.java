@@ -79,21 +79,6 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
     }
 
     @Override
-    public LootTableProviderType getLootTableType(WoodVariant variant) {
-        return LootTableProviderType.CUSTOM;
-    }
-
-    @Override
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<TableBlock> block, WoodVariant variant) {
-        var builder = LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(block.get().asItem()))
-                        .when(ExplosionCondition.survivesExplosion()));
-        provider.add(block.get(), builder);
-    }
-
-    @Override
     public int getRecipeResultCount(WoodVariant variant) {
         return 2;
     }

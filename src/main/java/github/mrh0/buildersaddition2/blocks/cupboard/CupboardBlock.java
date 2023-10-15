@@ -98,7 +98,7 @@ public class CupboardBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
-        boolean shift = c.getPlayer() != null && c.getPlayer().isCrouching();
+        boolean shift = c.getPlayer() != null && c.getPlayer().isSecondaryUseActive();
         BlockState aboveState = c.getLevel().getBlockState(c.getClickedPos().above());
         BlockState belowState = c.getLevel().getBlockState(c.getClickedPos().below());
 

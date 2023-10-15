@@ -78,22 +78,6 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
     }
 
     @Override
-    public LootTableProviderType getLootTableType(WoodVariant variant) {
-        return LootTableProviderType.CUSTOM;
-    }
-
-    @Override
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
-        var builder = LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(block.get().asItem()))
-                        .when(ExplosionCondition.survivesExplosion()));
-
-        provider.add(block.get(), builder);
-    }
-
-    @Override
     public int getRecipeResultCount(WoodVariant variant) {
         return 1;
     }

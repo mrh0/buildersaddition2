@@ -1,0 +1,6 @@
+{
+  "parent": "buildersaddition2:block/base_sofa_none",
+  "textures": {
+    "wool": "minecraft:block/white_wool"
+  }
+}

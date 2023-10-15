@@ -1,0 +1,6 @@
+{
+  "parent": "buildersaddition2:block/base_sofa_outer_corner",
+  "textures": {
+    "wool": "minecraft:block/orange_wool"
+  }
+}

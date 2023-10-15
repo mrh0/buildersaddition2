@@ -23,11 +23,7 @@ public class BedsideTableBlockEntity extends AbstractStorageBlockEntity {
     @Override
     protected void playSound(BlockState state, SoundEvent evt) {
         Vec3i vector3i = state.getValue(BedsideTableBlock.FACING).getNormal();
-        double d0 = (double) this.getBlockPos().getX() + 0.5D + (double) vector3i.getX() / 2.0D;
-        double d1 = (double) this.getBlockPos().getY() + 0.5D + (double) vector3i.getY() / 2.0D;
-        double d2 = (double) this.getBlockPos().getZ() + 0.5D + (double) vector3i.getZ() / 2.0D;
-        this.level.playSound((Player) null, d0, d1, d2, evt, SoundSource.BLOCKS, 0.5F,
-                this.level.random.nextFloat() * 0.1F + 0.9F);
+        playDefaultSound(evt, vector3i);
     }
 
     @Override

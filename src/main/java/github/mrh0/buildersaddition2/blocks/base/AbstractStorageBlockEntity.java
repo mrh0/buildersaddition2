@@ -3,9 +3,11 @@ package github.mrh0.buildersaddition2.blocks.base;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +36,14 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
     public abstract int getRows();
 
     protected abstract void playSound(BlockState state, SoundEvent evt);
+
+    protected final void playDefaultSound(SoundEvent evt, Vec3i vector3i) {
+        double d0 = (double) this.getBlockPos().getX() + 0.5D + (double) vector3i.getX() / 2.0D;
+        double d1 = (double) this.getBlockPos().getY() + 0.5D + (double) vector3i.getY() / 2.0D;
+        double d2 = (double) this.getBlockPos().getZ() + 0.5D + (double) vector3i.getZ() / 2.0D;
+        this.level.playSound((Player) null, d0, d1, d2, evt, SoundSource.BLOCKS, 0.5F,
+                this.level.random.nextFloat() * 0.1F + 0.9F);
+    }
 
     @Override
     protected NonNullList<ItemStack> getItems() {

@@ -3,6 +3,9 @@ package github.mrh0.buildersaddition2;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
+import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlock;
+import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlockEntity;
+import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlueprint;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
@@ -11,6 +14,8 @@ import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
+import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
+import github.mrh0.buildersaddition2.blocks.sofa.SofaBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
@@ -89,12 +94,21 @@ public class Index {
     public static BlockBlueprint<WoodVariant, TableBlock> TABLE =
             new TableBlueprint(WoodVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, CabinetBlock> CABINET =
+            new CabinetBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoolVariant, SofaBlock> SOFA =
+            new SofaBlueprint(WoolVariant.ALL);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
 
     public static RegistryObject<BlockEntityType<BedsideTableBlockEntity>> BEDSIDE_TABLE_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bedside_table", () ->
             BlockEntityType.Builder.of(BedsideTableBlockEntity::new, BEDSIDE_TABLE.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<CabinetBlockEntity>> CABINET_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cabinet", () ->
+            BlockEntityType.Builder.of(CabinetBlockEntity::new, CABINET.getAllBlocks()).build(null));
 
     public static void load() {
 
