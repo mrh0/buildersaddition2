@@ -2,8 +2,8 @@ package github.mrh0.buildersaddition2.blocks.cupboard;
 
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
+import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -13,9 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
@@ -42,7 +40,12 @@ public class CupboardBlockEntity extends AbstractStorageBlockEntity {
     @Override
     protected void playSound(BlockState state, SoundEvent evt) {
         if(state.getValue(CupboardBlock.VARIANT).isBottom()) return;
-        super.playSound(state, evt);
+        Vec3i vector3i = state.getValue(BedsideTableBlock.FACING).getNormal();
+        double d0 = (double) this.getBlockPos().getX() + 0.5D + (double) vector3i.getX() / 2.0D;
+        double d1 = (double) this.getBlockPos().getY() + 0.5D + (double) vector3i.getY() / 2.0D;
+        double d2 = (double) this.getBlockPos().getZ() + 0.5D + (double) vector3i.getZ() / 2.0D;
+        this.level.playSound((Player) null, d0, d1, d2, evt, SoundSource.BLOCKS, 0.5F,
+                this.level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     public boolean isDouble() {

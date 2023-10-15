@@ -30,7 +30,6 @@ import org.jetbrains.annotations.Nullable;
 public class StoolBlock extends Block implements ISeatBlock {
 
     public static final EnumProperty<PillowState> PILLOW = EnumProperty.create("pillow", PillowState.class);
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     private static VoxelShape SHAPE_BASE = Block.box(2d, 6d, 2d, 14d, 8d, 14d);
     private static VoxelShape SHAPE_PILLOW = Shapes.or(SHAPE_BASE, Block.box(3d, 0d, 3d, 13d, 9d, 13d));
@@ -38,7 +37,7 @@ public class StoolBlock extends Block implements ISeatBlock {
 
     public StoolBlock(Properties props) {
         super(props);
-        registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PILLOW, PillowState.None));
+        registerDefaultState(defaultBlockState().setValue(PILLOW, PillowState.None));
     }
 
     @Override
@@ -50,13 +49,7 @@ public class StoolBlock extends Block implements ISeatBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, PILLOW);
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext c) {
-        return defaultBlockState().setValue(FACING, c.getHorizontalDirection());
+        builder.add(PILLOW);
     }
 
     @Override

@@ -160,6 +160,19 @@ public class CupboardBlock extends Block implements EntityBlock {
         return super.updateShape(currentState, direction, newState, level, myPos, otherPos);
     }
 
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (level.isClientSide()) return;
+        if (state.is(newState.getBlock())) return;
+        if (level.getBlockEntity(pos) instanceof Container container) {
+            Containers.dropContents(level, pos, container);
+            level.updateNeighborsAt(pos, this);
+            // level.updateNeighbourForOutputSignal(pos, this);
+        }
+
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

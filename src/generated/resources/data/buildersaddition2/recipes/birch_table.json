@@ -1,0 +1,15 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:birch_slab"
+    },
+    {
+      "item": "minecraft:stripped_birch_log"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:birch_table"
+  }
+}

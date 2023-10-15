@@ -13,6 +13,8 @@ import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlueprint;
+import github.mrh0.buildersaddition2.blocks.table.TableBlock;
+import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 
@@ -83,6 +85,9 @@ public class Index {
 
     public static BlockBlueprint<WoodVariant, BedsideTableBlock> BEDSIDE_TABLE =
             new BedsideTableBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, TableBlock> TABLE =
+            new TableBlueprint(WoodVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

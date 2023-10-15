@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "buildersaddition2:block/mangrove_table"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/mangrove_table_leg"
+      },
+      "when": {
+        "ne": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/mangrove_table_leg",
+        "y": 270
+      },
+      "when": {
+        "nw": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/mangrove_table_leg",
+        "y": 90
+      },
+      "when": {
+        "se": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/mangrove_table_leg",
+        "y": 180
+      },
+      "when": {
+        "sw": "true"
+      }
+    }
+  ]
+}
