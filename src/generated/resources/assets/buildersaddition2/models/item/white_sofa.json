@@ -1,3 +1,6 @@
 {
-  "parent": "buildersaddition2:block/base_sofa_item"
+  "parent": "buildersaddition2:block/base_sofa_both",
+  "textures": {
+    "wool": "minecraft:block/white_wool"
+  }
 }

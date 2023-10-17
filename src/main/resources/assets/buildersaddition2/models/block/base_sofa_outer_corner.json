@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"wool": "block/white_wool",
-		"anvil": "block/anvil"
+		"anvil": "block/anvil",
+		"particle": "block/white_wool"
 	},
 	"elements": [
 		{
@@ -20,26 +21,26 @@
 		},
 		{
 			"name": "LegE1",
-			"from": [13, 0, 1],
-			"to": [15, 2, 3],
+			"from": [12, 0, 1],
+			"to": [15, 2, 4],
 			"faces": {
-				"north": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"east": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"south": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"west": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"down": {"uv": [0, 0, 2, 2], "texture": "#anvil"}
+				"north": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"east": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"south": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"west": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#anvil"}
 			}
 		},
 		{
 			"name": "LegW2",
-			"from": [1, 0, 13],
-			"to": [3, 2, 15],
+			"from": [1, 0, 12],
+			"to": [4, 2, 15],
 			"faces": {
-				"north": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"east": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"south": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"west": {"uv": [0, 0, 2, 2], "texture": "#anvil"},
-				"down": {"uv": [0, 0, 2, 2], "texture": "#anvil"}
+				"north": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"east": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"south": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"west": {"uv": [0, 0, 3, 2], "texture": "#anvil"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#anvil"}
 			}
 		},
 		{

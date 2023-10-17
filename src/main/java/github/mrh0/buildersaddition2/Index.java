@@ -18,6 +18,8 @@ import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlueprint;
+import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlock;
+import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
@@ -99,6 +101,9 @@ public class Index {
 
     public static BlockBlueprint<WoolVariant, SofaBlock> SOFA =
             new SofaBlueprint(WoolVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, StrippedFenceBlock> STRIPPED_FENCE =
+            new StrippedFenceBlueprint(WoodVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

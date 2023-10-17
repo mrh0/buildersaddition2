@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_stripped_fence_side",
+  "textures": {
+    "particle": "minecraft:block/stripped_birch_log",
+    "texture": "minecraft:block/birch_planks"
+  }
+}

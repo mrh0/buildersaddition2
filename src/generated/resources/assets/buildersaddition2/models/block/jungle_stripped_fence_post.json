@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_stripped_fence_post",
+  "textures": {
+    "particle": "minecraft:block/stripped_jungle_log",
+    "texture": "minecraft:block/stripped_jungle_log"
+  }
+}

@@ -1,11 +1,11 @@
 package github.mrh0.buildersaddition2.blocks.sofa;
 
 import github.mrh0.buildersaddition2.Utils;
-import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
-import github.mrh0.buildersaddition2.blocks.table.TableBlock;
-import github.mrh0.buildersaddition2.state.PillowState;
+import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -14,19 +14,21 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class SofaBlock extends Block {
+public class SofaBlock extends Block implements ISeatBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
+    public static final BooleanProperty ARMREST_LEFT = BooleanProperty.create("armrest_left");
+    public static final BooleanProperty ARMREST_RIGHT = BooleanProperty.create("armrest_right");
 
     private static VoxelShape BASE_SHAPE = Block.box(0d, 2d, 0d, 16d, 9d, 16d);
+    private static VoxelShape BACK_SHAPE = Block.box(0d, 9d, 0d, 16d, 16d, 4d);
 
     private final Map<BlockState, VoxelShape> shapesCache;
 
@@ -35,20 +37,28 @@ public class SofaBlock extends Block {
         this.shapesCache = getShapeForEachState(SofaBlock::buildShape);
     }
 
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, SHAPE, ARMREST_LEFT, ARMREST_RIGHT);
+    }
+
     private static boolean isSofa(BlockState state) {
         return state.getBlock() instanceof SofaBlock;
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext p_56872_) {
-        BlockPos blockpos = p_56872_.getClickedPos();
-        BlockState blockstate = this.defaultBlockState().setValue(FACING, p_56872_.getHorizontalDirection());
-        return blockstate.setValue(SHAPE, getStairsShape(blockstate, p_56872_.getLevel(), blockpos));
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockPos blockpos = context.getClickedPos();
+        BlockState blockstate = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+        blockstate = blockstate.setValue(SHAPE, getStairsShape(blockstate, context.getLevel(), blockpos));
+        return blockstate.setValue(ARMREST_LEFT, hasArmrestLeft(blockstate, context.getLevel(), blockpos))
+                .setValue(ARMREST_RIGHT, hasArmrestRight(blockstate, context.getLevel(), blockpos));
     }
 
     public BlockState updateShape(BlockState myState, Direction direction, BlockState otherState, LevelAccessor level, BlockPos myPos, BlockPos otherPos) {
-        return direction.getAxis().isHorizontal()
-                ? myState.setValue(SHAPE, getStairsShape(myState, level, myPos))
-                : super.updateShape(myState, direction, otherState, level, myPos, otherPos);
+        if(!direction.getAxis().isHorizontal()) return super.updateShape(myState, direction, otherState, level, myPos, otherPos);
+        BlockState newState = myState.setValue(SHAPE, getStairsShape(myState, level, myPos));
+        return newState.setValue(ARMREST_LEFT, hasArmrestLeft(newState, level, myPos))
+                .setValue(ARMREST_RIGHT, hasArmrestRight(newState, level, myPos));
     }
 
     private static StairsShape getStairsShape(BlockState state, BlockGetter getter, BlockPos pos) {
@@ -67,11 +77,22 @@ public class SofaBlock extends Block {
             Direction direction2 = backward.getValue(FACING);
             if (direction2.getAxis() != state.getValue(FACING).getAxis() && canTakeShape(state, getter, pos, direction2)) {
                 if (direction2 == forward.getCounterClockWise()) return StairsShape.INNER_LEFT;
-
                 return StairsShape.INNER_RIGHT;
             }
         }
         return StairsShape.STRAIGHT;
+    }
+
+    public static boolean hasArmrestLeft(BlockState myState, BlockGetter getter, BlockPos pos) {
+        if(myState.getValue(SHAPE) != StairsShape.STRAIGHT) return false;
+        BlockState state = getter.getBlockState(pos.relative(myState.getValue(FACING).getCounterClockWise()));
+        return !isSofa(state);
+    }
+
+    public static boolean hasArmrestRight(BlockState myState, BlockGetter getter, BlockPos pos) {
+        if(myState.getValue(SHAPE) != StairsShape.STRAIGHT) return false;
+        BlockState state = getter.getBlockState(pos.relative(myState.getValue(FACING).getClockWise()));
+        return !isSofa(state);
     }
 
     private static boolean canTakeShape(BlockState state, BlockGetter getter, BlockPos pos, Direction direction) {
@@ -80,14 +101,27 @@ public class SofaBlock extends Block {
     }
 
     private static VoxelShape buildShape(BlockState state) {
-        Direction dir = state.getValue(FACING);
-        if(state.getValue(PILLOW) == PillowState.None)
-            return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
-        return Shapes.or(SHAPE_PILLOW, SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
+        return BASE_SHAPE;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SHAPE);
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext col) {
+        return BASE_SHAPE;//this.shapesCache.get(state);
+    }
+
+    @Override
+    public void updateEntityAfterFallOn(BlockGetter level, Entity entityIn) {
+        if (entityIn.isSuppressingBounce())
+            super.updateEntityAfterFallOn(level, entityIn);
+        else
+            this.bounceUp(entityIn);
+    }
+
+    private void bounceUp(Entity entity) {
+        Vec3 vector3d = entity.getDeltaMovement();
+        if (vector3d.y < 0.0D) {
+            double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
+            entity.setDeltaMovement(vector3d.x, -vector3d.y * (double)0.66F * d0, vector3d.z);
+        }
     }
 }

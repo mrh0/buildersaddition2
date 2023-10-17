@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_crimson_stem"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:crimson_stripped_fence"
+  }
+}

@@ -2,11 +2,15 @@ package github.mrh0.buildersaddition2.blocks.pillow;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
 import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
 import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.RegistryObject;
@@ -32,6 +36,11 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
     @Override
     public String getLangName(WoolVariant variant) {
         return variant.displayName + " Pillow";
+    }
+
+    @Override
+    public List<TagKey<Block>> addBlockTags(WoolVariant variant) {
+        return List.of(BlockTags.MINEABLE_WITH_AXE);
     }
 
     @Override

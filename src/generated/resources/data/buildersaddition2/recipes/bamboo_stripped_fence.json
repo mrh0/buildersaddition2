@@ -1,0 +1,12 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_bamboo_block"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:bamboo_stripped_fence"
+  }
+}

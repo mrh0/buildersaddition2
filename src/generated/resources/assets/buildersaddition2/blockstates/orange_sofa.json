@@ -45,6 +45,92 @@
     },
     {
       "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true
+      },
+      "when": {
+        "armrest_left": "true",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "armrest_left": "true",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "armrest_left": "true",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "armrest_left": "true",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "armrest_right": "true",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "armrest_right": "true",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true
+      },
+      "when": {
+        "armrest_right": "true",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_sofa_side",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "armrest_right": "true",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
         "model": "buildersaddition2:block/orange_sofa_inner_corner",
         "uvlock": true,
         "y": 270

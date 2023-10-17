@@ -95,9 +95,9 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
         consumer.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 
-    private void ensureValid(ResourceLocation p_126208_) {
+    private void ensureValid(ResourceLocation rl) {
         if (this.advancement.getCriteria().isEmpty()) {
-            //throw new IllegalStateException("No way of obtaining recipe " + p_126208_);
+            //throw new IllegalStateException("No way of obtaining recipe " + rl);
         }
     }
 
@@ -131,9 +131,9 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
             json.add("ingredients", jsonarray);
             JsonObject jsonobject = new JsonObject();
             jsonobject.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(this.result)).toString());
-            /*if (this.count > 1) {
+            if (this.count > 1) {
                 jsonobject.addProperty("count", this.count);
-            }*/
+            }
 
             json.add("result", jsonobject);
         }

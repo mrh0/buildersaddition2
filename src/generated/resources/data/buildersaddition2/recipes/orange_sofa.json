@@ -4,6 +4,9 @@
   "ingredients": [
     {
       "item": "minecraft:orange_wool"
+    },
+    {
+      "item": "minecraft:iron_ingot"
     }
   ],
   "result": {

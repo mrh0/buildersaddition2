@@ -44,7 +44,7 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     protected Supplier<CupboardBlock> getBlock(WoodVariant variant) {
-        return () -> new CupboardBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new CupboardBlock(BlockBehaviour.Properties.copy(variant.planks));
     }
 
     @Override

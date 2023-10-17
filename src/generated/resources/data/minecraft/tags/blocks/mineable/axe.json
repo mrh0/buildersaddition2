@@ -22,6 +22,8 @@
     "buildersaddition2:bamboo_stool",
     "buildersaddition2:crimson_stool",
     "buildersaddition2:warped_stool",
+    "buildersaddition2:white_pillow",
+    "buildersaddition2:orange_pillow",
     "buildersaddition2:oak_cupboard",
     "buildersaddition2:spruce_cupboard",
     "buildersaddition2:birch_cupboard",
@@ -65,6 +67,19 @@
     "buildersaddition2:cherry_cabinet",
     "buildersaddition2:bamboo_cabinet",
     "buildersaddition2:crimson_cabinet",
-    "buildersaddition2:warped_cabinet"
+    "buildersaddition2:warped_cabinet",
+    "buildersaddition2:white_sofa",
+    "buildersaddition2:orange_sofa",
+    "buildersaddition2:oak_stripped_fence",
+    "buildersaddition2:spruce_stripped_fence",
+    "buildersaddition2:birch_stripped_fence",
+    "buildersaddition2:jungle_stripped_fence",
+    "buildersaddition2:acacia_stripped_fence",
+    "buildersaddition2:dark_oak_stripped_fence",
+    "buildersaddition2:mangrove_stripped_fence",
+    "buildersaddition2:cherry_stripped_fence",
+    "buildersaddition2:bamboo_stripped_fence",
+    "buildersaddition2:crimson_stripped_fence",
+    "buildersaddition2:warped_stripped_fence"
   ]
 }

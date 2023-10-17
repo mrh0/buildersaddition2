@@ -31,6 +31,7 @@ public class BA2RecipeProvider extends RecipeProvider implements IConditionBuild
         WoodVariant.ALL.forEach(wood -> {
             carpenter(consumer, wood.name + "_stairs_carpentry", wood.stairs, 1, wood.planks);
             carpenter(consumer, wood.name + "_slab_carpentry", wood.slab, 2, wood.planks);
+            carpenter(consumer, wood.name + "_fence_carpentry", wood.fence, 1, wood.planks, Items.STICK);
             //if(wood != WoodVariant.BAMBOO)
             //    carpenter(consumer, wood.name + "_stripped_variant_carpentry", wood.stripped2, 1, wood.stripped);
         });
