@@ -1,12 +1,10 @@
 package github.mrh0.buildersaddition2.compat.jei;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.recipe.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;

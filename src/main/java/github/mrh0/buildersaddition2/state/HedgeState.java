@@ -22,10 +22,24 @@ public enum HedgeState implements StringRepresentable {
         this.name = name;
     }
 
-	/*@Override
-	public String getName() {
-		return this.name;
-	}*/
+	public String getModelName() {
+        return switch(this) {
+            case Straight_X, Straight_Z -> "straight";
+            case Corner_NW, Corner_NE, Corner_SE, Corner_SW -> "corner";
+            case TCross_N, TCross_E, TCross_S, TCross_W -> "tcross";
+            case Cross -> "cross";
+            default -> "none";
+        };
+    }
+
+    public int getModelYRotation() {
+        return switch(this) {
+            case Straight_X, Corner_NE, TCross_E -> 90;
+            case Corner_SE, TCross_S -> 180;
+            case Corner_SW, TCross_W -> 270;
+            default -> 0;
+        };
+    }
 
     @Override
     public String getSerializedName() {

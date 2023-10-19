@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_warped_stem"
+    },
+    {
+      "item": "minecraft:warped_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:warped_stripped_fence"
   }
 }

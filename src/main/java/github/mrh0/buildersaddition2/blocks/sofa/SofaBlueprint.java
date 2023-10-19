@@ -1,13 +1,11 @@
 package github.mrh0.buildersaddition2.blocks.sofa;
 
 import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
-import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -48,7 +46,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildBlockState(BA2BlockStateProvider bsp, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<SofaBlock> block, WoolVariant variant) {
         boolean uvLock = true;
         int offset = 180;
         var straight = model(getBlockModelPath(variant, "_none"));
@@ -95,7 +93,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_inner_corner"), BA2.get("block/base_" + getBaseName() + "_inner_corner"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
@@ -111,7 +109,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
         provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_both"))
                 .texture("wool", variant.textureWool);
     }

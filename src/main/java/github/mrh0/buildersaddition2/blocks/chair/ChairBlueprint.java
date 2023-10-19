@@ -5,17 +5,16 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2LootTableProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPLootTableProvider;
 import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -54,7 +53,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -62,12 +61,12 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
         var bs = provider.multipartHorizontalFacing(
                 provider.getMultipartBuilder(block.get()),
                 model(getBlockModelPath(variant)),
@@ -87,7 +86,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

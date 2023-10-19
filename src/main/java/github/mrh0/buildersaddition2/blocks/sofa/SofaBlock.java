@@ -1,19 +1,30 @@
 package github.mrh0.buildersaddition2.blocks.sofa;
 
+import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.Utils;
 import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
+import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
+import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -123,5 +134,11 @@ public class SofaBlock extends Block implements ISeatBlock {
             double d0 = entity instanceof LivingEntity ? 1.0D : 0.8D;
             entity.setDeltaMovement(vector3d.x, -vector3d.y * (double)0.66F * d0, vector3d.z);
         }
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
+                                 InteractionHand hand, BlockHitResult hit) {
+        return SeatEntity.createSeat(world, pos, player, .45d, SoundEvents.WOOL_HIT);
     }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_hedge_corner",
+  "textures": {
+    "leaves": "minecraft:block/dark_oak_leaves",
+    "particles": "minecraft:block/dark_oak_leaves"
+  }
+}

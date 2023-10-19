@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.screen;
 
 import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.recipe.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

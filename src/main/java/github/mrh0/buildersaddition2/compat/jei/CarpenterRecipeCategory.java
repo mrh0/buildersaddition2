@@ -2,7 +2,7 @@ package github.mrh0.buildersaddition2.compat.jei;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.recipe.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;

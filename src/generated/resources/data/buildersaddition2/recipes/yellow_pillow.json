@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:yellow_wool"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "buildersaddition2:yellow_pillow"
+  }
+}

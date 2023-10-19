@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_birch_log"
+    },
+    {
+      "item": "minecraft:birch_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:birch_stripped_fence"
   }
 }

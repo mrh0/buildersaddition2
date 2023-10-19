@@ -1,0 +1,47 @@
+{
+  "variants": {
+    "state=corner_ne": {
+      "model": "buildersaddition2:block/dark_oak_hedge_corner",
+      "y": 90
+    },
+    "state=corner_nw": {
+      "model": "buildersaddition2:block/dark_oak_hedge_corner"
+    },
+    "state=corner_se": {
+      "model": "buildersaddition2:block/dark_oak_hedge_corner",
+      "y": 180
+    },
+    "state=corner_sw": {
+      "model": "buildersaddition2:block/dark_oak_hedge_corner",
+      "y": 270
+    },
+    "state=cross": {
+      "model": "buildersaddition2:block/dark_oak_hedge_cross"
+    },
+    "state=none": {
+      "model": "buildersaddition2:block/dark_oak_hedge_none"
+    },
+    "state=straight_x": {
+      "model": "buildersaddition2:block/dark_oak_hedge_straight",
+      "y": 90
+    },
+    "state=straight_z": {
+      "model": "buildersaddition2:block/dark_oak_hedge_straight"
+    },
+    "state=tcross_e": {
+      "model": "buildersaddition2:block/dark_oak_hedge_tcross",
+      "y": 90
+    },
+    "state=tcross_n": {
+      "model": "buildersaddition2:block/dark_oak_hedge_tcross"
+    },
+    "state=tcross_s": {
+      "model": "buildersaddition2:block/dark_oak_hedge_tcross",
+      "y": 180
+    },
+    "state=tcross_w": {
+      "model": "buildersaddition2:block/dark_oak_hedge_tcross",
+      "y": 270
+    }
+  }
+}

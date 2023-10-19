@@ -2,8 +2,9 @@ package github.mrh0.buildersaddition2.common;
 
 import com.mojang.datafixers.util.Pair;
 import github.mrh0.buildersaddition2.BA2;
+import github.mrh0.buildersaddition2.Index;
+import github.mrh0.buildersaddition2.common.datagen.*;
 import github.mrh0.buildersaddition2.common.variants.ResourceVariant;
-import github.mrh0.buildersaddition2.datagen.*;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -23,7 +24,6 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block> {
-
     public static List<Pair<String, String>> translationKeyPairs = new ArrayList<>();
     public static List<BlockBlueprint<? extends ResourceVariant, ? extends Block>> ALL_BLUEPRINTS = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return BA2.get(getRegistryName(variant));
     }
 
-    protected abstract void buildBlockState(BA2BlockStateProvider bsp, RegistryObject<B> block, V variant);
+    protected abstract void buildBlockState(BPBlockStateProvider bsp, RegistryObject<B> block, V variant);
 
     public boolean hasItem(V variant) {
         return true;
@@ -66,9 +66,9 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
             event.accept(block.get());
     }
 
-    protected abstract void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<B> block, V variant);
+    protected abstract void buildBlockModel(BPBlockModelProvider provider, RegistryObject<B> block, V variant);
 
-    protected abstract void buildItemModel(BA2ItemModelProvider provider, RegistryObject<B> block, V variant);
+    protected abstract void buildItemModel(BPItemModelProvider provider, RegistryObject<B> block, V variant);
 
     public abstract String getBaseName();
 
@@ -90,8 +90,8 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
 
     public abstract String getLangName(V variant);
 
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<B> block, V variant) {
-
+    public void buildLootTable(BPLootTableProvider provider, RegistryObject<B> block, V variant) {
+        provider.dropSelf(Index.CARPENTER_TABLE.get());
     }
 
     public List<ItemLike> getRecipeRequired(V variant) {
@@ -102,8 +102,8 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return 1;
     }
 
-    public void buildRecipe(BA2RecipeProvider provider, Consumer<FinishedRecipe> consumer, RegistryObject<B> block, V variant) {
-        BA2RecipeProvider.carpenter(consumer, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
+    public void buildRecipe(BPRecipeProvider provider, Consumer<FinishedRecipe> consumer, RegistryObject<B> block, V variant) {
+        BPRecipeProvider.carpenter(consumer, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
     }
 
     // Backend
@@ -122,25 +122,25 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         });
     }
 
-    public final void generateAllBlockStates(BA2BlockStateProvider bsp) {
+    public final void generateAllBlockStates(BPBlockStateProvider bsp) {
         registryList.forEach((pair) -> {
             buildBlockState(bsp, pair.getFirst(), pair.getSecond());
         });
     }
 
-    public final void generateAllBlockModels(BA2BlockModelProvider provider) {
+    public final void generateAllBlockModels(BPBlockModelProvider provider) {
         registryList.forEach((pair) -> {
             buildBlockModel(provider, pair.getFirst(), pair.getSecond());
         });
     }
 
-    public final void generateAllItemModels(BA2ItemModelProvider provider) {
+    public final void generateAllItemModels(BPItemModelProvider provider) {
         registryList.forEach((pair) -> {
             buildItemModel(provider, pair.getFirst(), pair.getSecond());
         });
     }
 
-    public final void generateAllRecipes(BA2RecipeProvider provider, Consumer<FinishedRecipe> consumer) {
+    public final void generateAllRecipes(BPRecipeProvider provider, Consumer<FinishedRecipe> consumer) {
         registryList.forEach((pair) -> {
             buildRecipe(provider, consumer, pair.getFirst(), pair.getSecond());
         });
@@ -195,5 +195,15 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
             blocks[i] = getBlock(i);
         }
         return blocks;
+    }
+
+    public static List<Block> getAllBlueprintBlocks() {
+        List<Block> out = new ArrayList<>();
+        ALL_BLUEPRINTS.forEach(blueprint -> {
+            blueprint.iterable().forEach(pair -> {
+                out.add(pair.getFirst().get());
+            });
+        });
+        return out;
     }
 }

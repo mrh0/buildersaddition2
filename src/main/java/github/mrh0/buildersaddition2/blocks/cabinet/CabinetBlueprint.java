@@ -1,29 +1,16 @@
 package github.mrh0.buildersaddition2.blocks.cabinet;
 
 import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.common.variants.WoolVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2LootTableProvider;
-import github.mrh0.buildersaddition2.state.PillowState;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
@@ -55,7 +42,7 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -63,12 +50,12 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
         provider.horizontalBlock(block.get(), model(getBlockModelPath(variant)));
     }
 

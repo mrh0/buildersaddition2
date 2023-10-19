@@ -12,6 +12,8 @@ import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlueprint;
+import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlock;
+import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
@@ -23,11 +25,12 @@ import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprin
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.variants.LeavesVariant;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
-import github.mrh0.buildersaddition2.recipe.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import github.mrh0.buildersaddition2.screen.CarpenterTableMenu;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -104,6 +107,9 @@ public class Index {
 
     public static BlockBlueprint<WoodVariant, StrippedFenceBlock> STRIPPED_FENCE =
             new StrippedFenceBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<LeavesVariant, HedgeBlock> HEDGE =
+            new HedgeBlueprint(LeavesVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

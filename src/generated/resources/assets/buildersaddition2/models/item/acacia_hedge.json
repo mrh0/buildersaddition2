@@ -1,0 +1,6 @@
+{
+  "parent": "buildersaddition2:block/base_hedge_inventory",
+  "textures": {
+    "leaves": "minecraft:block/acacia_leaves"
+  }
+}

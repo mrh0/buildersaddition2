@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_acacia_log"
+    },
+    {
+      "item": "minecraft:acacia_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:acacia_stripped_fence"
   }
 }

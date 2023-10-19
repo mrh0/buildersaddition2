@@ -2,14 +2,13 @@ package github.mrh0.buildersaddition2.blocks.stool;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2LootTableProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPLootTableProvider;
 import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
@@ -55,7 +54,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -63,12 +62,12 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         var bs = provider.getMultipartBuilder(block.get())
                 .part().modelFile(model(getBlockModelPath(variant))).addModel().end();
 
@@ -84,7 +83,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    public void buildLootTable(BA2LootTableProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

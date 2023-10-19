@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_planks"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "buildersaddition2:jungle_hedge"
+  }
+}

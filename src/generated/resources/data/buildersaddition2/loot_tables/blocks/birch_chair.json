@@ -59,6 +59,314 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "magenta"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:magenta_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "light_blue"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:light_blue_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "yellow"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:yellow_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "lime"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:lime_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "pink"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:pink_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "gray"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:gray_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "light_gray"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:light_gray_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "cyan"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:cyan_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "purple"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:purple_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "blue"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:blue_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "brown"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:brown_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "green"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:green_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "red"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:red_pillow"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_chair",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "pillow": "black"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:black_pillow"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "buildersaddition2:blocks/birch_chair"

@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_hedge_straight",
+  "textures": {
+    "leaves": "minecraft:block/spruce_leaves",
+    "particles": "minecraft:block/spruce_leaves"
+  }
+}

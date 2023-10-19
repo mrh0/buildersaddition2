@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_jungle_log"
+    },
+    {
+      "item": "minecraft:jungle_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:jungle_stripped_fence"
   }
 }

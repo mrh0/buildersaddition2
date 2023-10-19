@@ -3,13 +3,12 @@ package github.mrh0.buildersaddition2.blocks.stripped_fence;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -48,12 +47,12 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
     }
 
     @Override
-    protected void buildBlockState(BA2BlockStateProvider bsp, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
         bsp.fenceBlock(block.get(), new ResourceLocation(variant.textureStripped));
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_post"), BA2.get("block/base_" + getBaseName() + "_post"))
                 .texture("texture", variant.textureStripped)
                 .texture("particle", variant.textureStripped);
@@ -63,7 +62,7 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_inventory"))
                 .texture("texture", variant.textureStripped);
     }

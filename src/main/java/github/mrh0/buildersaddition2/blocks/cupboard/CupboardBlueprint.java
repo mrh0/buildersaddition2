@@ -3,9 +3,9 @@ package github.mrh0.buildersaddition2.blocks.cupboard;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.datagen.BA2BlockModelProvider;
-import github.mrh0.buildersaddition2.datagen.BA2BlockStateProvider;
-import github.mrh0.buildersaddition2.datagen.BA2ItemModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
+import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
@@ -48,7 +48,7 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
     }
 
     @Override
-    protected void buildBlockModel(BA2BlockModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_single"), BA2.get("block/base_cupboard_single"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -76,12 +76,12 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
     }
 
     @Override
-    protected void buildItemModel(BA2ItemModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant, "_single")));
     }
 
     @Override
-    public void buildBlockState(BA2BlockStateProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> {
             boolean mirror = state.getValue(CupboardBlock.MIRROR);
              return switch(state.getValue(CupboardBlock.VARIANT)) {

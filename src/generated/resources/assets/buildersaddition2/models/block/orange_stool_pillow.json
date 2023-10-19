@@ -1,6 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_stool_pillow",
   "textures": {
+    "particle": "minecraft:block/orange_wool",
     "wool": "minecraft:block/orange_wool"
   }
 }

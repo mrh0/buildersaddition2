@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:oak_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:oak_stripped_fence"
   }
 }

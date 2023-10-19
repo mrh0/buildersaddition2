@@ -15,6 +15,8 @@ public class ClientProxy extends CommonProxy {
         //RenderType transl = RenderType.translucent();
         RenderType cutout = RenderType.cutoutMipped();
 
-        //ItemBlockRenderTypes.setRenderLayer(Index.HEDGE_OAK.get(), cutout);
+        Index.HEDGE.iterable().forEach(pair -> {
+            ItemBlockRenderTypes.setRenderLayer(pair.getFirst().get(), cutout);
+        });
     }
 }

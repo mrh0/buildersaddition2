@@ -4,9 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:stripped_spruce_log"
+    },
+    {
+      "item": "minecraft:spruce_planks"
     }
   ],
   "result": {
+    "count": 4,
     "item": "buildersaddition2:spruce_stripped_fence"
   }
 }

@@ -1,6 +1,8 @@
 package github.mrh0.buildersaddition2.blocks.hedge;
 
+import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.state.HedgeState;
+import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -25,12 +27,9 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IForgeShearable;
 
-public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
-    public HedgeBlock(Properties props) {
-        super(props);
-        registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(STATE, HedgeState.None));
-    }
+import java.util.Map;
 
+public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<HedgeState> STATE = EnumProperty.<HedgeState>create("state", HedgeState.class);
 
@@ -76,6 +75,11 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
 
     private static VoxelShape COL_CROSS = Shapes.or(COL_STRAIGHT_X, COL_STRAIGHT_Z);
 
+    public HedgeBlock(Properties props) {
+        super(props);
+        registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(STATE, HedgeState.None));
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(STATE, WATERLOGGED);
@@ -101,7 +105,6 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
             case TCross_W -> SHAPE_T_W;
             case Cross -> SHAPE_CROSS;
         };
-
     }
 
     @Override

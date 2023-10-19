@@ -1,5 +1,5 @@
 {
-  "parent": "buildersaddition2:block/base_table_full",
+  "parent": "buildersaddition2:block/base_table_inventory",
   "textures": {
     "leg": "minecraft:block/stripped_jungle_log",
     "particle": "minecraft:block/jungle_planks",

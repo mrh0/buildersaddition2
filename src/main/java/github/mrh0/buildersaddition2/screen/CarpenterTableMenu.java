@@ -2,7 +2,7 @@ package github.mrh0.buildersaddition2.screen;
 
 import com.google.common.collect.Lists;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.recipe.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
