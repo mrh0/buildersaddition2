@@ -3,11 +3,13 @@ package github.mrh0.buildersaddition2.common.datagen;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipeBuilder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -23,6 +25,15 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         BlockBlueprint.ALL_BLUEPRINTS.forEach(blueprint -> {
             blueprint.generateAllRecipes(this, consumer);
+        });
+
+        // TODO: Move
+        WoodVariant.ALL.forEach(wood -> {
+            carpenter(consumer, wood.name + "_stairs_carpentry", wood.stairs, 1, wood.planks);
+            carpenter(consumer, wood.name + "_slab_carpentry", wood.slab, 2, wood.planks);
+            carpenter(consumer, wood.name + "_fence_carpentry", wood.fence, 1, wood.planks, Items.STICK);
+            //if(wood != WoodVariant.BAMBOO)
+            //    carpenter(consumer, wood.name + "_stripped_variant_carpentry", wood.stripped2, 1, wood.stripped);
         });
     }
 

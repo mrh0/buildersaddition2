@@ -115,8 +115,7 @@ public class BenchBlock extends Block implements ISeatBlock {
             Item item = player.getItemInHand(hand).getItem();
             for(int i = 0; i < Index.PILLOW.getBlockCount(); i++) {
                 if(item == Index.PILLOW.getBlock(i).asItem()) {
-                    if(!player.isCreative())
-                        player.getItemInHand(hand).shrink(1);
+                    if(!player.isCreative()) player.getItemInHand(hand).shrink(1);
                     world.setBlockAndUpdate(pos, state.setValue(PILLOW, PillowState.fromIndex(i)));
                     world.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1f, 1f);
                     return InteractionResult.CONSUME;
