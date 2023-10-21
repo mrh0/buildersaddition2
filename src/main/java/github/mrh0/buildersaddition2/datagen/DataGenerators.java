@@ -29,6 +29,6 @@ public class DataGenerators {
         // Call Blueprint
         BPDataGenerator.gatherData(BA2.MODID, event);
 
-        generator.addProvider(event.includeServer(), new BA2RecipeProvider(packOutput));
+        //generator.addProvider(event.includeServer(), new BA2RecipeProvider(packOutput));
     }
 }

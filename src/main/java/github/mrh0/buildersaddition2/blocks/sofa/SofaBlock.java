@@ -1,20 +1,15 @@
 package github.mrh0.buildersaddition2.blocks.sofa;
 
-import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.Utils;
 import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
-import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -27,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;

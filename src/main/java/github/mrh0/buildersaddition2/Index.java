@@ -3,6 +3,8 @@ package github.mrh0.buildersaddition2;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
+import github.mrh0.buildersaddition2.blocks.bench.BenchBlock;
+import github.mrh0.buildersaddition2.blocks.bench.BenchBlueprint;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlock;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlueprint;
@@ -110,6 +112,9 @@ public class Index {
 
     public static BlockBlueprint<LeavesVariant, HedgeBlock> HEDGE =
             new HedgeBlueprint(LeavesVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, BenchBlock> BENCH =
+            new BenchBlueprint(WoodVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

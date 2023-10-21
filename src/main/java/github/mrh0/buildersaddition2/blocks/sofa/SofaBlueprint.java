@@ -110,7 +110,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
-        provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_both"))
+        provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_inventory"))
                 .texture("wool", variant.textureWool);
     }
 

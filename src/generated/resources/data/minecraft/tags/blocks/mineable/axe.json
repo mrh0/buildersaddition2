@@ -116,6 +116,17 @@
     "buildersaddition2:acacia_hedge",
     "buildersaddition2:dark_oak_hedge",
     "buildersaddition2:mangrove_hedge",
-    "buildersaddition2:cherry_hedge"
+    "buildersaddition2:cherry_hedge",
+    "buildersaddition2:oak_bench",
+    "buildersaddition2:spruce_bench",
+    "buildersaddition2:birch_bench",
+    "buildersaddition2:jungle_bench",
+    "buildersaddition2:acacia_bench",
+    "buildersaddition2:dark_oak_bench",
+    "buildersaddition2:mangrove_bench",
+    "buildersaddition2:cherry_bench",
+    "buildersaddition2:bamboo_bench",
+    "buildersaddition2:crimson_bench",
+    "buildersaddition2:warped_bench"
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "parent": "buildersaddition2:block/base_sofa_both",
+  "parent": "buildersaddition2:block/base_sofa_inventory",
   "textures": {
     "wool": "minecraft:block/brown_wool"
   }

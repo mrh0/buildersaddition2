@@ -42,7 +42,7 @@ public class BPLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockBlueprint.getAllBlueprintBlocks();
+        return BA2.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;//BlockBlueprint.getAllBlueprintBlocks();
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {

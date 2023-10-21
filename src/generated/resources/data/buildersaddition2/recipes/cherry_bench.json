@@ -1,0 +1,16 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_cherry_log"
+    },
+    {
+      "item": "minecraft:cherry_planks"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "buildersaddition2:cherry_bench"
+  }
+}

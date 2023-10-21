@@ -1,6 +1,6 @@
 package github.mrh0.buildersaddition2.common.variants;
 
-import github.mrh0.buildersaddition2.Utils;
+import github.mrh0.buildersaddition2.common.Utils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 

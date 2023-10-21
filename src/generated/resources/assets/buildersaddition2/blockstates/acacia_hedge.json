@@ -2,45 +2,57 @@
   "variants": {
     "state=corner_ne": {
       "model": "buildersaddition2:block/acacia_hedge_corner",
+      "uvlock": true,
       "y": 90
     },
     "state=corner_nw": {
-      "model": "buildersaddition2:block/acacia_hedge_corner"
+      "model": "buildersaddition2:block/acacia_hedge_corner",
+      "uvlock": true
     },
     "state=corner_se": {
       "model": "buildersaddition2:block/acacia_hedge_corner",
+      "uvlock": true,
       "y": 180
     },
     "state=corner_sw": {
       "model": "buildersaddition2:block/acacia_hedge_corner",
+      "uvlock": true,
       "y": 270
     },
     "state=cross": {
-      "model": "buildersaddition2:block/acacia_hedge_cross"
+      "model": "buildersaddition2:block/acacia_hedge_cross",
+      "uvlock": true
     },
     "state=none": {
-      "model": "buildersaddition2:block/acacia_hedge_none"
+      "model": "buildersaddition2:block/acacia_hedge_none",
+      "uvlock": true
     },
     "state=straight_x": {
       "model": "buildersaddition2:block/acacia_hedge_straight",
+      "uvlock": true,
       "y": 90
     },
     "state=straight_z": {
-      "model": "buildersaddition2:block/acacia_hedge_straight"
+      "model": "buildersaddition2:block/acacia_hedge_straight",
+      "uvlock": true
     },
     "state=tcross_e": {
       "model": "buildersaddition2:block/acacia_hedge_tcross",
+      "uvlock": true,
       "y": 90
     },
     "state=tcross_n": {
-      "model": "buildersaddition2:block/acacia_hedge_tcross"
+      "model": "buildersaddition2:block/acacia_hedge_tcross",
+      "uvlock": true
     },
     "state=tcross_s": {
       "model": "buildersaddition2:block/acacia_hedge_tcross",
+      "uvlock": true,
       "y": 180
     },
     "state=tcross_w": {
       "model": "buildersaddition2:block/acacia_hedge_tcross",
+      "uvlock": true,
       "y": 270
     }
   }

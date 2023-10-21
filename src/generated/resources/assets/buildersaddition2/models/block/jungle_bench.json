@@ -1,0 +1,8 @@
+{
+  "parent": "buildersaddition2:block/base_bench",
+  "textures": {
+    "particle": "minecraft:block/stripped_jungle_log",
+    "planks": "minecraft:block/jungle_planks",
+    "stripped": "minecraft:block/stripped_jungle_log"
+  }
+}

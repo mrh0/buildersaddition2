@@ -91,7 +91,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     public abstract String getLangName(V variant);
 
     public void buildLootTable(BPLootTableProvider provider, RegistryObject<B> block, V variant) {
-        provider.dropSelf(Index.CARPENTER_TABLE.get());
+        provider.dropSelf(block.get());
     }
 
     public List<ItemLike> getRecipeRequired(V variant) {

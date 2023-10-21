@@ -1,0 +1,286 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "both_x"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "none_x"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "both_z"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "none_z"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "shape": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "shape": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "shape": "both_z"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "shape": "both_z"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true
+      },
+      "when": {
+        "shape": "both_x"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/dark_oak_bench_legs",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "shape": "both_x"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/white_stool_pillow"
+      },
+      "when": {
+        "pillow": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/orange_stool_pillow"
+      },
+      "when": {
+        "pillow": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/magenta_stool_pillow"
+      },
+      "when": {
+        "pillow": "magenta"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/light_blue_stool_pillow"
+      },
+      "when": {
+        "pillow": "light_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/yellow_stool_pillow"
+      },
+      "when": {
+        "pillow": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/lime_stool_pillow"
+      },
+      "when": {
+        "pillow": "lime"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/pink_stool_pillow"
+      },
+      "when": {
+        "pillow": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/gray_stool_pillow"
+      },
+      "when": {
+        "pillow": "gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/light_gray_stool_pillow"
+      },
+      "when": {
+        "pillow": "light_gray"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/cyan_stool_pillow"
+      },
+      "when": {
+        "pillow": "cyan"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/purple_stool_pillow"
+      },
+      "when": {
+        "pillow": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/blue_stool_pillow"
+      },
+      "when": {
+        "pillow": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/brown_stool_pillow"
+      },
+      "when": {
+        "pillow": "brown"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/green_stool_pillow"
+      },
+      "when": {
+        "pillow": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/red_stool_pillow"
+      },
+      "when": {
+        "pillow": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/black_stool_pillow"
+      },
+      "when": {
+        "pillow": "black"
+      }
+    }
+  ]
+}
