@@ -78,11 +78,6 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    public LootTableProviderType getLootTableType(WoodVariant variant) {
-        return LootTableProviderType.CUSTOM;
-    }
-
-    @Override
     public void buildLootTable(BPLootTableProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()

@@ -1,7 +1,9 @@
 package github.mrh0.buildersaddition2.common;
 
+import github.mrh0.buildersaddition2.Index;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -98,4 +100,10 @@ public class Utils {
     }
 
     public static final Direction[] HORIZONTAL_DIRECTIONS = { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST };
+
+    public static ItemStack getIcon() {
+        var list = Index.COUNTER.getAllBlocks();
+        var selected = list[(int)(Math.random()*list.length)];
+        return new ItemStack(selected);
+    }
 }

@@ -81,11 +81,6 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
     }
 
     @Override
-    public LootTableProviderType getLootTableType(WoodVariant variant) {
-        return LootTableProviderType.CUSTOM;
-    }
-
-    @Override
     public void buildLootTable(BPLootTableProvider provider, RegistryObject<ChairBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()

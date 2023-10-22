@@ -2,6 +2,7 @@ package github.mrh0.buildersaddition2;
 
 import com.mojang.logging.LogUtils;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.Utils;
 import github.mrh0.buildersaddition2.proxy.ClientProxy;
 import github.mrh0.buildersaddition2.proxy.CommonProxy;
 import github.mrh0.buildersaddition2.screen.CarpenterTableMenu;
@@ -48,9 +49,10 @@ public class BA2 {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MODID);
 
-    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("ba2", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register("ba2", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> Items.ACACIA_BOAT.asItem().getDefaultInstance())
+            //.icon(Utils::getIcon)
             .build());
 
     public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);

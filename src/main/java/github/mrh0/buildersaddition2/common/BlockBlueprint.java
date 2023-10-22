@@ -2,7 +2,6 @@ package github.mrh0.buildersaddition2.common;
 
 import com.mojang.datafixers.util.Pair;
 import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.datagen.*;
 import github.mrh0.buildersaddition2.common.variants.ResourceVariant;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -34,12 +33,6 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
 
     private final List<Pair<RegistryObject<B>, V>> registryList = new ArrayList<>();
 
-    public enum LootTableProviderType {
-        NONE,
-        SELF,
-        CUSTOM
-    }
-
     // Frontend
     protected abstract Supplier<B> getBlock(V variant);
 
@@ -57,12 +50,8 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return true;
     }
 
-    public LootTableProviderType getLootTableType(V variant) {
-        return LootTableProviderType.SELF;
-    }
-
     protected void onCreativeTab(BuildCreativeModeTabContentsEvent event, RegistryObject<B> block, V variant) {
-        if(event.getTabKey() == BA2.EXAMPLE_TAB.getKey())
+        if(event.getTabKey() == BA2.MAIN_TAB.getKey())
             event.accept(block.get());
     }
 

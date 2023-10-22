@@ -99,11 +99,6 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
     }
 
     @Override
-    public LootTableProviderType getLootTableType(WoodVariant variant) {
-        return LootTableProviderType.SELF;
-    }
-
-    @Override
     public int getRecipeResultCount(WoodVariant variant) {
         return 1;
     }
