@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.bedside_table;
 
+import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -28,6 +29,6 @@ public class BedsideTableBlockEntity extends AbstractStorageBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return Component.empty();
+        return BA2.translatable("container", "bedside_table");
     }
 }

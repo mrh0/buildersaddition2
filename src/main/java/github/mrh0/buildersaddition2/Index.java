@@ -21,6 +21,9 @@ import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlock;
 import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
+import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlock;
+import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlockEntity;
+import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlueprint;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
@@ -37,7 +40,8 @@ import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
-import github.mrh0.buildersaddition2.screen.CarpenterTableMenu;
+import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
+import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -67,6 +71,10 @@ public class Index {
         return BA2.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
+    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
+        return BA2.MENUS.register(name, () -> IForgeMenuType.create(factory));
+    }
+
     // Entity
     public static RegistryObject<EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
             .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
@@ -74,15 +82,15 @@ public class Index {
     // Menu
     public static final RegistryObject<MenuType<CarpenterTableMenu>> CARPENTER_TABLE_MENU =
             registerMenuType("carpenter_table_menu", CarpenterTableMenu::new);
+    public static final RegistryObject<MenuType<GenericStorageMenu>> SHELF_MENU =
+            registerMenuType("shelf_menu", ShelfBlockEntity::shelfMenu);
 
     // Recipe
     public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
             BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
 
 
-    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
-        return BA2.MENUS.register(name, () -> IForgeMenuType.create(factory));
-    }
+
 
     // Block
     public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
@@ -123,6 +131,9 @@ public class Index {
     public static BlockBlueprint<CounterVariant, CounterBlock> COUNTER =
             new CounterBlueprint(CounterVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, ShelfBlock> SHELF =
+            new ShelfBlueprint(WoodVariant.ALL);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
@@ -135,6 +146,9 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<CounterBlockEntity>> COUNTER_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("counter", () ->
             BlockEntityType.Builder.of(CounterBlockEntity::new, COUNTER.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<ShelfBlockEntity>> SHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shelf", () ->
+            BlockEntityType.Builder.of(ShelfBlockEntity::new, SHELF.getAllBlocks()).build(null));
 
     public static void load() {
 

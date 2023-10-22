@@ -116,11 +116,11 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BenchBlock> block, WoodVariant variant) {
-        provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
+        provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 .texture("particle", variant.textureStripped);
-        provider.withParent(getBlockModelPath(variant, "_legs"), BA2.get("block/base_" + getBaseName() + "_legs"))
+        provider.withParent(getBlockModelPath(variant, "_legs"), resource("block/base_" + getBaseName() + "_legs"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 .texture("particle", variant.textureStripped);
@@ -128,7 +128,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BenchBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_inventory"))
+        provider.withParent(getRegistryName(variant),  resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped);
     }

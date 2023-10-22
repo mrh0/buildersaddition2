@@ -49,17 +49,17 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<PillowBlock> block, WoolVariant variant) {
-        provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
+        provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
-        provider.withParent("block/" + variant + "_stool_pillow", BA2.get("block/base_stool_" + getBaseName()))
+        provider.withParent("block/" + variant + "_stool_pillow", resource("block/base_stool_" + getBaseName()))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
     }
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<PillowBlock> block, WoolVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override

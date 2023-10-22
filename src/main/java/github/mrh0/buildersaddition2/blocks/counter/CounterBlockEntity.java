@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.counter;
 
+import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -26,6 +27,6 @@ public class CounterBlockEntity extends AbstractStorageBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return Component.empty();
+        return BA2.translatable("container", "counter");
     }
 }

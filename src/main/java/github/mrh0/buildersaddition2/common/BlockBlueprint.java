@@ -37,11 +37,15 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     protected abstract Supplier<B> getBlock(V variant);
 
     protected String getRegistryName(V variant) {
-        return variant.toString() + "_" + getBaseName();
+        return variant.getRegistryName(getBaseName());
+    }
+
+    public ResourceLocation resource(String path) {
+        return new ResourceLocation(BA2.MODID, path);
     }
 
     public ResourceLocation resource(V variant) {
-        return BA2.get(getRegistryName(variant));
+        return resource(getRegistryName(variant));
     }
 
     protected abstract void buildBlockState(BPBlockStateProvider bsp, RegistryObject<B> block, V variant);
@@ -163,11 +167,11 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     }
 
     public final ModelFile model(String model) {
-        return new ModelFile.UncheckedModelFile(BA2.get(model));
+        return new ModelFile.UncheckedModelFile(resource(model));
     }
 
     public final ModelFile blockModel(String model) {
-        return new ModelFile.UncheckedModelFile(BA2.get("block/" + model));
+        return new ModelFile.UncheckedModelFile(resource("block/" + model));
     }
 
     public final Block getBlock(int index) {

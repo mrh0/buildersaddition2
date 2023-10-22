@@ -20,4 +20,8 @@ public abstract class ResourceVariant {
     public String getDisplayName() {
         return this.displayName;
     }
+
+    public String getRegistryName(String blockName) {
+        return this.toString() + "_" + blockName;
+    }
 }

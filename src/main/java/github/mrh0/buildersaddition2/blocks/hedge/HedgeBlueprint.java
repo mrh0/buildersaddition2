@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.hedge;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.LeavesVariant;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -26,7 +25,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
 
     @Override
     protected Supplier<HedgeBlock> getBlock(LeavesVariant variant) {
-        return () -> new HedgeBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL));
+        return () -> new HedgeBlock(BlockBehaviour.Properties.copy(variant.leaves));
     }
 
     @Override
@@ -55,26 +54,26 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<HedgeBlock> block, LeavesVariant variant) {
-        provider.withParent(getBlockModelPath(variant, "_corner"), BA2.get("block/base_" + getBaseName() + "_corner"))
+        provider.withParent(getBlockModelPath(variant, "_corner"), resource("block/base_" + getBaseName() + "_corner"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
-        provider.withParent(getBlockModelPath(variant, "_cross"), BA2.get("block/base_" + getBaseName() + "_cross"))
+        provider.withParent(getBlockModelPath(variant, "_cross"), resource("block/base_" + getBaseName() + "_cross"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
-        provider.withParent(getBlockModelPath(variant, "_none"), BA2.get("block/base_" + getBaseName() + "_none"))
+        provider.withParent(getBlockModelPath(variant, "_none"), resource("block/base_" + getBaseName() + "_none"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
-        provider.withParent(getBlockModelPath(variant, "_straight"), BA2.get("block/base_" + getBaseName() + "_straight"))
+        provider.withParent(getBlockModelPath(variant, "_straight"), resource("block/base_" + getBaseName() + "_straight"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
-        provider.withParent(getBlockModelPath(variant, "_tcross"), BA2.get("block/base_" + getBaseName() + "_tcross"))
+        provider.withParent(getBlockModelPath(variant, "_tcross"), resource("block/base_" + getBaseName() + "_tcross"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
     }
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<HedgeBlock> block, LeavesVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get("block/base_" + getBaseName() + "_inventory"))
+        provider.withParent(getRegistryName(variant), resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("leaves", variant.textureLeaves);
     }
 

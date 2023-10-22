@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "buildersaddition2:block/acacia_shelf",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "buildersaddition2:block/acacia_shelf"
+    },
+    "facing=south": {
+      "model": "buildersaddition2:block/acacia_shelf",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "buildersaddition2:block/acacia_shelf",
+      "y": 270
+    }
+  }
+}

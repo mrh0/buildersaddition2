@@ -49,27 +49,27 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
-        provider.withParent(getBlockModelPath(variant, "_single"), BA2.get("block/base_cupboard_single"))
+        provider.withParent(getBlockModelPath(variant, "_single"), resource("block/base_cupboard_single"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
-        provider.withParent(getBlockModelPath(variant, "_single_mirror"), BA2.get("block/base_cupboard_single_mirror"))
+        provider.withParent(getBlockModelPath(variant, "_single_mirror"), resource("block/base_cupboard_single_mirror"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
-        provider.withParent(getBlockModelPath(variant, "_top"), BA2.get("block/base_cupboard_top"))
+        provider.withParent(getBlockModelPath(variant, "_top"), resource("block/base_cupboard_top"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
-        provider.withParent(getBlockModelPath(variant, "_top_mirror"), BA2.get("block/base_cupboard_top_mirror"))
+        provider.withParent(getBlockModelPath(variant, "_top_mirror"), resource("block/base_cupboard_top_mirror"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 //.texture("detail", "minecraft:polished_andesite")
                 .texture("particle", variant.texturePlanks);
-        provider.withParent(getBlockModelPath(variant, "_bottom"), BA2.get("block/base_cupboard_bottom"))
+        provider.withParent(getBlockModelPath(variant, "_bottom"), resource("block/base_cupboard_bottom"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 .texture("particle", variant.texturePlanks);
@@ -77,7 +77,7 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant, "_single")));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_single")));
     }
 
     @Override

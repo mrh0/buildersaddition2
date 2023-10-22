@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.cabinet;
 
+import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
@@ -30,6 +31,6 @@ public class CabinetBlockEntity extends AbstractStorageBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return Component.empty();
+        return BA2.translatable("container", "cabinet");
     }
 }

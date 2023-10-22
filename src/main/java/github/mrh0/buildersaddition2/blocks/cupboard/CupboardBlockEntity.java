@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.cupboard;
 
+import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
@@ -24,7 +25,7 @@ public class CupboardBlockEntity extends AbstractStorageBlockEntity {
 
     @Override
     protected Component getDefaultName() {
-        return Component.empty();
+        return BA2.translatable("container", "cupboard");
     }
 
     @Override

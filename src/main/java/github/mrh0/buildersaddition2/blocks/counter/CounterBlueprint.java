@@ -46,7 +46,7 @@ public class CounterBlueprint extends BlockBlueprint<CounterVariant, CounterBloc
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CounterBlock> block, CounterVariant variant) {
-        provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
+        provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("top", variant.textureTop)
                 .texture("planks", variant.wood.texturePlanks)
                 .texture("stripped", variant.wood.textureStripped)
@@ -55,7 +55,7 @@ public class CounterBlueprint extends BlockBlueprint<CounterVariant, CounterBloc
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CounterBlock> block, CounterVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override

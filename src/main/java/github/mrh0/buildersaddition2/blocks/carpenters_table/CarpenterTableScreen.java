@@ -1,4 +1,4 @@
-package github.mrh0.buildersaddition2.screen;
+package github.mrh0.buildersaddition2.blocks.carpenters_table;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;

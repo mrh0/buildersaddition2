@@ -44,7 +44,7 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
-        provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
+        provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 .texture("particle", variant.texturePlanks);
@@ -52,7 +52,7 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CabinetBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override

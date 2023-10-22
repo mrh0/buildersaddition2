@@ -43,7 +43,7 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
-        provider.withParent(getBlockModelPath(variant), BA2.get("block/base_" + getBaseName()))
+        provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
                 .texture("particle", variant.texturePlanks);
@@ -51,7 +51,7 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant), BA2.get(getBlockModelPath(variant)));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override

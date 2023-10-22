@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.cupboard;
 
+import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.state.CupboardState;
@@ -203,8 +204,8 @@ public class CupboardBlock extends Block implements EntityBlock {
         return DoubleBlockCombiner.combineWithNeigbour(Index.CUPBOARD_ENTITY_TYPE.get(), CupboardBlock::getBlockType, CupboardBlock::getConnectedDirection, FACING, p_51544_, p_51545_, p_51546_, bipredicate);
     }
 
-    public MenuProvider getMenuProvider(BlockState p_51574_, Level p_51575_, BlockPos p_51576_) {
-        return this.combine(p_51574_, p_51575_, p_51576_, false).apply(MENU_PROVIDER_COMBINER).orElse((MenuProvider)null);
+    public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+        return this.combine(state, level, pos, false).apply(MENU_PROVIDER_COMBINER).orElse((MenuProvider)null);
     }
 
     private static final DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<Container>> CUPBOARD_COMBINER = new DoubleBlockCombiner.Combiner<CupboardBlockEntity, Optional<Container>>() {
@@ -233,7 +234,7 @@ public class CupboardBlock extends Block implements EntityBlock {
 
                 public Component getDisplayName() {
                     if (be1.hasCustomName()) return be1.getDisplayName();
-                    else return (Component)(be2.hasCustomName() ? be2.getDisplayName() : Component.translatable("container.chestDouble"));
+                    else return (Component)(be2.hasCustomName() ? be2.getDisplayName() : BA2.translatable("container", "cupboard"));
                 }
             });
         }

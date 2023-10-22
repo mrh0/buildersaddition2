@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.sofa;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -94,23 +93,23 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
-        provider.withParent(getBlockModelPath(variant, "_inner_corner"), BA2.get("block/base_" + getBaseName() + "_inner_corner"))
+        provider.withParent(getBlockModelPath(variant, "_inner_corner"), resource("block/base_" + getBaseName() + "_inner_corner"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
-        provider.withParent(getBlockModelPath(variant, "_none"), BA2.get("block/base_" + getBaseName() + "_none"))
+        provider.withParent(getBlockModelPath(variant, "_none"), resource("block/base_" + getBaseName() + "_none"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
-        provider.withParent(getBlockModelPath(variant, "_outer_corner"), BA2.get("block/base_" + getBaseName() + "_outer_corner"))
+        provider.withParent(getBlockModelPath(variant, "_outer_corner"), resource("block/base_" + getBaseName() + "_outer_corner"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
-        provider.withParent(getBlockModelPath(variant, "_side"), BA2.get("block/base_" + getBaseName() + "_side"))
+        provider.withParent(getBlockModelPath(variant, "_side"), resource("block/base_" + getBaseName() + "_side"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
     }
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
-        provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_inventory"))
+        provider.withParent(getRegistryName(variant),  resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("wool", variant.textureWool);
     }
 

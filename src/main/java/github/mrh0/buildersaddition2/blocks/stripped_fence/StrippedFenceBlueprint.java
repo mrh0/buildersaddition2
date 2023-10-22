@@ -53,17 +53,17 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
 
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
-        provider.withParent(getBlockModelPath(variant, "_post"), BA2.get("block/base_" + getBaseName() + "_post"))
+        provider.withParent(getBlockModelPath(variant, "_post"), resource("block/base_" + getBaseName() + "_post"))
                 .texture("texture", variant.textureStripped)
                 .texture("particle", variant.textureStripped);
-        provider.withParent(getBlockModelPath(variant, "_side"), BA2.get("block/base_" + getBaseName() + "_side"))
+        provider.withParent(getBlockModelPath(variant, "_side"), resource("block/base_" + getBaseName() + "_side"))
                 .texture("texture", variant.texturePlanks)
                 .texture("particle", variant.textureStripped);
     }
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant),  BA2.get("block/base_" + getBaseName() + "_inventory"))
+        provider.withParent(getRegistryName(variant),  resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("texture", variant.textureStripped);
     }
 

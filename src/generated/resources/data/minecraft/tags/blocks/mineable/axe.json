@@ -204,6 +204,17 @@
     "buildersaddition2:warped_andesite_counter",
     "buildersaddition2:warped_deepslate_counter",
     "buildersaddition2:warped_basalt_counter",
-    "buildersaddition2:warped_blackstone_counter"
+    "buildersaddition2:warped_blackstone_counter",
+    "buildersaddition2:oak_shelf",
+    "buildersaddition2:spruce_shelf",
+    "buildersaddition2:birch_shelf",
+    "buildersaddition2:jungle_shelf",
+    "buildersaddition2:acacia_shelf",
+    "buildersaddition2:dark_oak_shelf",
+    "buildersaddition2:mangrove_shelf",
+    "buildersaddition2:cherry_shelf",
+    "buildersaddition2:bamboo_shelf",
+    "buildersaddition2:crimson_shelf",
+    "buildersaddition2:warped_shelf"
   ]
 }

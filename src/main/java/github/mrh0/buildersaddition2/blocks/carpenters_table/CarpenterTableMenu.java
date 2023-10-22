@@ -1,4 +1,4 @@
-package github.mrh0.buildersaddition2.screen;
+package github.mrh0.buildersaddition2.blocks.carpenters_table;
 
 import com.google.common.collect.Lists;
 import github.mrh0.buildersaddition2.Index;

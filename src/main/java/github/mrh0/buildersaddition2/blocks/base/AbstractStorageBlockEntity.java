@@ -132,14 +132,12 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
 
     @Override
     public void startOpen(Player player) {
-        System.out.println("startOpen");
         if (!this.remove && !player.isSpectator())
             this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
     }
 
     @Override
     public void stopOpen(Player player) {
-        System.out.println("stopOpen");
         if (!this.remove && !player.isSpectator())
             this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
     }
@@ -151,13 +149,11 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
 
     private ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
         protected void onOpen(Level level, BlockPos pos, BlockState state) {
-            System.out.println("onOpen");
             playSound(state, SoundEvents.BARREL_OPEN);
             //updateBlockState(state, true);
         }
 
         protected void onClose(Level level, BlockPos pos, BlockState state) {
-            System.out.println("onClose");
             playSound(state, SoundEvents.BARREL_CLOSE);
             //updateBlockState(state, false);
         }

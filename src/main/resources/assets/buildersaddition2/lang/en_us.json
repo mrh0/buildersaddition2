@@ -1,6 +1,12 @@
 {
+  "tab.buildersaddition2.main": "Builders Crafts & Additions",
   "recipe.buildersaddition2.carpenter.title": "Carpentry",
   "container.buildersaddition2.carpenter_table": "Carpenter's Work Table",
+  "container.buildersaddition2.bedside_table": "Bedside Table",
+  "container.buildersaddition2.cabinet": "Cabinet",
+  "container.buildersaddition2.counter": "Counter",
+  "container.buildersaddition2.cupboard": "Cupboard",
+  "container.buildersaddition2.shelf": "Shelf",
 
   "block.buildersaddition2.carpenter_table": "Carpenter's Work Table"
 }
