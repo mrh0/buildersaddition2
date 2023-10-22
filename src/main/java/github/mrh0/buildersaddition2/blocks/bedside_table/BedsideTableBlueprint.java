@@ -28,7 +28,7 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Bedside Table";
+        return variant.getDisplayName() + " Bedside Table";
     }
 
     @Override

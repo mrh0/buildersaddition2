@@ -1,0 +1,18 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:polished_basalt"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:mangrove_basalt_counter"
+  }
+}

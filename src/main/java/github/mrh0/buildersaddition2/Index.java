@@ -11,6 +11,9 @@ import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlueprint;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
+import github.mrh0.buildersaddition2.blocks.counter.CounterBlock;
+import github.mrh0.buildersaddition2.blocks.counter.CounterBlockEntity;
+import github.mrh0.buildersaddition2.blocks.counter.CounterBlueprint;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlueprint;
@@ -27,6 +30,7 @@ import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprin
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.variants.CounterVariant;
 import github.mrh0.buildersaddition2.common.variants.LeavesVariant;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 
@@ -116,6 +120,9 @@ public class Index {
     public static BlockBlueprint<WoodVariant, BenchBlock> BENCH =
             new BenchBlueprint(WoodVariant.ALL);
 
+    public static BlockBlueprint<CounterVariant, CounterBlock> COUNTER =
+            new CounterBlueprint(CounterVariant.ALL);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
@@ -125,6 +132,9 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<CabinetBlockEntity>> CABINET_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cabinet", () ->
             BlockEntityType.Builder.of(CabinetBlockEntity::new, CABINET.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<CounterBlockEntity>> COUNTER_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("counter", () ->
+            BlockEntityType.Builder.of(CounterBlockEntity::new, COUNTER.getAllBlocks()).build(null));
 
     public static void load() {
 

@@ -39,7 +39,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Chair";
+        return variant.getDisplayName() + " Chair";
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
 
         for (int i = 0; i < WoolVariant.ALL.size(); i++) {
             var wool = WoolVariant.ALL.get(i);
-            bs.part().modelFile(model("block/" + wool.name + "_stool_pillow")).addModel().condition(ChairBlock.PILLOW, PillowState.fromIndex(i)).end();
+            bs.part().modelFile(model("block/" + wool.getName() + "_stool_pillow")).addModel().condition(ChairBlock.PILLOW, PillowState.fromIndex(i)).end();
         }
     }
 

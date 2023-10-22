@@ -37,7 +37,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
 
     @Override
     public String getLangName(WoolVariant variant) {
-        return variant.displayName + " Sofa";
+        return variant.getDisplayName() + " Sofa";
     }
 
     @Override

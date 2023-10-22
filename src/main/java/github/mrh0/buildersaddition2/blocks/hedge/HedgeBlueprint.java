@@ -36,7 +36,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
 
     @Override
     public String getLangName(LeavesVariant variant) {
-        return variant.displayName + " Hedge";
+        return variant.getDisplayName() + " Hedge";
     }
 
     @Override

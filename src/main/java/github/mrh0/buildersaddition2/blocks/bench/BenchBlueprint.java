@@ -51,7 +51,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Bench";
+        return variant.getDisplayName() + " Bench";
     }
 
     @Override
@@ -110,7 +110,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
 
         for (int i = 0; i < WoolVariant.ALL.size(); i++) {
             var wool = WoolVariant.ALL.get(i);
-            bs.part().modelFile(model("block/" + wool.name + "_stool_pillow")).addModel().condition(BenchBlock.PILLOW, PillowState.fromIndex(i)).end();
+            bs.part().modelFile(model("block/" + wool.getName() + "_stool_pillow")).addModel().condition(BenchBlock.PILLOW, PillowState.fromIndex(i)).end();
         }
     }
 

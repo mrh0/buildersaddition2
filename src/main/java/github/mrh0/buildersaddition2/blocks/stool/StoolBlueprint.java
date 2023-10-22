@@ -40,7 +40,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Stool";
+        return variant.getDisplayName() + " Stool";
     }
 
     @Override
@@ -73,7 +73,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
 
         for (int i = 0; i < WoolVariant.ALL.size(); i++) {
             var wool = WoolVariant.ALL.get(i);
-            bs.part().modelFile(model("block/" + wool.name + "_stool_pillow")).addModel().condition(StoolBlock.PILLOW, PillowState.fromIndex(i)).end();
+            bs.part().modelFile(model("block/" + wool.getName() + "_stool_pillow")).addModel().condition(StoolBlock.PILLOW, PillowState.fromIndex(i)).end();
         }
     }
 

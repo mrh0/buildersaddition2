@@ -10,6 +10,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -28,7 +29,7 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Cabinet";
+        return variant.getDisplayName() + " Cabinet";
     }
 
     @Override
@@ -61,11 +62,11 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
 
     @Override
     public int getRecipeResultCount(WoodVariant variant) {
-        return 1;
+        return 2;
     }
 
     @Override
     public List<ItemLike> getRecipeRequired(WoodVariant variant) {
-        return List.of(variant.stripped);
+        return List.of(variant.planks, Blocks.CHEST);
     }
 }

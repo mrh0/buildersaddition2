@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "buildersaddition2:block/mangrove_deepslate_counter",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "buildersaddition2:block/mangrove_deepslate_counter"
+    },
+    "facing=south": {
+      "model": "buildersaddition2:block/mangrove_deepslate_counter",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "buildersaddition2:block/mangrove_deepslate_counter",
+      "y": 270
+    }
+  }
+}

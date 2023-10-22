@@ -3,10 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:stripped_bamboo_block"
+      "item": "minecraft:bamboo_planks"
+    },
+    {
+      "item": "minecraft:chest"
     }
   ],
   "result": {
+    "count": 2,
     "item": "buildersaddition2:bamboo_cabinet"
   }
 }

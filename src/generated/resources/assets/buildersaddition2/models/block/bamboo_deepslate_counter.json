@@ -1,0 +1,9 @@
+{
+  "parent": "buildersaddition2:block/base_counter",
+  "textures": {
+    "particle": "minecraft:block/bamboo_planks",
+    "planks": "minecraft:block/bamboo_planks",
+    "stripped": "minecraft:block/stripped_bamboo_block",
+    "top": "minecraft:block/polished_deepslate"
+  }
+}

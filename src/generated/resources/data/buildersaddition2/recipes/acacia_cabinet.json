@@ -3,10 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:stripped_acacia_log"
+      "item": "minecraft:acacia_planks"
+    },
+    {
+      "item": "minecraft:chest"
     }
   ],
   "result": {
+    "count": 2,
     "item": "buildersaddition2:acacia_cabinet"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "parent": "buildersaddition2:block/base_counter",
+  "textures": {
+    "particle": "minecraft:block/warped_planks",
+    "planks": "minecraft:block/warped_planks",
+    "stripped": "minecraft:block/stripped_warped_stem",
+    "top": "minecraft:block/polished_deepslate"
+  }
+}

@@ -29,7 +29,7 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Table";
+        return variant.getDisplayName() + " Table";
     }
 
     @Override

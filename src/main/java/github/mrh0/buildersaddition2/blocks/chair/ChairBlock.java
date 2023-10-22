@@ -68,8 +68,7 @@ public class ChairBlock extends Block implements ISeatBlock {
 
     private static VoxelShape buildShape(BlockState state) {
         Direction dir = state.getValue(FACING);
-        if(state.getValue(PILLOW) == PillowState.None)
-            return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
+        if(state.getValue(PILLOW) == PillowState.None) return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
         return Shapes.or(SHAPE_PILLOW, SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
     }
 
@@ -86,7 +85,7 @@ public class ChairBlock extends Block implements ISeatBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
-        return defaultBlockState().setValue(FACING, c.getHorizontalDirection());
+        return defaultBlockState().setValue(FACING, c.isSecondaryUseActive() ? c.getHorizontalDirection() : c.getHorizontalDirection().getOpposite());
     }
 
     @Override

@@ -16,10 +16,18 @@ public class PolishedVariant extends ResourceVariant {
         this.texturePolished = "minecraft:block/polished_"+name;
     }
 
+    public PolishedVariant(String name, Block polished, String texturePolished) {
+        super(name, Utils.capitalizeWords(name));
+
+        this.polished = polished;
+        this.texturePolished = texturePolished;
+    }
+
     public static PolishedVariant GRANITE = new PolishedVariant("granite", Blocks.POLISHED_GRANITE);
     public static PolishedVariant DIORITE = new PolishedVariant("diorite", Blocks.POLISHED_DIORITE);
     public static PolishedVariant ANDESITE = new PolishedVariant("andesite", Blocks.POLISHED_ANDESITE);
     public static PolishedVariant DEEPSLATE = new PolishedVariant("deepslate", Blocks.POLISHED_DEEPSLATE);
+    public static PolishedVariant BASALT = new PolishedVariant("basalt", Blocks.POLISHED_BASALT, "minecraft:block/polished_basalt_side");
     public static PolishedVariant BLACKSTONE = new PolishedVariant("blackstone", Blocks.POLISHED_BLACKSTONE);
 
     public static List<PolishedVariant> ALL = List.of(
@@ -27,6 +35,7 @@ public class PolishedVariant extends ResourceVariant {
             DIORITE,
             ANDESITE,
             DEEPSLATE,
+            BASALT,
             BLACKSTONE
     );
 }

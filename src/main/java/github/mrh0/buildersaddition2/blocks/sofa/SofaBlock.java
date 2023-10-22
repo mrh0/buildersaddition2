@@ -53,7 +53,7 @@ public class SofaBlock extends Block implements ISeatBlock {
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos blockpos = context.getClickedPos();
-        BlockState blockstate = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());
+        BlockState blockstate = this.defaultBlockState().setValue(FACING, context.isSecondaryUseActive() ? context.getHorizontalDirection().getOpposite() : context.getHorizontalDirection());
         blockstate = blockstate.setValue(SHAPE, getStairsShape(blockstate, context.getLevel(), blockpos));
         return blockstate.setValue(ARMREST_LEFT, hasArmrestLeft(blockstate, context.getLevel(), blockpos))
                 .setValue(ARMREST_RIGHT, hasArmrestRight(blockstate, context.getLevel(), blockpos));

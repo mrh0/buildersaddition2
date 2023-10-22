@@ -1,0 +1,18 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:dark_oak_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:polished_basalt"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:dark_oak_basalt_counter"
+  }
+}

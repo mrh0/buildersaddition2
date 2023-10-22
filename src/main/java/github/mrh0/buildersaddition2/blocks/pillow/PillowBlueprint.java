@@ -34,7 +34,7 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
 
     @Override
     public String getLangName(WoolVariant variant) {
-        return variant.displayName + " Pillow";
+        return variant.getDisplayName() + " Pillow";
     }
 
     @Override

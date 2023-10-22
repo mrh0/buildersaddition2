@@ -18,10 +18,10 @@ import org.jetbrains.annotations.Nullable;
 public class CabinetBlock extends AbstractStorageBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    protected static final VoxelShape NORTH_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
-    protected static final VoxelShape EAST_SHAPE = Block.box(8D, 0.0D, 0.0D, 16D, 16.0D, 16.0D);
-    protected static final VoxelShape SOUTH_SHAPE = Block.box(0.0D, 0.0D, 8D, 16D, 16D, 16D);
-    protected static final VoxelShape WEST_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
+    protected static final VoxelShape SHAPE_EAST = Block.box(8D, 0.0D, 0.0D, 16D, 16.0D, 16.0D);
+    protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 0.0D, 8D, 16D, 16D, 16D);
+    protected static final VoxelShape SHAPE_WEST = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
 
     public CabinetBlock(Properties props) {
         super(props);
@@ -45,10 +45,10 @@ public class CabinetBlock extends AbstractStorageBlock {
 
     private VoxelShape getShapeForDirection(Direction direction) {
         return switch (direction) {
-            case SOUTH -> SOUTH_SHAPE;
-            case EAST -> EAST_SHAPE;
-            case WEST -> WEST_SHAPE;
-            default -> NORTH_SHAPE;
+            case SOUTH -> SHAPE_SOUTH;
+            case EAST -> SHAPE_EAST;
+            case WEST -> SHAPE_WEST;
+            default -> SHAPE_NORTH;
         };
     }
 

@@ -43,7 +43,7 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return "Stripped " + variant.displayName + " Fence";
+        return "Stripped " + variant.getDisplayName() + " Fence";
     }
 
     @Override

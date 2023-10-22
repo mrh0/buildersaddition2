@@ -34,7 +34,7 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.displayName + " Cupboard";
+        return variant.getDisplayName() + " Cupboard";
     }
 
     @Override
@@ -110,6 +110,6 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
 
     @Override
     public List<ItemLike> getRecipeRequired(WoodVariant variant) {
-        return List.of(variant.stripped, Blocks.CHEST.asItem());
+        return List.of(variant.planks, Blocks.CHEST);
     }
 }

@@ -1,0 +1,9 @@
+{
+  "parent": "buildersaddition2:block/base_counter",
+  "textures": {
+    "particle": "minecraft:block/mangrove_planks",
+    "planks": "minecraft:block/mangrove_planks",
+    "stripped": "minecraft:block/stripped_mangrove_log",
+    "top": "minecraft:block/polished_deepslate"
+  }
+}
