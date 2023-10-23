@@ -72,8 +72,6 @@ public class ShelfBlock extends AbstractStorageBlock {
         return InteractionResult.CONSUME;
     }
 
-
-
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

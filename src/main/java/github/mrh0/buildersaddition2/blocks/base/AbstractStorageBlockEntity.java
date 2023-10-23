@@ -64,7 +64,7 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
         return new InvWrapper(this);
     }
 
-    private static MenuType getMenuType(int rows) {
+    private static MenuType<ChestMenu> getMenuType(int rows) {
         return switch(rows) {
             case 1 -> MenuType.GENERIC_9x1;
             case 2 -> MenuType.GENERIC_9x2;
