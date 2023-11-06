@@ -215,6 +215,18 @@
     "buildersaddition2:cherry_shelf",
     "buildersaddition2:bamboo_shelf",
     "buildersaddition2:crimson_shelf",
-    "buildersaddition2:warped_shelf"
+    "buildersaddition2:warped_shelf",
+    "buildersaddition2:oak_panel",
+    "buildersaddition2:spruce_panel",
+    "buildersaddition2:birch_panel",
+    "buildersaddition2:jungle_panel",
+    "buildersaddition2:acacia_panel",
+    "buildersaddition2:dark_oak_panel",
+    "buildersaddition2:mangrove_panel",
+    "buildersaddition2:cherry_panel",
+    "buildersaddition2:bamboo_panel",
+    "buildersaddition2:crimson_panel",
+    "buildersaddition2:warped_panel",
+    "buildersaddition2:symbol"
   ]
 }

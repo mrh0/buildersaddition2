@@ -40,7 +40,7 @@ public class ChairBlock extends Block implements ISeatBlock {
 
     public ChairBlock(Properties props) {
         super(props);
-        registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PILLOW, PillowState.None));
+        registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(PILLOW, PillowState.NONE));
         this.shapesCache = getShapeForEachState(ChairBlock::buildShape);
     }
 
@@ -68,7 +68,7 @@ public class ChairBlock extends Block implements ISeatBlock {
 
     private static VoxelShape buildShape(BlockState state) {
         Direction dir = state.getValue(FACING);
-        if(state.getValue(PILLOW) == PillowState.None) return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
+        if(state.getValue(PILLOW) == PillowState.NONE) return Shapes.or(SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
         return Shapes.or(SHAPE_PILLOW, SHAPE_BASE, getBackShape(dir), getLegsShape(dir));
     }
 
@@ -91,7 +91,7 @@ public class ChairBlock extends Block implements ISeatBlock {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
                                  InteractionHand hand, BlockHitResult hit) {
-        boolean type = state.getValue(PILLOW) == PillowState.None;
+        boolean type = state.getValue(PILLOW) == PillowState.NONE;
         if(type) {
             Item item = player.getItemInHand(hand).getItem();
             for(int i = 0; i < Index.PILLOW.getBlockCount(); i++) {

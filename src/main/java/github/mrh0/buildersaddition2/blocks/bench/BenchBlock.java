@@ -42,7 +42,7 @@ public class BenchBlock extends Block implements ISeatBlock {
 
     public BenchBlock(Properties props) {
         super(props);
-        registerDefaultState(defaultBlockState().setValue(PILLOW, PillowState.None));
+        registerDefaultState(defaultBlockState().setValue(PILLOW, PillowState.NONE));
     }
 
     public VoxelShape getShape(BlockState state) {
@@ -84,22 +84,22 @@ public class BenchBlock extends Block implements ISeatBlock {
         if(current == Direction.Axis.Z) {
             boolean n = connects(current, worldIn, pos, Direction.NORTH);
             boolean s = connects(current, worldIn, pos, Direction.SOUTH);
-            if(n && !s) return out.setValue(SHAPE, BenchState.North);
-            if(!n && s) return out.setValue(SHAPE, BenchState.South);
-            if(n) return out.setValue(SHAPE, BenchState.None_Z);
-            return out.setValue(SHAPE, BenchState.Both_Z);
+            if(n && !s) return out.setValue(SHAPE, BenchState.NORTH);
+            if(!n && s) return out.setValue(SHAPE, BenchState.SOUTH);
+            if(n) return out.setValue(SHAPE, BenchState.NONE_Z);
+            return out.setValue(SHAPE, BenchState.BOTH_Z);
         }
         boolean w = connects(current, worldIn, pos, Direction.WEST);
         boolean e = connects(current, worldIn, pos, Direction.EAST);
-        if(e && !w) return out.setValue(SHAPE, BenchState.East);
-        if(!e && w) return out.setValue(SHAPE, BenchState.West);
-        if(e) return out.setValue(SHAPE, BenchState.None_X);
-        return out.setValue(SHAPE, BenchState.Both_X);
+        if(e && !w) return out.setValue(SHAPE, BenchState.EAST);
+        if(!e && w) return out.setValue(SHAPE, BenchState.WEST);
+        if(e) return out.setValue(SHAPE, BenchState.NONE_X);
+        return out.setValue(SHAPE, BenchState.BOTH_X);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext c) {
-        return getState(c.getHorizontalDirection().getClockWise().getAxis(), c.getLevel(), c.getClickedPos(), PillowState.None);
+        return getState(c.getHorizontalDirection().getClockWise().getAxis(), c.getLevel(), c.getClickedPos(), PillowState.NONE);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class BenchBlock extends Block implements ISeatBlock {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
                                  InteractionHand hand, BlockHitResult hit) {
-        boolean type = state.getValue(PILLOW) == PillowState.None;
+        boolean type = state.getValue(PILLOW) == PillowState.NONE;
         if(type) {
             Item item = player.getItemInHand(hand).getItem();
             for(int i = 0; i < Index.PILLOW.getBlockCount(); i++) {

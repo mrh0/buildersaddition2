@@ -1,5 +1,7 @@
 package github.mrh0.buildersaddition2.common.variants;
 
+import java.util.List;
+
 public class SingleVariant extends ResourceVariant {
     public SingleVariant() {
         super("ERROR", "ERROR");
@@ -11,4 +13,5 @@ public class SingleVariant extends ResourceVariant {
     }
 
     public static final SingleVariant INSTANCE = new SingleVariant();
+    public static final List<SingleVariant> SINGLE = List.of(INSTANCE);
 }

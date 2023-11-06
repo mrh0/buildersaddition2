@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.cupboard;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -85,9 +84,9 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
         Function<BlockState, ModelFile> modelFunc = (state) -> {
             boolean mirror = state.getValue(CupboardBlock.MIRROR);
              return switch(state.getValue(CupboardBlock.VARIANT)) {
-                 case Single -> mirror ? blockModel(variant + "_cupboard_single_mirror") : blockModel(variant + "_cupboard_single");
-                 case Top -> mirror ? blockModel(variant + "_cupboard_top_mirror") : blockModel(variant + "_cupboard_top");
-                 case Bottom -> blockModel(variant + "_cupboard_bottom");
+                 case SINGLE -> mirror ? blockModel(variant + "_cupboard_single_mirror") : blockModel(variant + "_cupboard_single");
+                 case TOP -> mirror ? blockModel(variant + "_cupboard_top_mirror") : blockModel(variant + "_cupboard_top");
+                 case BOTTOM -> blockModel(variant + "_cupboard_bottom");
              };
         };
         provider.getVariantBuilder(block.get())

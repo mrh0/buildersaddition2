@@ -3,16 +3,16 @@ package github.mrh0.buildersaddition2.state;
 import net.minecraft.util.StringRepresentable;
 
 public enum SymbolState implements StringRepresentable {
-    Roof("roof"),
-    Wall("wall"),
-    Floor("floor");
+    ROOF("roof"),
+    WALL("wall"),
+    FLOOR("floor");
 
     private String name;
 
     private static SymbolState[] list = {
-            Roof,
-            Wall,
-            Floor
+            ROOF,
+            WALL,
+            FLOOR
     };
 
     SymbolState(String name) {
@@ -29,14 +29,14 @@ public enum SymbolState implements StringRepresentable {
     }
 
     public boolean isRoof() {
-        return this == Roof;
+        return this == ROOF;
     }
 
     public boolean isWall() {
-        return this == Wall;
+        return this == WALL;
     }
 
     public boolean isFloor() {
-        return this == Floor;
+        return this == FLOOR;
     }
 }

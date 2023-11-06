@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "shape=double_x": {
+      "model": "buildersaddition2:block/acacia_panel_double",
+      "uvlock": true
+    },
+    "shape=double_z": {
+      "model": "buildersaddition2:block/acacia_panel_double",
+      "uvlock": true
+    },
+    "shape=east": {
+      "model": "buildersaddition2:block/acacia_panel",
+      "uvlock": true,
+      "y": 90
+    },
+    "shape=north": {
+      "model": "buildersaddition2:block/acacia_panel",
+      "uvlock": true
+    },
+    "shape=south": {
+      "model": "buildersaddition2:block/acacia_panel",
+      "uvlock": true,
+      "y": 180
+    },
+    "shape=west": {
+      "model": "buildersaddition2:block/acacia_panel",
+      "uvlock": true,
+      "y": 270
+    }
+  }
+}

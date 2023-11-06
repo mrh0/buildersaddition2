@@ -1,8 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.hedge;
 
-import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.state.HedgeState;
-import github.mrh0.buildersaddition2.state.PillowState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -26,8 +24,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IForgeShearable;
-
-import java.util.Map;
 
 public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -77,7 +73,7 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
 
     public HedgeBlock(Properties props) {
         super(props);
-        registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(STATE, HedgeState.None));
+        registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(STATE, HedgeState.NONE));
     }
 
     @Override
@@ -92,18 +88,18 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
 
     public VoxelShape getShape(BlockState state) {
         return switch (state.getValue(STATE)) {
-            case None -> SHAPE_NONE;
-            case Straight_X -> SHAPE_STRAIGHT_X;
-            case Straight_Z -> SHAPE_STRAIGHT_Z;
-            case Corner_NE -> SHAPE_CORNER_NE;
-            case Corner_NW -> SHAPE_CORNER_NW;
-            case Corner_SE -> SHAPE_CORNER_SE;
-            case Corner_SW -> SHAPE_CORNER_SW;
-            case TCross_N -> SHAPE_T_N;
-            case TCross_E -> SHAPE_T_E;
-            case TCross_S -> SHAPE_T_S;
-            case TCross_W -> SHAPE_T_W;
-            case Cross -> SHAPE_CROSS;
+            case NONE -> SHAPE_NONE;
+            case S_X -> SHAPE_STRAIGHT_X;
+            case S_Z -> SHAPE_STRAIGHT_Z;
+            case C_NE -> SHAPE_CORNER_NE;
+            case C_NW -> SHAPE_CORNER_NW;
+            case C_SE -> SHAPE_CORNER_SE;
+            case C_SW -> SHAPE_CORNER_SW;
+            case T_N -> SHAPE_T_N;
+            case T_E -> SHAPE_T_E;
+            case T_S -> SHAPE_T_S;
+            case T_W -> SHAPE_T_W;
+            case C -> SHAPE_CROSS;
         };
     }
 
@@ -111,18 +107,18 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos,
                                         CollisionContext context) {
         return switch (state.getValue(STATE)) {
-            case None -> COL_NONE;
-            case Straight_X -> COL_STRAIGHT_X;
-            case Straight_Z -> COL_STRAIGHT_Z;
-            case Corner_NE -> COL_CORNER_NE;
-            case Corner_NW -> COL_CORNER_NW;
-            case Corner_SE -> COL_CORNER_SE;
-            case Corner_SW -> COL_CORNER_SW;
-            case TCross_N -> COL_T_N;
-            case TCross_E -> COL_T_E;
-            case TCross_S -> COL_T_S;
-            case TCross_W -> COL_T_W;
-            case Cross -> COL_CROSS;
+            case NONE -> COL_NONE;
+            case S_X -> COL_STRAIGHT_X;
+            case S_Z -> COL_STRAIGHT_Z;
+            case C_NE -> COL_CORNER_NE;
+            case C_NW -> COL_CORNER_NW;
+            case C_SE -> COL_CORNER_SE;
+            case C_SW -> COL_CORNER_SW;
+            case T_N -> COL_T_N;
+            case T_E -> COL_T_E;
+            case T_S -> COL_T_S;
+            case T_W -> COL_T_W;
+            case C -> COL_CROSS;
         };
     }
 
@@ -143,32 +139,32 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
         boolean w = bw.getBlock() instanceof HedgeBlock;
 
         if(n && e && s && w)
-            return getNextState(state, HedgeState.Cross);
+            return getNextState(state, HedgeState.C);
 
         if(!n && !e && !s && !w)
-            return getNextState(state, HedgeState.None);
+            return getNextState(state, HedgeState.NONE);
 
         else if(n && e && !s && w)
-            return getNextState(state, HedgeState.TCross_N);
+            return getNextState(state, HedgeState.T_N);
         else if(n && e && s)
-            return getNextState(state, HedgeState.TCross_E);
+            return getNextState(state, HedgeState.T_E);
         else if(!n && e && s && w)
-            return getNextState(state, HedgeState.TCross_S);
+            return getNextState(state, HedgeState.T_S);
         else if(n && !e && s && w)
-            return getNextState(state, HedgeState.TCross_W);
+            return getNextState(state, HedgeState.T_W);
 
         else if(!e && !w)
-            return getNextState(state, HedgeState.Straight_X);
+            return getNextState(state, HedgeState.S_X);
         else if(!n && !s)
-            return getNextState(state, HedgeState.Straight_Z);
+            return getNextState(state, HedgeState.S_Z);
 
         else if(n && e)
-            return getNextState(state, HedgeState.Corner_NE);
+            return getNextState(state, HedgeState.C_NE);
         else if(n)
-            return getNextState(state, HedgeState.Corner_NW);
+            return getNextState(state, HedgeState.C_NW);
         else if(e)
-            return getNextState(state, HedgeState.Corner_SE);
-        return getNextState(state, HedgeState.Corner_SW);
+            return getNextState(state, HedgeState.C_SE);
+        return getNextState(state, HedgeState.C_SW);
     }
 
     private BlockState getNextState(BlockState state, HedgeState shape) {

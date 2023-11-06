@@ -3,16 +3,16 @@ package github.mrh0.buildersaddition2.state;
 import net.minecraft.util.StringRepresentable;
 
 public enum CupboardState implements StringRepresentable {
-    Single("single"),
-    Top("top"),
-    Bottom("bottom");
+    SINGLE("single"),
+    TOP("top"),
+    BOTTOM("bottom");
 
     private String name;
 
     private static CupboardState[] list = {
-            Single,
-            Top,
-            Bottom
+            SINGLE,
+            TOP,
+            BOTTOM
     };
 
     CupboardState(String name) {
@@ -29,14 +29,14 @@ public enum CupboardState implements StringRepresentable {
     }
 
     public boolean isSingle() {
-        return this == Single;
+        return this == SINGLE;
     }
 
     public boolean isTop() {
-        return this == Top;
+        return this == TOP;
     }
 
     public boolean isBottom() {
-        return this == Bottom;
+        return this == BOTTOM;
     }
 }

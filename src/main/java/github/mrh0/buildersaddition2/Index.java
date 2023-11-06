@@ -19,6 +19,8 @@ import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlueprint;
 import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlock;
 import github.mrh0.buildersaddition2.blocks.hedge.HedgeBlueprint;
+import github.mrh0.buildersaddition2.blocks.panel.PanelBlock;
+import github.mrh0.buildersaddition2.blocks.panel.PanelBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlock;
@@ -30,14 +32,14 @@ import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlueprint;
 import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlock;
 import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprint;
+import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlock;
+import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlockEntity;
+import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
-import github.mrh0.buildersaddition2.common.variants.CounterVariant;
-import github.mrh0.buildersaddition2.common.variants.LeavesVariant;
-import github.mrh0.buildersaddition2.common.variants.WoodVariant;
+import github.mrh0.buildersaddition2.common.variants.*;
 
-import github.mrh0.buildersaddition2.common.variants.WoolVariant;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
@@ -90,8 +92,6 @@ public class Index {
             BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
 
 
-
-
     // Block
     public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 
@@ -134,6 +134,12 @@ public class Index {
     public static BlockBlueprint<WoodVariant, ShelfBlock> SHELF =
             new ShelfBlueprint(WoodVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, PanelBlock> PANEL =
+            new PanelBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
+            new SymbolBlueprint(SingleVariant.SINGLE);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
@@ -149,6 +155,9 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<ShelfBlockEntity>> SHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shelf", () ->
             BlockEntityType.Builder.of(ShelfBlockEntity::new, SHELF.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
+            BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
 
     public static void load() {
 

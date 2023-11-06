@@ -1,8 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.bench;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -17,12 +15,10 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -87,25 +83,25 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
         var legs = model(getBlockModelPath(variant, "_legs"));
 
         var bs = bsp.getMultipartBuilder(block.get())
-                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_X).end()
-                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.None_X).end()
-                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_Z).end()
-                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.None_Z).end()
+                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_X).end()
+                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.NONE_X).end()
+                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_Z).end()
+                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.NONE_Z).end()
 
-                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.North).end()
-                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.South).end()
-                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.East).end()
-                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.West).end()
+                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.NORTH).end()
+                .part().modelFile(base).rotationY(90).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.SOUTH).end()
+                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.EAST).end()
+                .part().modelFile(base).rotationY(0).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.WEST).end()
 
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.NORTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.North).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.EAST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.East).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.SOUTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.South).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.WEST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.West).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.NORTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.NORTH).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.EAST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.EAST).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.SOUTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.SOUTH).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.WEST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.WEST).end()
 
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.NORTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_Z).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.SOUTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_Z).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.EAST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_X).end()
-                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.WEST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.Both_X).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.NORTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_Z).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.SOUTH, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_Z).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.EAST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_X).end()
+                .part().modelFile(legs).rotationY(bsp.getAngleFromDir(Direction.WEST, offset)).uvLock(uvLock).addModel().condition(BenchBlock.SHAPE, BenchState.BOTH_X).end()
         ;
 
         for (int i = 0; i < WoolVariant.ALL.size(); i++) {

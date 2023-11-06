@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_panel_double",
+  "textures": {
+    "all": "minecraft:block/warped_planks",
+    "particle": "minecraft:block/warped_planks"
+  }
+}

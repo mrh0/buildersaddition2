@@ -2,7 +2,6 @@ package github.mrh0.buildersaddition2.blocks.cupboard;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.state.CupboardState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.DoubleBlockCombiner;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -90,9 +88,9 @@ public class CupboardBlock extends Block implements EntityBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext cc) {
         return switch(state.getValue(VARIANT)) {
-            case Single -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_SINGLE, SHAPE_EAST_SINGLE, SHAPE_SOUTH_SINGLE, SHAPE_WEST_SINGLE);
-            case Top -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_TOP, SHAPE_EAST_TOP, SHAPE_SOUTH_TOP, SHAPE_WEST_TOP);
-            case Bottom -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_BOTTOM, SHAPE_EAST_BOTTOM, SHAPE_SOUTH_BOTTOM, SHAPE_WEST_BOTTOM);
+            case SINGLE -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_SINGLE, SHAPE_EAST_SINGLE, SHAPE_SOUTH_SINGLE, SHAPE_WEST_SINGLE);
+            case TOP -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_TOP, SHAPE_EAST_TOP, SHAPE_SOUTH_TOP, SHAPE_WEST_TOP);
+            case BOTTOM -> selectByDirection(state.getValue(FACING), SHAPE_NORTH_BOTTOM, SHAPE_EAST_BOTTOM, SHAPE_SOUTH_BOTTOM, SHAPE_WEST_BOTTOM);
         };
     }
 
@@ -106,7 +104,7 @@ public class CupboardBlock extends Block implements EntityBlock {
         if (aboveState.getBlock() instanceof CupboardBlock) {
             if(!aboveState.getValue(VARIANT).isBottom() && aboveState.getValue(FACING) == c.getHorizontalDirection()) {
                 return this.defaultBlockState()
-                        .setValue(VARIANT, CupboardState.Bottom)
+                        .setValue(VARIANT, CupboardState.BOTTOM)
                         .setValue(MIRROR, aboveState.getValue(MIRROR))
                         .setValue(FACING, c.getHorizontalDirection());
             }
@@ -114,14 +112,14 @@ public class CupboardBlock extends Block implements EntityBlock {
         if (belowState.getBlock() instanceof CupboardBlock) {
             if(!belowState.getValue(VARIANT).isTop() && belowState.getValue(FACING) == c.getHorizontalDirection()) {
                 return this.defaultBlockState()
-                        .setValue(VARIANT, CupboardState.Top)
+                        .setValue(VARIANT, CupboardState.TOP)
                         .setValue(MIRROR, belowState.getValue(MIRROR))
                         .setValue(FACING, c.getHorizontalDirection());
             }
         }
 
         return this.defaultBlockState()
-                .setValue(VARIANT, CupboardState.Single)
+                .setValue(VARIANT, CupboardState.SINGLE)
                 .setValue(MIRROR, shift)
                 .setValue(FACING, c.getHorizontalDirection());
     }
@@ -136,7 +134,7 @@ public class CupboardBlock extends Block implements EntityBlock {
             if(direction == Direction.DOWN) {
                 if(!newState.getValue(VARIANT).isTop())
                     return defaultBlockState()
-                            .setValue(VARIANT, CupboardState.Top)
+                            .setValue(VARIANT, CupboardState.TOP)
                             .setValue(FACING, currentState.getValue(FACING))
                             .setValue(MIRROR, currentState.getValue(MIRROR));
 
@@ -144,7 +142,7 @@ public class CupboardBlock extends Block implements EntityBlock {
             if(direction == Direction.UP) {
                 if(!newState.getValue(VARIANT).isBottom())
                     return defaultBlockState()
-                            .setValue(VARIANT, CupboardState.Bottom)
+                            .setValue(VARIANT, CupboardState.BOTTOM)
                             .setValue(FACING, currentState.getValue(FACING))
                             .setValue(MIRROR, currentState.getValue(MIRROR));
             }
@@ -153,7 +151,7 @@ public class CupboardBlock extends Block implements EntityBlock {
             if((direction == Direction.DOWN && currentState.getValue(VARIANT).isTop())
             || (direction == Direction.UP && currentState.getValue(VARIANT).isBottom())) {
                 return defaultBlockState()
-                        .setValue(VARIANT, CupboardState.Single)
+                        .setValue(VARIANT, CupboardState.SINGLE)
                         .setValue(FACING, currentState.getValue(FACING))
                         .setValue(MIRROR, currentState.getValue(MIRROR));
             }
@@ -184,12 +182,12 @@ public class CupboardBlock extends Block implements EntityBlock {
 
     public static DoubleBlockCombiner.BlockType getBlockType(BlockState state) {
         CupboardState type = state.getValue(VARIANT);
-        if (type == CupboardState.Single) return DoubleBlockCombiner.BlockType.SINGLE;
-        else return type == CupboardState.Top ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
+        if (type == CupboardState.SINGLE) return DoubleBlockCombiner.BlockType.SINGLE;
+        else return type == CupboardState.TOP ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
     }
 
     public static Direction getConnectedDirection(BlockState state) {
-        return state.getValue(VARIANT) == CupboardState.Bottom ? Direction.UP :  Direction.DOWN;
+        return state.getValue(VARIANT) == CupboardState.BOTTOM ? Direction.UP :  Direction.DOWN;
     }
 
     public static Container getContainer(CupboardBlock block, BlockState state, Level level, BlockPos pos, boolean flag) {

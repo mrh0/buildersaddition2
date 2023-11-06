@@ -22,7 +22,7 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected final void buildRecipes(Consumer<FinishedRecipe> consumer) {
         BlockBlueprint.ALL_BLUEPRINTS.forEach(blueprint -> {
             blueprint.generateAllRecipes(this, consumer);
         });

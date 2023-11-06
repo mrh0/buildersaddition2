@@ -1,0 +1,65 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:crimson_panel"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:crimson_panel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "shape": "double_x"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:crimson_panel"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:crimson_panel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "shape": "double_z"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:crimson_panel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "buildersaddition2:blocks/crimson_panel"
+}
