@@ -1,5 +1,7 @@
 package github.mrh0.buildersaddition2;
 
+import github.mrh0.buildersaddition2.blocks.barrel_planter.BarrelPlanterBlock;
+import github.mrh0.buildersaddition2.blocks.barrel_planter.BarrelPlanterBlueprint;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
@@ -149,6 +151,9 @@ public class Index {
 
     public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
             new SymbolBlueprint(SingleVariant.SINGLE);
+
+    public static BlockBlueprint<SingleVariant, BarrelPlanterBlock> BARREL_PLANTER =
+            new BarrelPlanterBlueprint(SingleVariant.SINGLE);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

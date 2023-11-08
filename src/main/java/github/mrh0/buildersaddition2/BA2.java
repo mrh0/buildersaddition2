@@ -57,7 +57,6 @@ public class BA2 {
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> Index.COUNTER.getBlock(0).asItem().getDefaultInstance())
             .title(translatable("tab", "main"))
-            //.icon(Utils::getIcon)
             .build());
 
     public BA2() {
