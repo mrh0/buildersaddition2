@@ -1,0 +1,72 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_support_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "axis_x": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:birch_support_beam"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_support_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "axis_y": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:birch_support_beam"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "buildersaddition2:birch_support_beam",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "axis_z": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:birch_support_beam"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "buildersaddition2:blocks/birch_support_beam"
+}

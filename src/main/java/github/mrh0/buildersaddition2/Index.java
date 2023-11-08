@@ -23,6 +23,8 @@ import github.mrh0.buildersaddition2.blocks.panel.PanelBlock;
 import github.mrh0.buildersaddition2.blocks.panel.PanelBlueprint;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlock;
 import github.mrh0.buildersaddition2.blocks.pillow.PillowBlueprint;
+import github.mrh0.buildersaddition2.blocks.post.PostBlock;
+import github.mrh0.buildersaddition2.blocks.post.PostBlueprint;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlock;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlockEntity;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlueprint;
@@ -32,6 +34,8 @@ import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlueprint;
 import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlock;
 import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprint;
+import github.mrh0.buildersaddition2.blocks.support_beam.SupportBeamBlock;
+import github.mrh0.buildersaddition2.blocks.support_beam.SupportBeamBlueprint;
 import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlock;
 import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlockEntity;
 import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlueprint;
@@ -136,6 +140,12 @@ public class Index {
 
     public static BlockBlueprint<WoodVariant, PanelBlock> PANEL =
             new PanelBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, SupportBeamBlock> SUPPORT_BEAM =
+            new SupportBeamBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, PostBlock> POST =
+            new PostBlueprint(WoodVariant.ALL);
 
     public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
             new SymbolBlueprint(SingleVariant.SINGLE);

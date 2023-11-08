@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "axis_x=false,axis_y=false,axis_z=false": {
+      "model": "buildersaddition2:block/dark_oak_post_y"
+    },
+    "axis_x=false,axis_y=false,axis_z=true": {
+      "model": "buildersaddition2:block/dark_oak_post_z"
+    },
+    "axis_x=false,axis_y=true,axis_z=false": {
+      "model": "buildersaddition2:block/dark_oak_post_y"
+    },
+    "axis_x=false,axis_y=true,axis_z=true": {
+      "model": "buildersaddition2:block/dark_oak_post_yz"
+    },
+    "axis_x=true,axis_y=false,axis_z=false": {
+      "model": "buildersaddition2:block/dark_oak_post_z",
+      "y": 90
+    },
+    "axis_x=true,axis_y=false,axis_z=true": {
+      "model": "buildersaddition2:block/dark_oak_post_xz"
+    },
+    "axis_x=true,axis_y=true,axis_z=false": {
+      "model": "buildersaddition2:block/dark_oak_post_yz",
+      "y": 90
+    },
+    "axis_x=true,axis_y=true,axis_z=true": {
+      "model": "buildersaddition2:block/dark_oak_post_xyz"
+    }
+  }
+}

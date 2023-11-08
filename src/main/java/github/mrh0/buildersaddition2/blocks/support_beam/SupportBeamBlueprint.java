@@ -1,6 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.support_beam;
 
 import github.mrh0.buildersaddition2.blocks.panel.PanelBlock;
+import github.mrh0.buildersaddition2.blocks.post.PostBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
@@ -86,7 +87,7 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
 
     @Override
     protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SupportBeamBlock> block, WoodVariant variant) {
-        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
+        provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_y")));
     }
 
     @Override
@@ -95,28 +96,20 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
             boolean x = state.getValue(SupportBeamBlock.AXIS_X);
             boolean y = state.getValue(SupportBeamBlock.AXIS_Y);
             boolean z = state.getValue(SupportBeamBlock.AXIS_Z);
-            if (x && y && z) return blockModel(variant + "_xyz");
-            else if (y && (z || x)) return blockModel(variant + "_yz");
-            else if (z && x) return blockModel(variant + "_xz");
-            else if (z || x) return blockModel(variant + "_z");
-            else return blockModel(variant + "_y");
-        };
-        Function<BlockState, Integer> rotFunc = (state) -> {
-            boolean x = state.getValue(SupportBeamBlock.AXIS_X);
-            boolean y = state.getValue(SupportBeamBlock.AXIS_Y);
-            boolean z = state.getValue(SupportBeamBlock.AXIS_Z);
-            if (x && y && z) return 0;
-            else if (x) return 90;
-            return 0;
+            if (x && y && z) return blockModel(variant + "_" + getBaseName() + "_xyz");
+            else if (y && (z || x)) return blockModel(variant + "_" + getBaseName() + "_yz");
+            else if (z && x) return blockModel(variant + "_" + getBaseName() + "_xz");
+            else if (z || x) return blockModel(variant + "_" + getBaseName() + "_z");
+            else return blockModel(variant + "_" + getBaseName() + "_y");
         };
         provider.getVariantBuilder(block.get())
-                .forAllStatesExcept(state -> ConfiguredModel.builder()
-                                .modelFile(modelFunc.apply(state))
-                                .rotationY(state.getValue(SupportBeamBlock.AXIS_X) && ! state.getValue(SupportBeamBlock.AXIS_Z) ? 90 : 0)
-                                .uvLock(false)
-                                .build(),
-                        BlockStateProperties.WATERLOGGED
-                );
+            .forAllStatesExcept(state -> ConfiguredModel.builder()
+                    .modelFile(modelFunc.apply(state))
+                    .rotationY(state.getValue(PostBlock.AXIS_X) && ! state.getValue(PostBlock.AXIS_Z) ? 90 : 0)
+                    .uvLock(false)
+                    .build(),
+                BlockStateProperties.WATERLOGGED
+            );
     }
 
     @Override

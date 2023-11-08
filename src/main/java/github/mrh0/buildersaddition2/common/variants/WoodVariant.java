@@ -208,7 +208,7 @@ public class WoodVariant extends ResourceVariant{
             "minecraft:block/warped_planks",
             "minecraft:block/warped_stem",
             "minecraft:block/stripped_warped_stem",
-            "minecraft:block/stripped_crimson_stem_top"
+            "minecraft:block/stripped_warped_stem_top"
     );
 
     public static List<WoodVariant> ALL = List.of(
