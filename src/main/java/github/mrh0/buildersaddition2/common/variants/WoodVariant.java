@@ -18,6 +18,7 @@ public class WoodVariant extends ResourceVariant{
     public final String texturePlanks;
     public final String textureLog;
     public final String textureStripped;
+    public final String textureStrippedTop;
 
     public WoodVariant(
             String name,
@@ -31,7 +32,8 @@ public class WoodVariant extends ResourceVariant{
             Block fence,
             String texturePlanks,
             String textureLog,
-            String textureStripped
+            String textureStripped,
+            String textureStrippedTop
     ) {
         super(name, displayName);
         this.planks = planks;
@@ -45,6 +47,7 @@ public class WoodVariant extends ResourceVariant{
         this.texturePlanks = texturePlanks;
         this.textureLog = textureLog;
         this.textureStripped = textureStripped;
+        this.textureStrippedTop = textureStrippedTop;
     }
 
     public WoodVariant(
@@ -69,6 +72,7 @@ public class WoodVariant extends ResourceVariant{
         this.texturePlanks = "minecraft:block/"+name+"_planks";
         this.textureLog = "minecraft:block/"+name+"_log";
         this.textureStripped = "minecraft:block/stripped_"+name+"_log";
+        this.textureStrippedTop = "minecraft:block/stripped_"+name+"_log_top";
     }
 
     public static WoodVariant OAK = new WoodVariant(
@@ -171,7 +175,8 @@ public class WoodVariant extends ResourceVariant{
             Blocks.BAMBOO_FENCE,
             "minecraft:block/bamboo_planks",
             "minecraft:block/bamboo_block",
-            "minecraft:block/stripped_bamboo_block"
+            "minecraft:block/stripped_bamboo_block",
+            "minecraft:block/stripped_bamboo_block_top"
     );
 
     public static WoodVariant CRIMSON = new WoodVariant(
@@ -186,7 +191,8 @@ public class WoodVariant extends ResourceVariant{
             Blocks.CHERRY_FENCE,
             "minecraft:block/crimson_planks",
             "minecraft:block/crimson_stem",
-            "minecraft:block/stripped_crimson_stem"
+            "minecraft:block/stripped_crimson_stem",
+            "minecraft:block/stripped_crimson_stem_top"
     );
 
     public static WoodVariant WARPED = new WoodVariant(
@@ -201,7 +207,8 @@ public class WoodVariant extends ResourceVariant{
             Blocks.WARPED_FENCE,
             "minecraft:block/warped_planks",
             "minecraft:block/warped_stem",
-            "minecraft:block/stripped_warped_stem"
+            "minecraft:block/stripped_warped_stem",
+            "minecraft:block/stripped_crimson_stem_top"
     );
 
     public static List<WoodVariant> ALL = List.of(

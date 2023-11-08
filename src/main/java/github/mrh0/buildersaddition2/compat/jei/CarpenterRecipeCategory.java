@@ -33,7 +33,7 @@ public class CarpenterRecipeCategory implements IRecipeCategory<CarpenterRecipe>
 
     @Override
     public Component getTitle() {
-        return Component.translatable("recipe.buildersaddition2.carpenter.title");
+        return Component.translatable("recipe." + BA2.MODID + ".carpenter.title");
     }
 
     @Override
