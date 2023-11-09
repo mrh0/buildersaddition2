@@ -30,6 +30,9 @@ import github.mrh0.buildersaddition2.blocks.post.PostBlueprint;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlock;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlockEntity;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfBlueprint;
+import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignBlock;
+import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignBlockEntity;
+import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignBlueprint;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlock;
 import github.mrh0.buildersaddition2.blocks.sofa.SofaBlueprint;
 import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
@@ -152,8 +155,11 @@ public class Index {
     public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
             new SymbolBlueprint(SingleVariant.SINGLE);
 
-    public static BlockBlueprint<SingleVariant, BarrelPlanterBlock> BARREL_PLANTER =
-            new BarrelPlanterBlueprint(SingleVariant.SINGLE);
+    //public static BlockBlueprint<SingleVariant, BarrelPlanterBlock> BARREL_PLANTER =
+    //        new BarrelPlanterBlueprint(SingleVariant.SINGLE);
+
+    public static BlockBlueprint<SingleVariant, ShopSignBlock> SHOP_SIGN =
+            new ShopSignBlueprint(SingleVariant.SINGLE);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
@@ -170,6 +176,9 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<ShelfBlockEntity>> SHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shelf", () ->
             BlockEntityType.Builder.of(ShelfBlockEntity::new, SHELF.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<ShopSignBlockEntity>> SHOP_SIGN_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shop_sign", () ->
+            BlockEntityType.Builder.of(ShopSignBlockEntity::new, SHOP_SIGN.getAllBlocks()).build(null));
 
     public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
             BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
