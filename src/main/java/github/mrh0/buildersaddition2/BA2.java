@@ -2,6 +2,7 @@ package github.mrh0.buildersaddition2;
 
 import com.mojang.logging.LogUtils;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfRenderer;
+import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignRenderer;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.entity.seat.SeatRendererFactory;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableScreen;
@@ -101,6 +102,7 @@ public class BA2 {
             MenuScreens.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
 
             BlockEntityRenderers.register(Index.SHELF_ENTITY_TYPE.get(), c -> new ShelfRenderer(c.getBlockEntityRenderDispatcher()));
+            BlockEntityRenderers.register(Index.SHOP_SIGN_ENTITY_TYPE.get(), c -> new ShopSignRenderer(c.getBlockEntityRenderDispatcher()));
 
             EntityRenderers.register(Index.SEAT_ENTITY_TYPE.get(), new SeatRendererFactory());
 

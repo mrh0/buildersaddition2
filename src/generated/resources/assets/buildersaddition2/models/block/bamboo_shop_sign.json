@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_shop_sign",
+  "textures": {
+    "particle": "minecraft:block/stripped_bamboo_block",
+    "texture": "minecraft:block/stripped_bamboo_block"
+  }
+}

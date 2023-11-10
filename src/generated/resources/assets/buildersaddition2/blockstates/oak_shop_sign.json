@@ -1,0 +1,43 @@
+{
+  "variants": {
+    "type=down_x": {
+      "model": "buildersaddition2:block/oak_shop_sign_hanging",
+      "uvlock": true,
+      "y": 90
+    },
+    "type=down_z": {
+      "model": "buildersaddition2:block/oak_shop_sign_hanging",
+      "uvlock": true
+    },
+    "type=east": {
+      "model": "buildersaddition2:block/oak_shop_sign",
+      "uvlock": true,
+      "y": 270
+    },
+    "type=north": {
+      "model": "buildersaddition2:block/oak_shop_sign",
+      "uvlock": true,
+      "y": 180
+    },
+    "type=south": {
+      "model": "buildersaddition2:block/oak_shop_sign",
+      "uvlock": true
+    },
+    "type=up_x": {
+      "model": "buildersaddition2:block/oak_shop_sign_hanging",
+      "uvlock": true,
+      "x": 180,
+      "y": 90
+    },
+    "type=up_z": {
+      "model": "buildersaddition2:block/oak_shop_sign_hanging",
+      "uvlock": true,
+      "x": 180
+    },
+    "type=west": {
+      "model": "buildersaddition2:block/oak_shop_sign",
+      "uvlock": true,
+      "y": 90
+    }
+  }
+}

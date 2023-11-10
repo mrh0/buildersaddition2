@@ -47,16 +47,26 @@ public enum ShopSignState implements StringRepresentable {
         return Direction.Axis.Z;
     }
 
-    public Direction getDirection() {
+    public boolean isHorizontal() {
+        return this != UP_X && this != UP_Z && this != DOWN_X && this != DOWN_Z;
+    }
+
+    public int toYRot() {
         return switch (this) {
-            case UP_X, UP_Z -> Direction.UP;
-            case DOWN_X, DOWN_Z -> Direction.DOWN;
-            default -> Direction.NORTH;
+            case UP_X, DOWN_X -> 90;
+            case UP_Z, DOWN_Z -> 0;
+            case NORTH -> (int) Direction.NORTH.toYRot();
+            case EAST -> (int) Direction.EAST.toYRot();
+            case SOUTH -> (int) Direction.SOUTH.toYRot();
+            case WEST -> (int) Direction.WEST.toYRot();
         };
     }
 
-    public boolean isHorizontal() {
-        return this != UP_X && this != UP_Z && this != DOWN_X && this != DOWN_Z;
+    public int toXRot() {
+        return switch (this) {
+            case UP_X, UP_Z -> 180;
+            default -> 0;
+        };
     }
 
     @Override

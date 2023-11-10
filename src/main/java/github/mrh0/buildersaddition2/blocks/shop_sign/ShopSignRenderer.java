@@ -55,18 +55,17 @@ public class ShopSignRenderer implements BlockEntityRenderer<ShopSignBlockEntity
     }
 
     private float offsetY(ShopSignState state) {
-        return switch (state.getDirection()) {
-            case DOWN -> -u1;
-            case UP -> u1;
+        return switch (state) {
+            case DOWN_X, DOWN_Z -> -u1;
+            case UP_X, UP_Z -> u1;
             default -> 0f;
         };
     }
 
     private float offsetSide(ShopSignState state) {
-        // TODO: remove
-        return switch (state.getDirection()) {
-            case NORTH, EAST -> u1 - 0f / 16f;
-            case SOUTH, WEST -> -u1 + 0f / 16f;
+        return switch (state) {
+            case NORTH, EAST -> u1;
+            case SOUTH, WEST -> -u1;
             default -> 0f;
         };
     }

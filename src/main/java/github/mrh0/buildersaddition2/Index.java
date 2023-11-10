@@ -158,8 +158,8 @@ public class Index {
     //public static BlockBlueprint<SingleVariant, BarrelPlanterBlock> BARREL_PLANTER =
     //        new BarrelPlanterBlueprint(SingleVariant.SINGLE);
 
-    public static BlockBlueprint<SingleVariant, ShopSignBlock> SHOP_SIGN =
-            new ShopSignBlueprint(SingleVariant.SINGLE);
+    public static BlockBlueprint<WoodVariant, ShopSignBlock> SHOP_SIGN =
+            new ShopSignBlueprint(WoodVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->

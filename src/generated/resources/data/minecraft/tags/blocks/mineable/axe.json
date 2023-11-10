@@ -249,6 +249,17 @@
     "buildersaddition2:bamboo_post",
     "buildersaddition2:crimson_post",
     "buildersaddition2:warped_post",
-    "buildersaddition2:symbol"
+    "buildersaddition2:symbol",
+    "buildersaddition2:oak_shop_sign",
+    "buildersaddition2:spruce_shop_sign",
+    "buildersaddition2:birch_shop_sign",
+    "buildersaddition2:jungle_shop_sign",
+    "buildersaddition2:acacia_shop_sign",
+    "buildersaddition2:dark_oak_shop_sign",
+    "buildersaddition2:mangrove_shop_sign",
+    "buildersaddition2:cherry_shop_sign",
+    "buildersaddition2:bamboo_shop_sign",
+    "buildersaddition2:crimson_shop_sign",
+    "buildersaddition2:warped_shop_sign"
   ]
 }
