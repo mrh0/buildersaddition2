@@ -58,27 +58,27 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
         builder.unlockedBy(getHasName(Index.CARPENTER_TABLE.getBlock(0)), has(Index.CARPENTER_TABLE.getBlock(0))).save(consumer, BA2.get(name));
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(MinMaxBounds.Ints p_176521_, ItemLike p_176522_) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(p_176522_).withCount(p_176521_).build());
+    public static InventoryChangeTrigger.TriggerInstance has(MinMaxBounds.Ints bound, ItemLike itemLike) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike).withCount(bound).build());
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(ItemLike p_125978_) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(p_125978_).build());
+    public static InventoryChangeTrigger.TriggerInstance has(ItemLike itemLike) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike).build());
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> p_206407_) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(p_206407_).build());
+    public static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tagKey) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(tagKey).build());
     }
 
-    public static InventoryChangeTrigger.TriggerInstance inventoryTrigger(ItemPredicate... p_126012_) {
-        return new InventoryChangeTrigger.TriggerInstance(ContextAwarePredicate.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, p_126012_);
+    public static InventoryChangeTrigger.TriggerInstance inventoryTrigger(ItemPredicate... predicate) {
+        return new InventoryChangeTrigger.TriggerInstance(ContextAwarePredicate.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, predicate);
     }
 
-    public static String getHasName(ItemLike p_176603_) {
-        return "has_" + getItemName(p_176603_);
+    public static String getHasName(ItemLike itemLike) {
+        return "has_" + getItemName(itemLike);
     }
 
-    public static String getItemName(ItemLike p_176633_) {
-        return BuiltInRegistries.ITEM.getKey(p_176633_.asItem()).getPath();
+    public static String getItemName(ItemLike itemLike) {
+        return BuiltInRegistries.ITEM.getKey(itemLike.asItem()).getPath();
     }
 }
