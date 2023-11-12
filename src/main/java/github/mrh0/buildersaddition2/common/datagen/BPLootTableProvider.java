@@ -36,8 +36,6 @@ public class BPLootTableProvider extends BlockLootSubProvider {
         blueprint.iterable().forEach((pair) -> {
             blueprint.buildLootTable(this, pair.getFirst(), pair.getSecond());
         });
-
-        this.dropSelf(Index.CARPENTER_TABLE.get());
     }
 
     @Override

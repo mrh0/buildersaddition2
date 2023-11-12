@@ -23,7 +23,7 @@ public class CarpenterRecipeCategory implements IRecipeCategory<CarpenterRecipe>
         background = guiHelper.drawableBuilder(BA2.get("textures/gui/container/jei_carpenter.png"), 0, 0, 125, 32)
                 .addPadding(0, 0, 0, 0)
                 .build();
-        icon = guiHelper.createDrawableItemStack(new ItemStack(Index.CARPENTER_TABLE.get().asItem()));
+        icon = guiHelper.createDrawableItemStack(new ItemStack(Index.CARPENTER_TABLE.getBlock(0).asItem()));
     }
 
     @Override

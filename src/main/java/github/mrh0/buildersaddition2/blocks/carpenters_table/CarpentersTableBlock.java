@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
@@ -30,7 +31,14 @@ import javax.annotation.Nullable;
 public class CarpentersTableBlock extends Block {
     private static final Component CONTAINER_TITLE = Component.translatable("container." + BA2.MODID + ".carpenter_table");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D);
+    protected static final VoxelShape SHAPE = Shapes.or(
+            Block.box(0d, 13d, 0d, 16d, 16d, 16d),
+            Block.box(1d, 8d, 1d, 15d, 16d, 15d),
+            Block.box(0d, 0d, 0d, 3d, 16d, 3d), // NW
+            Block.box(13d, 0d, 0d, 16d, 16d, 3d), // NE
+            Block.box(0d, 0d, 13d, 3d, 16d, 16d), // SW
+            Block.box(13d, 0d, 13d, 16d, 16d, 16d) // SE
+    );
 
     public CarpentersTableBlock(BlockBehaviour.Properties props) {
         super(props);

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "buildersaddition2:carpenter_table"
+          "name": "buildersaddition2:crimson_carpenters_table"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "buildersaddition2:blocks/carpenter_table"
+  "random_sequence": "buildersaddition2:blocks/crimson_carpenters_table"
 }

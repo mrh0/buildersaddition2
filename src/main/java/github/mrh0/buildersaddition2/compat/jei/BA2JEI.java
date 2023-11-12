@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 
 import javax.annotation.Nonnull;
 
@@ -46,7 +47,8 @@ public class BA2JEI implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(Index.CARPENTER_TABLE.get().asItem()), CarpenterRecipeCategory.type);
+        for (Block block : Index.CARPENTER_TABLE.getAllBlocks())
+            registration.addRecipeCatalyst(new ItemStack(block.asItem()), CarpenterRecipeCategory.type);
     }
 
     private static ClientLevel getLevel() {

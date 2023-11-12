@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "S": {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  },
+  "pattern": [
+    "A",
+    "S"
+  ],
+  "result": {
+    "item": "buildersaddition2:warped_carpenters_table"
+  },
+  "show_notification": true
+}

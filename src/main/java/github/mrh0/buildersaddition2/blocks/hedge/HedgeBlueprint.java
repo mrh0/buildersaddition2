@@ -40,7 +40,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
 
     @Override
     public List<TagKey<Block>> addBlockTags(LeavesVariant variant) {
-        return List.of(BlockTags.MINEABLE_WITH_AXE);
+        return List.of(BlockTags.MINEABLE_WITH_AXE, BlockTags.LEAVES);
     }
 
     @Override

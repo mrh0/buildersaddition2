@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_carpenter_table": {
+    "has_oak_carpenters_table": {
       "conditions": {
         "items": [
           {
             "items": [
-              "buildersaddition2:carpenter_table"
+              "buildersaddition2:oak_carpenters_table"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_carpenter_table",
+      "has_oak_carpenters_table",
       "has_the_recipe"
     ]
   ],

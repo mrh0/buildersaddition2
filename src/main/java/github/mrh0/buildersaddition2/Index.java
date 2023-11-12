@@ -11,6 +11,7 @@ import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlock;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlueprint;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlock;
+import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpentersTableBlueprint;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlueprint;
 import github.mrh0.buildersaddition2.blocks.counter.CounterBlock;
@@ -102,7 +103,10 @@ public class Index {
 
 
     // Block
-    public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+    // public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
+
+    public static BlockBlueprint<WoodVariant, CarpentersTableBlock> CARPENTER_TABLE =
+            new CarpentersTableBlueprint(WoodVariant.ALL);
 
     public static BlockBlueprint<WoodVariant, ChairBlock> CHAIR =
             new ChairBlueprint(WoodVariant.ALL);

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "S": {
+      "item": "minecraft:stripped_acacia_log"
+    }
+  },
+  "pattern": [
+    "A",
+    "S"
+  ],
+  "result": {
+    "item": "buildersaddition2:acacia_carpenters_table"
+  },
+  "show_notification": true
+}

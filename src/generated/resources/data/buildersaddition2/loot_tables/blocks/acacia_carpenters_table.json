@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "buildersaddition2:acacia_carpenters_table"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "buildersaddition2:blocks/acacia_carpenters_table"
+}
