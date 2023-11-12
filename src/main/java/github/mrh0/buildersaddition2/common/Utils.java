@@ -3,6 +3,7 @@ package github.mrh0.buildersaddition2.common;
 import github.mrh0.buildersaddition2.Index;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -105,5 +106,9 @@ public class Utils {
         var list = Index.COUNTER.getAllBlocks();
         var selected = list[(int)(Math.random()*list.length)];
         return new ItemStack(selected);
+    }
+
+    public static PaintingVariant createPainting(int w, int h) {
+        return new PaintingVariant(16*w, 16*h);
     }
 }

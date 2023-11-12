@@ -48,6 +48,7 @@ import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.Utils;
 import github.mrh0.buildersaddition2.common.variants.*;
 
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
@@ -56,6 +57,7 @@ import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
@@ -186,6 +188,17 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
             BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
+
+    // Painting
+    public static final RegistryObject<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> SHARD_PAINTING = BA2.PAINTINGS.register("modern_shard", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> SKARGARD_PAINTING = BA2.PAINTINGS.register("skargard", () -> Utils.createPainting(2, 1));
+    public static final RegistryObject<PaintingVariant> HORIZONS_PAINTING = BA2.PAINTINGS.register("ocean_horizon", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> PORTRAIT_PAINTING = BA2.PAINTINGS.register("steve_portrait", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> PROMO_PAINTING = BA2.PAINTINGS.register("promotional", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> HEROBRINE_PAINTING = BA2.PAINTINGS.register("herobrine_portrait", () -> Utils.createPainting(1, 1));
+    public static final RegistryObject<PaintingVariant> ENDERMAN_PAINTING = BA2.PAINTINGS.register("enderman_approaching", () -> Utils.createPainting(1, 2));
+    public static final RegistryObject<PaintingVariant> WINTER_PAINTING = BA2.PAINTINGS.register("winter_forest", () -> Utils.createPainting(2, 2));
 
     public static void load() {
 
