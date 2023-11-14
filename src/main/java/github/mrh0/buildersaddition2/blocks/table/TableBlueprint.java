@@ -45,12 +45,10 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
     @Override
     protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<TableBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
-                .texture("tex", variant.texturePlanks)
-                .texture("leg", variant.textureStripped)
+                .texture("texture", variant.texturePlanks)
                 .texture("particle", variant.texturePlanks);
         provider.withParent(getBlockModelPath(variant) + "_leg", resource("block/base_" + getBaseName() + "_leg"))
-                .texture("tex", variant.texturePlanks)
-                .texture("leg", variant.textureStripped)
+                .texture("texture", variant.textureStripped)
                 .texture("particle", variant.texturePlanks);
     }
 

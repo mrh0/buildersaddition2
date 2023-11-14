@@ -36,7 +36,7 @@ public class CarpentersTableBlueprint extends BlockBlueprint<WoodVariant, Carpen
 
     @Override
     public String getLangName(WoodVariant variant) {
-        return variant.getDisplayName() + " Carpenters Table";
+        return variant.getDisplayName() + " Carpenter's Table";
     }
 
     @Override

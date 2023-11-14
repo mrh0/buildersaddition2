@@ -39,8 +39,8 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
             carpenter(consumer, wood.getName() + "_stairs_carpentry", wood.stairs, 1, wood.planks);
             carpenter(consumer, wood.getName() + "_slab_carpentry", wood.slab, 2, wood.planks);
             carpenter(consumer, wood.getName() + "_fence_carpentry", wood.fence, 1, wood.planks, Items.STICK);
-            carpenter(consumer, wood.getName() + "_fence_carpentry", wood.door, 1, wood.planks);
-            carpenter(consumer, wood.getName() + "_fence_carpentry", wood.trapDoor, 2, wood.planks);
+            carpenter(consumer, wood.getName() + "_door_carpentry", wood.door, 1, wood.planks);
+            carpenter(consumer, wood.getName() + "_trap_door_carpentry", wood.trapDoor, 1, wood.planks);
             //if(wood != WoodVariant.BAMBOO)
             //    carpenter(consumer, wood.name + "_stripped_variant_carpentry", wood.stripped2, 1, wood.stripped);
         });

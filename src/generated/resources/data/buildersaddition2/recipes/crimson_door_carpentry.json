@@ -4,12 +4,9 @@
   "ingredients": [
     {
       "item": "minecraft:crimson_planks"
-    },
-    {
-      "item": "minecraft:stick"
     }
   ],
   "result": {
-    "item": "minecraft:crimson_fence"
+    "item": "minecraft:crimson_door"
   }
 }
