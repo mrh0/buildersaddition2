@@ -1,17 +1,11 @@
 package github.mrh0.buildersaddition2.blocks.symbol;
 
-import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.stool.StoolBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPLootTableProvider;
 import github.mrh0.buildersaddition2.common.variants.SingleVariant;
-import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.common.variants.WoolVariant;
-import github.mrh0.buildersaddition2.state.PillowState;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
@@ -19,12 +13,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
@@ -83,5 +71,10 @@ public class SymbolBlueprint extends BlockBlueprint<SingleVariant, SymbolBlock> 
     @Override
     public List<ItemLike> getRecipeRequired(SingleVariant variant) {
         return List.of(Items.IRON_INGOT);
+    }
+
+    @Override
+    protected boolean addToCreativeTab(RegistryObject<SymbolBlock> block, SingleVariant variant) {
+        return false; // Dev
     }
 }

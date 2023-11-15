@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.stool;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
@@ -9,7 +8,7 @@ import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPLootTableProvider;
-import github.mrh0.buildersaddition2.state.PillowState;
+import github.mrh0.buildersaddition2.blocks.blockstate.PillowState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;

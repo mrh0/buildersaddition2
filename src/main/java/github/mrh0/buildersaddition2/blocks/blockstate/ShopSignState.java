@@ -1,4 +1,4 @@
-package github.mrh0.buildersaddition2.state;
+package github.mrh0.buildersaddition2.blocks.blockstate;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

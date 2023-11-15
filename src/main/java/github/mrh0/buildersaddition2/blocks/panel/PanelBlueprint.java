@@ -1,13 +1,12 @@
 package github.mrh0.buildersaddition2.blocks.panel;
 
-import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPLootTableProvider;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.state.PanelState;
+import github.mrh0.buildersaddition2.blocks.blockstate.PanelState;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;

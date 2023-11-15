@@ -1,6 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.shop_sign;
 
-import github.mrh0.buildersaddition2.state.ShopSignState;
+import github.mrh0.buildersaddition2.blocks.blockstate.ShopSignState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

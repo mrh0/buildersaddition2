@@ -54,8 +54,12 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return true;
     }
 
+    protected boolean addToCreativeTab(RegistryObject<B> block, V variant) {
+        return true;
+    }
+
     protected void onCreativeTab(BuildCreativeModeTabContentsEvent event, RegistryObject<B> block, V variant) {
-        if(event.getTabKey() == BA2.MAIN_TAB.getKey())
+        if(event.getTabKey() == BA2.MAIN_TAB.getKey() && addToCreativeTab(block, variant))
             event.accept(block.get());
     }
 

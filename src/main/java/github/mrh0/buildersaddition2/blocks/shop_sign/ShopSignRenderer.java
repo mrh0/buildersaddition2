@@ -1,7 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.shop_sign;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import github.mrh0.buildersaddition2.state.ShopSignState;
+import github.mrh0.buildersaddition2.blocks.blockstate.ShopSignState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;

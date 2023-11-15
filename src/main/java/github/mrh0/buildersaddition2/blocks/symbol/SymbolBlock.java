@@ -1,7 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.symbol;
 
-import github.mrh0.buildersaddition2.state.PillowState;
-import github.mrh0.buildersaddition2.state.SymbolState;
+import github.mrh0.buildersaddition2.blocks.blockstate.SymbolState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;

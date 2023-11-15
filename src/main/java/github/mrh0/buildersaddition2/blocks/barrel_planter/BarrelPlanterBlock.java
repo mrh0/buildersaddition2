@@ -1,6 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.barrel_planter;
 
-import github.mrh0.buildersaddition2.state.PlanterState;
+import github.mrh0.buildersaddition2.blocks.blockstate.PlanterState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;

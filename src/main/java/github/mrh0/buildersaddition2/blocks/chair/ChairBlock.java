@@ -3,7 +3,7 @@ package github.mrh0.buildersaddition2.blocks.chair;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
-import github.mrh0.buildersaddition2.state.PillowState;
+import github.mrh0.buildersaddition2.blocks.blockstate.PillowState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;

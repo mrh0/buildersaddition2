@@ -2,7 +2,7 @@ package github.mrh0.buildersaddition2.blocks.cupboard;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.state.CupboardState;
+import github.mrh0.buildersaddition2.blocks.blockstate.CupboardState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

@@ -46,12 +46,12 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    public NonNullList<ItemStack> getItems() {
         return inventory;
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> items) {
+    public void setItems(NonNullList<ItemStack> items) {
         inventory = items;
     }
 

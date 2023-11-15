@@ -1,6 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.panel;
 
-import github.mrh0.buildersaddition2.state.PanelState;
+import github.mrh0.buildersaddition2.blocks.blockstate.PanelState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;

@@ -1,6 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.hedge;
 
-import github.mrh0.buildersaddition2.state.HedgeState;
+import github.mrh0.buildersaddition2.blocks.blockstate.HedgeState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
