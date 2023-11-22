@@ -1,8 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_table",
   "textures": {
-    "leg": "minecraft:block/stripped_dark_oak_log",
     "particle": "minecraft:block/dark_oak_planks",
-    "tex": "minecraft:block/dark_oak_planks"
+    "texture": "minecraft:block/dark_oak_planks"
   }
 }

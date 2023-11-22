@@ -1,8 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_table",
   "textures": {
-    "leg": "minecraft:block/stripped_acacia_log",
     "particle": "minecraft:block/acacia_planks",
-    "tex": "minecraft:block/acacia_planks"
+    "texture": "minecraft:block/acacia_planks"
   }
 }

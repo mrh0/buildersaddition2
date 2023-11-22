@@ -1,8 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_table",
   "textures": {
-    "leg": "minecraft:block/stripped_jungle_log",
     "particle": "minecraft:block/jungle_planks",
-    "tex": "minecraft:block/jungle_planks"
+    "texture": "minecraft:block/jungle_planks"
   }
 }

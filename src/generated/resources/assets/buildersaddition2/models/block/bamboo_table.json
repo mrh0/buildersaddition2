@@ -1,8 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_table",
   "textures": {
-    "leg": "minecraft:block/stripped_bamboo_block",
     "particle": "minecraft:block/bamboo_planks",
-    "tex": "minecraft:block/bamboo_planks"
+    "texture": "minecraft:block/bamboo_planks"
   }
 }

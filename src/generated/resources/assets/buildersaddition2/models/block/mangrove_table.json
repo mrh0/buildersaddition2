@@ -1,8 +1,7 @@
 {
   "parent": "buildersaddition2:block/base_table",
   "textures": {
-    "leg": "minecraft:block/stripped_mangrove_log",
     "particle": "minecraft:block/mangrove_planks",
-    "tex": "minecraft:block/mangrove_planks"
+    "texture": "minecraft:block/mangrove_planks"
   }
 }

@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
@@ -27,10 +28,20 @@ import org.jetbrains.annotations.Nullable;
 public class ShelfBlock extends AbstractStorageBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    protected static final VoxelShape NORTH_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
-    protected static final VoxelShape EAST_SHAPE = Block.box(8D, 0.0D, 0.0D, 16D, 16.0D, 16.0D);
-    protected static final VoxelShape SOUTH_SHAPE = Block.box(0.0D, 0.0D, 8D, 16D, 16D, 16D);
-    protected static final VoxelShape WEST_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    //protected static final VoxelShape NORTH_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
+    //protected static final VoxelShape EAST_SHAPE = Block.box(8D, 0.0D, 0.0D, 16D, 16.0D, 16.0D);
+    //protected static final VoxelShape SOUTH_SHAPE = Block.box(0.0D, 0.0D, 8D, 16D, 16D, 16D);
+    //protected static final VoxelShape WEST_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+
+    protected static final VoxelShape NORTH_SHAPE_BOTTOM = Block.box(0d, 0d, 0d, 16d, 2d, 8d);
+    protected static final VoxelShape EAST_SHAPE_BOTTOM = Block.box(8D, 0d, 0d, 16d, 2d, 16d);
+    protected static final VoxelShape SOUTH_SHAPE_BOTTOM = Block.box(0d, 0d, 8d, 16d, 2d, 16d);
+    protected static final VoxelShape WEST_SHAPE_BOTTOM = Block.box(0d, 0d, 0d, 8d, 2d, 16d);
+
+    protected static final VoxelShape NORTH_SHAPE_TOP = Block.box(0d, 8d, 0d, 16d, 10d, 8d);
+    protected static final VoxelShape EAST_SHAPE_TOP = Block.box(8D, 8d, 0d, 16d, 10d, 16d);
+    protected static final VoxelShape SOUTH_SHAPE_TOP = Block.box(0d, 8d, 8d, 16d, 10d, 16d);
+    protected static final VoxelShape WEST_SHAPE_TOP = Block.box(0d, 8d, 0d, 8d, 10d, 16d);
 
     public ShelfBlock(Properties props) {
         super(props);
@@ -49,17 +60,16 @@ public class ShelfBlock extends AbstractStorageBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext c) {
         return switch (state.getValue(FACING)) {
-            case EAST -> EAST_SHAPE;
-            case SOUTH -> SOUTH_SHAPE;
-            case WEST -> WEST_SHAPE;
-            default -> NORTH_SHAPE;
+            case EAST -> Shapes.or(EAST_SHAPE_BOTTOM, EAST_SHAPE_TOP);
+            case SOUTH -> Shapes.or(SOUTH_SHAPE_BOTTOM, SOUTH_SHAPE_TOP);
+            case WEST -> Shapes.or(WEST_SHAPE_BOTTOM, WEST_SHAPE_TOP);
+            default -> Shapes.or(NORTH_SHAPE_BOTTOM, NORTH_SHAPE_TOP);
         };
     }
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
-
         //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
         //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
@@ -68,7 +78,6 @@ public class ShelfBlock extends AbstractStorageBlock {
             });
             PiglinAi.angerNearbyPiglins(player, true);
         }
-
         return InteractionResult.CONSUME;
     }
 
