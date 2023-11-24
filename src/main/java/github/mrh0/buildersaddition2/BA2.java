@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfRenderer;
 import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignRenderer;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
+import github.mrh0.buildersaddition2.common.Utils;
 import github.mrh0.buildersaddition2.entity.seat.SeatRendererFactory;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableScreen;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
@@ -37,6 +38,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
@@ -66,10 +68,10 @@ public class BA2 {
 
         Index.load();
 
+        PAINTINGS.register(modEventBus);
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
-        PAINTINGS.register(modEventBus);
         BLOCK_ENTITIES.register(modEventBus);
         MENUS.register(modEventBus);
         ENTITIES.register(modEventBus);
@@ -94,26 +96,8 @@ public class BA2 {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {}
 
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            MenuScreens.register(Index.CARPENTER_TABLE_MENU.get(), CarpenterTableScreen::new);
-            MenuScreens.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
-
-            BlockEntityRenderers.register(Index.SHELF_ENTITY_TYPE.get(), c -> new ShelfRenderer(c.getBlockEntityRenderDispatcher()));
-            BlockEntityRenderers.register(Index.SHOP_SIGN_ENTITY_TYPE.get(), c -> new ShopSignRenderer(c.getBlockEntityRenderDispatcher()));
-
-            EntityRenderers.register(Index.SEAT_ENTITY_TYPE.get(), new SeatRendererFactory());
-
-            //RenderType transl = RenderType.translucent();
-            RenderType cutout = RenderType.cutoutMipped();
-
-            Index.HEDGE.iterable().forEach(pair -> {
-                ItemBlockRenderTypes.setRenderLayer(pair.getFirst().get(), cutout);
-            });
-        }
-    }
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ModEvents { }
 
     public static ResourceLocation get(String path) {
         return new ResourceLocation(MODID, path);
