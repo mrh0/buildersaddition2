@@ -7,6 +7,9 @@ import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntit
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
 import github.mrh0.buildersaddition2.blocks.bench.BenchBlock;
 import github.mrh0.buildersaddition2.blocks.bench.BenchBlueprint;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlockEntity;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlueprint;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlock;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlockEntity;
 import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlueprint;
@@ -98,6 +101,8 @@ public class Index {
             registerMenuType("carpenter_table_menu", CarpenterTableMenu::new);
     public static final RegistryObject<MenuType<GenericStorageMenu>> SHELF_MENU =
             registerMenuType("shelf_menu", ShelfBlockEntity::shelfMenu);
+    public static final RegistryObject<MenuType<GenericStorageMenu>> BOOKSHELF_MENU =
+            registerMenuType("bookshelf_menu", BookshelfBlockEntity::bookshelfMenu);
 
     // Recipe
     public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
@@ -167,6 +172,9 @@ public class Index {
     public static BlockBlueprint<WoodVariant, ShopSignBlock> SHOP_SIGN =
             new ShopSignBlueprint(WoodVariant.ALL);
 
+    public static BlockBlueprint<WoodVariant, BookshelfBlock> BOOKSHELF =
+            new BookshelfBlueprint(WoodVariant.ALL);
+
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
@@ -185,6 +193,9 @@ public class Index {
 
     public static RegistryObject<BlockEntityType<ShopSignBlockEntity>> SHOP_SIGN_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shop_sign", () ->
             BlockEntityType.Builder.of(ShopSignBlockEntity::new, SHOP_SIGN.getAllBlocks()).build(null));
+
+    public static RegistryObject<BlockEntityType<BookshelfBlockEntity>> BOOKSHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bookshelf", () ->
+            BlockEntityType.Builder.of(BookshelfBlockEntity::new, BOOKSHELF.getAllBlocks()).build(null));
 
     public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
             BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));

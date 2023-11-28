@@ -1,0 +1,103 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "buildersaddition2:block/crimson_bookshelf"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/crimson_bookshelf",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/crimson_bookshelf",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/crimson_bookshelf",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_0"
+      },
+      "when": {
+        "book0": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_1"
+      },
+      "when": {
+        "book1": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_2"
+      },
+      "when": {
+        "book2": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_3"
+      },
+      "when": {
+        "book3": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_4"
+      },
+      "when": {
+        "book4": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_5"
+      },
+      "when": {
+        "book5": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_6"
+      },
+      "when": {
+        "book6": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "buildersaddition2:block/books_7"
+      },
+      "when": {
+        "book7": "true"
+      }
+    }
+  ]
+}

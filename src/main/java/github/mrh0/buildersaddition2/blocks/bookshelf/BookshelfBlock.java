@@ -28,6 +28,8 @@ public class BookshelfBlock extends AbstractStorageBlock {
     public static final BooleanProperty BOOK6 = BooleanProperty.create("book6");
     public static final BooleanProperty BOOK7 = BooleanProperty.create("book7");
 
+    public static final BooleanProperty[] BOOKS = { BOOK0, BOOK1, BOOK2, BOOK3, BOOK4, BOOK5, BOOK6, BOOK7 };
+
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);

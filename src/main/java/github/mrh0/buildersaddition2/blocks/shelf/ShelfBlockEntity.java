@@ -37,11 +37,16 @@ public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     }
 
     public static GenericStorageMenu shelfMenu(int id, Inventory inv, FriendlyByteBuf data) {
-        return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, inv.player.level(), data.readBlockPos(), 2, 3);
+        return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, inv.player.level(), data.readBlockPos(), 2, 3, 0);
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory inv) {
-        return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, this.getLevel(), this.getBlockPos(), 2, 3);
+        return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, this.getLevel(), this.getBlockPos(), 2, 3, 0);
+    }
+
+    @Override
+    protected boolean allowIO() {
+        return false;
     }
 }

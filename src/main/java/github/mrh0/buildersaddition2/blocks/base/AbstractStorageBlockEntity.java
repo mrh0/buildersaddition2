@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.base;
 
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -108,7 +109,7 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-        if (!this.remove && cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (!this.remove && cap == ForgeCapabilities.ITEM_HANDLER && allowIO()) {
             if (this.storageHandler == null)
                 this.storageHandler = LazyOptional.of(this::createHandler);
             return this.storageHandler.cast();
@@ -123,6 +124,24 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
             storageHandler.invalidate();
             storageHandler = null;
         }
+    }
+
+    protected void onOpenClose(BlockState state, boolean open) {
+
+    }
+
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        onChange();
+    }
+
+    protected void onChange() {
+
+    }
+
+    protected boolean allowIO() {
+        return true;
     }
 
     @Override
@@ -150,12 +169,12 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
     private ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
         protected void onOpen(Level level, BlockPos pos, BlockState state) {
             playSound(state, SoundEvents.BARREL_OPEN);
-            //updateBlockState(state, true);
+            onOpenClose(state, true);
         }
 
         protected void onClose(Level level, BlockPos pos, BlockState state) {
             playSound(state, SoundEvents.BARREL_CLOSE);
-            //updateBlockState(state, false);
+            onOpenClose(state, false);
         }
 
         protected void openerCountChanged(Level level, BlockPos pos, BlockState state, int a, int b) {

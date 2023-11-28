@@ -271,6 +271,17 @@
     "buildersaddition2:cherry_shop_sign",
     "buildersaddition2:bamboo_shop_sign",
     "buildersaddition2:crimson_shop_sign",
-    "buildersaddition2:warped_shop_sign"
+    "buildersaddition2:warped_shop_sign",
+    "buildersaddition2:oak_bookshelf",
+    "buildersaddition2:spruce_bookshelf",
+    "buildersaddition2:birch_bookshelf",
+    "buildersaddition2:jungle_bookshelf",
+    "buildersaddition2:acacia_bookshelf",
+    "buildersaddition2:dark_oak_bookshelf",
+    "buildersaddition2:mangrove_bookshelf",
+    "buildersaddition2:cherry_bookshelf",
+    "buildersaddition2:bamboo_bookshelf",
+    "buildersaddition2:crimson_bookshelf",
+    "buildersaddition2:warped_bookshelf"
   ]
 }

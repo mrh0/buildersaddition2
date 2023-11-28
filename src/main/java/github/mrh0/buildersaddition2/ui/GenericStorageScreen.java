@@ -31,7 +31,7 @@ public class GenericStorageScreen extends AbstractContainerScreen<GenericStorage
     }
 
     protected void renderBg(GuiGraphics gg, float partial, int mx, int my) {
-        int iconIndex = 0;
+        int iconIndex = menu.getSlotIconIndex();
         int slotSize = 18;
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;

@@ -17,13 +17,15 @@ public class GenericStorageMenu extends AbstractContainerMenu {
     private final Container container;
     private final int containerRows;
     private final int containerColumns;
+    private final int slotIconIndex;
 
-    public GenericStorageMenu(MenuType<?> type, int id, Inventory inv, Level level, BlockPos pos, int rows, int columns) {
+    public GenericStorageMenu(MenuType<?> type, int id, Inventory inv, Level level, BlockPos pos, int rows, int columns, int slotIconIndex) {
         super(type, id);
         //checkContainerSize(container, rows * columns);
         this.container = (Container) level.getBlockEntity(pos);
         this.containerRows = rows;
         this.containerColumns = columns;
+        this.slotIconIndex = slotIconIndex;
         container.startOpen(inv.player);
         int slotSize = 18;
         int i = (this.containerRows - 4) * slotSize;
@@ -48,6 +50,10 @@ public class GenericStorageMenu extends AbstractContainerMenu {
         for(int i1 = 0; i1 < 9; ++i1) {
             this.addSlot(new Slot(inv, i1, 8 + i1 * slotSize, 161 + i));
         }
+    }
+
+    public int getSlotIconIndex() {
+        return 0;
     }
 
     public boolean stillValid(Player player) {
