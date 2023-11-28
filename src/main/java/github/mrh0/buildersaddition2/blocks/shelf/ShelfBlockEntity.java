@@ -44,9 +44,4 @@ public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     protected AbstractContainerMenu createMenu(int id, Inventory inv) {
         return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, this.getLevel(), this.getBlockPos(), 2, 3, 0);
     }
-
-    @Override
-    protected boolean allowIO() {
-        return false;
-    }
 }

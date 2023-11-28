@@ -50,6 +50,7 @@ public class ClientEventHandler {
     public static void onClientSetup(FMLClientSetupEvent event) {
         MenuScreens.register(Index.CARPENTER_TABLE_MENU.get(), CarpenterTableScreen::new);
         MenuScreens.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
+        MenuScreens.register(Index.BOOKSHELF_MENU.get(), GenericStorageScreen::new);
 
         BlockEntityRenderers.register(Index.SHELF_ENTITY_TYPE.get(), c -> new ShelfRenderer(c.getBlockEntityRenderDispatcher()));
         BlockEntityRenderers.register(Index.SHOP_SIGN_ENTITY_TYPE.get(), c -> new ShopSignRenderer(c.getBlockEntityRenderDispatcher()));

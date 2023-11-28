@@ -13,47 +13,56 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import java.util.function.Function;
+
 public class GenericStorageMenu extends AbstractContainerMenu {
     private final Container container;
     private final int containerRows;
     private final int containerColumns;
     private final int slotIconIndex;
+    private final Function<ItemStack, Boolean> filter;
 
-    public GenericStorageMenu(MenuType<?> type, int id, Inventory inv, Level level, BlockPos pos, int rows, int columns, int slotIconIndex) {
+    public GenericStorageMenu(MenuType<?> type, int id, Inventory inv, Level level, BlockPos pos, int rows, int columns, int slotIconIndex, Function<ItemStack, Boolean> filter) {
         super(type, id);
         //checkContainerSize(container, rows * columns);
         this.container = (Container) level.getBlockEntity(pos);
         this.containerRows = rows;
         this.containerColumns = columns;
         this.slotIconIndex = slotIconIndex;
+        this.filter = filter;
         container.startOpen(inv.player);
         int slotSize = 18;
         int i = (this.containerRows - 4) * slotSize;
 
         for(int j = 0; j < this.containerRows; ++j) {
             for(int k = 0; k < containerColumns; ++k) {
-                this.addSlot(new Slot(
+                this.addSlot(new FilteredSlot(
                         container,
                         k + j * containerColumns,
                         8 + k * slotSize + ((9-containerColumns)*slotSize/2),
-                        slotSize + j * slotSize
+                        slotSize + j * slotSize,
+                        filter
                 ));
             }
         }
 
         for(int l = 0; l < 3; ++l) {
             for(int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new Slot(inv, j1 + l * 9 + 9, 8 + j1 * slotSize, 103 + l * slotSize + i));
+                this.addSlot(new FilteredSlot(inv, j1 + l * 9 + 9, 8 + j1 * slotSize, 103 + l * slotSize + i, filter));
             }
         }
 
         for(int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new Slot(inv, i1, 8 + i1 * slotSize, 161 + i));
+            this.addSlot(new FilteredSlot(inv, i1, 8 + i1 * slotSize, 161 + i, filter));
         }
     }
 
+    public GenericStorageMenu(MenuType<?> type, int id, Inventory inv, Level level, BlockPos pos, int rows, int columns, int slotIconIndex) {
+        this(type, id, inv, level, pos, rows, columns, slotIconIndex, FilteredSlot.ALLOW_ALL);
+    }
+
     public int getSlotIconIndex() {
-        return 0;
+        return slotIconIndex;
     }
 
     public boolean stillValid(Player player) {

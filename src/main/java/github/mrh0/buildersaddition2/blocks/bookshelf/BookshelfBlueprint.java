@@ -1,18 +1,16 @@
 package github.mrh0.buildersaddition2.blocks.bookshelf;
 
-import github.mrh0.buildersaddition2.blocks.blockstate.PillowState;
 import github.mrh0.buildersaddition2.blocks.chair.ChairBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
-import github.mrh0.buildersaddition2.common.variants.WoolVariant;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -66,9 +64,16 @@ public class BookshelfBlueprint extends BlockBlueprint<WoodVariant, BookshelfBlo
                 false
         );
 
-
-        for (int i = 0; i < BookshelfBlock.BOOKS.length; i++)
-            bs.part().modelFile(model("block/books_" + i)).addModel().condition(BookshelfBlock.BOOKS[i], true).end();
+        for (int i = 0; i < BookshelfBlock.BOOKS.length; i++) {
+            bs.part().modelFile(model("block/books_" + i)).rotationY(provider.getAngleFromDir(Direction.NORTH, 180)).uvLock(false).addModel()
+                    .condition(ChairBlock.FACING, Direction.NORTH).condition(BookshelfBlock.BOOKS[i], true).end()
+                .part().modelFile(model("block/books_" + i)).rotationY(provider.getAngleFromDir(Direction.EAST, 180)).uvLock(false).addModel()
+                    .condition(ChairBlock.FACING, Direction.EAST).condition(BookshelfBlock.BOOKS[i], true).end()
+                .part().modelFile(model("block/books_" + i)).rotationY(provider.getAngleFromDir(Direction.SOUTH, 180)).uvLock(false).addModel()
+                    .condition(ChairBlock.FACING, Direction.SOUTH).condition(BookshelfBlock.BOOKS[i], true).end()
+                .part().modelFile(model("block/books_" + i)).rotationY(provider.getAngleFromDir(Direction.WEST, 180)).uvLock(false).addModel()
+                    .condition(ChairBlock.FACING, Direction.WEST).condition(BookshelfBlock.BOOKS[i], true).end();
+        }
     }
 
     @Override

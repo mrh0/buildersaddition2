@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.base;
 
-import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
