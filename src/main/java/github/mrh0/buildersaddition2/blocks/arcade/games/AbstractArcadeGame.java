@@ -11,7 +11,7 @@ public abstract class AbstractArcadeGame {
         this.display = display;
     }
 
-    public void frame(long time) {}
+    public void frame(long steps, float partial) {}
 
     public void start() {}
 

@@ -167,11 +167,14 @@ public class ArcadeSnake extends AbstractArcadeGame {
         return "-";
     }
 
+    long lastStep = 0;
     @Override
-    public void frame(long time) {
-        super.frame(time);
-        if(time > deadTimer) begin();
-        if(time%tickRate(score) == 0 && !isDead) updateMovement(time);
+    public void frame(long steps, float partial) {
+        super.frame(steps, partial);
+        if(steps == lastStep) return;
+        if(steps > deadTimer) begin();
+        if(steps%tickRate(score) == 0 && !isDead) updateMovement(steps);
+        lastStep = steps;
     }
 
     @Override

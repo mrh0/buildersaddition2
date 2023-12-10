@@ -7,6 +7,13 @@
   "container.buildersaddition2.counter": "Counter",
   "container.buildersaddition2.cupboard": "Cupboard",
   "container.buildersaddition2.shelf": "Shelf",
+  "container.buildersaddition2.arcade": "Arcade",
+
+  "arcade.buildersaddition2.game.snake": "Snake",
+  "arcade.buildersaddition2.game.breakout": "Breakout",
+  "arcade.buildersaddition2.game.credits": "Credits",
+  "arcade.buildersaddition2.menu.select":"Select a game with [UP] and [DOWN]",
+  "arcade.buildersaddition2.menu.start":"Start the game with [ENTER] or [SPACE]",
 
   "painting.buildersaddition2.enderman_approaching.title": "Enderman Approaching",
   "painting.buildersaddition2.enderman_approaching.author": "MrH0",

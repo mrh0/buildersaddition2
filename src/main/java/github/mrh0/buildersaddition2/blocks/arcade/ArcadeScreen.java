@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
     private ArcadeDisplay display = new ArcadeDisplay();
+    private AbstractArcadeGame game;
 
     private static final ResourceLocation GUI = new ResourceLocation(BA2.MODID,
             "textures/gui/container/arcade.png");
@@ -38,12 +39,12 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
 
     public void setGame(ArcadeManager.GameConstructor g) {
         display = new ArcadeDisplay();
-        ArcadeManager.activeGame = g.construct(display);
+        game = g.construct(display);
 
         display.setBgRenderer(null);
         display.setFgRenderer(null);
-        if(ArcadeManager.activeGame instanceof ArcadeHomeMenu homeMenu) homeMenu.gui = this;
-        ArcadeManager.activeGame.start();
+        if(game instanceof ArcadeHomeMenu homeMenu) homeMenu.gui = this;
+        game.start();
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
     @Override
     public void onClose() {
         super.onClose();
-        ArcadeManager.activeGame = null;
+        game = null;
         System.out.println("Closed Arcade");
     }
 
@@ -64,16 +65,16 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
         return super.mouseClicked(x, y, b);
     }
 
-    float partialSum = 0f;
+    long steps = 0;
+    float partialAccumulator = 0f;
     @Override
     public void render(GuiGraphics gg, int x, int y, float partial) {
         super.render(gg, x, y, partial);
-        System.out.println(partial);
-        partialSum += partial;
-        if(partialSum > 1f) {
-            partialSum -= 1f;
-            ArcadeManager.instance.clientTick();
+        if((partialAccumulator += partial) > 1f) {
+            steps += 1;
+            partialAccumulator -= 1f;
         }
+        clientTick(steps, partial);
 
         display.renderBackground(gg, this.width, this.height);
         display.renderForeground(gg, this.font, this.width, this.height);
@@ -82,15 +83,20 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
         this.renderTooltip(gg, x, y);
     }
 
+    public void clientTick(long steps, float partial) {
+        if(game == null) return;
+        game.frame(steps, partial);
+    }
+
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        ArcadeManager.activeGame.onKeyPressed(keyCode);
+        game.onKeyPressed(keyCode);
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
     @Override
     public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-        ArcadeManager.activeGame.onKeyReleased(keyCode);
+        game.onKeyReleased(keyCode);
         return super.keyReleased(keyCode, scanCode, modifiers);
     }
 

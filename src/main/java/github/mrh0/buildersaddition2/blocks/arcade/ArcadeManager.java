@@ -1,10 +1,10 @@
 package github.mrh0.buildersaddition2.blocks.arcade;
 
 import github.mrh0.buildersaddition2.blocks.arcade.games.AbstractArcadeGame;
+import github.mrh0.buildersaddition2.blocks.arcade.games.ArcadeBreakout;
+import github.mrh0.buildersaddition2.blocks.arcade.games.ArcadeCredits;
 import github.mrh0.buildersaddition2.blocks.arcade.games.ArcadeSnake;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,6 @@ public class ArcadeManager {
     public interface GameConstructor {
         AbstractArcadeGame construct(ArcadeDisplay s);
     }
-
-    public static AbstractArcadeGame activeGame = null;
 
     public static ArcadeManager instance = null;
     private final ArrayList<GameConstructor> games;
@@ -47,12 +45,6 @@ public class ArcadeManager {
         new ArcadeManager();
         instance.add(ArcadeSnake::new, "snake");
         //instance.add(ArcadeBreakout::new, "breakout");
-        //instance.add(ArcadeCredits::new, "credits");
-    }
-
-    static long time = 0;
-    public void clientTick() {
-        if(ArcadeManager.activeGame == null) return;
-        ArcadeManager.activeGame.frame(time++);
+        instance.add(ArcadeCredits::new, "credits");
     }
 }
