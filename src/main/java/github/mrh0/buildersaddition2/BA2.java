@@ -1,19 +1,9 @@
 package github.mrh0.buildersaddition2;
 
 import com.mojang.logging.LogUtils;
-import github.mrh0.buildersaddition2.blocks.shelf.ShelfRenderer;
-import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignRenderer;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeManager;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
-import github.mrh0.buildersaddition2.common.Utils;
-import github.mrh0.buildersaddition2.entity.seat.SeatRendererFactory;
-import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableScreen;
-import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
-import github.mrh0.buildersaddition2.ui.GenericStorageScreen;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.EntityRenderers;
+import github.mrh0.buildersaddition2.network.SyncContentPacket;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,21 +14,22 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
@@ -65,6 +56,8 @@ public class BA2 {
     public BA2() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::postInit);
+        //modEventBus.addListener(this::onClientSetup);
 
         Index.load();
 
@@ -77,13 +70,28 @@ public class BA2 {
         ENTITIES.register(modEventBus);
         SERIALIZERS.register(modEventBus);
 
+        ArcadeManager.init();
+
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
+    private void commonSetup(final FMLCommonSetupEvent event) {}
+
+    private static final String PROTOCOL = "1";
+    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(MODID, "main"))
+            .clientAcceptedVersions(PROTOCOL::equals)
+            .serverAcceptedVersions(PROTOCOL::equals)
+            .networkProtocolVersion(() -> PROTOCOL)
+            .simpleChannel();
+
+    public void postInit(FMLLoadCompleteEvent evt) {
+        Network.registerMessage(0, SyncContentPacket.class, SyncContentPacket::encode, SyncContentPacket::decode, SyncContentPacket::handle);
+    }
+
+    public void onClientSetup(TickEvent.ClientTickEvent event) {
 
     }
 

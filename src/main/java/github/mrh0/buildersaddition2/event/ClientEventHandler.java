@@ -2,6 +2,10 @@ package github.mrh0.buildersaddition2.event;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeDisplay;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeManager;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeMenu;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeScreen;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableScreen;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfRenderer;
 import github.mrh0.buildersaddition2.blocks.shop_sign.ShopSignRenderer;
@@ -22,6 +26,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -51,6 +56,7 @@ public class ClientEventHandler {
         MenuScreens.register(Index.CARPENTER_TABLE_MENU.get(), CarpenterTableScreen::new);
         MenuScreens.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
         MenuScreens.register(Index.BOOKSHELF_MENU.get(), GenericStorageScreen::new);
+        MenuScreens.register(Index.ARCADE_MENU.get(), ArcadeScreen::new);
 
         BlockEntityRenderers.register(Index.SHELF_ENTITY_TYPE.get(), c -> new ShelfRenderer(c.getBlockEntityRenderDispatcher()));
         BlockEntityRenderers.register(Index.SHOP_SIGN_ENTITY_TYPE.get(), c -> new ShopSignRenderer(c.getBlockEntityRenderDispatcher()));

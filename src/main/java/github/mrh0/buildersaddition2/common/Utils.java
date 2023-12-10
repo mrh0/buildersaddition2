@@ -3,14 +3,20 @@ package github.mrh0.buildersaddition2.common;
 import github.mrh0.buildersaddition2.Index;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,5 +116,24 @@ public class Utils {
 
     public static PaintingVariant createPainting(int w, int h) {
         return new PaintingVariant(16*w, 16*h);
+    }
+
+    public static boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
+        return false;
+    }
+
+    public static boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos, EntityType<?> ent) {
+        return false;
+    }
+
+    public static boolean accessCheck(Level world, BlockPos pos, Direction facing) {
+        // if(!Config.INVENTORY_ACCESS_BLOCK_CHECK.get()) return true;
+        BlockState front = world.getBlockState(pos.relative(facing));
+        return !(front.isFaceSturdy(world, pos.relative(facing), facing.getOpposite()) || front.isFaceSturdy(world, pos.relative(facing), Direction.UP));
+    }
+
+    @Nullable
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> p_152133_, BlockEntityType<E> p_152134_, BlockEntityTicker<? super E> p_152135_) {
+        return p_152134_ == p_152133_ ? (BlockEntityTicker<A>)p_152135_ : null;
     }
 }

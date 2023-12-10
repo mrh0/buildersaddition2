@@ -1,5 +1,5 @@
-// 1.20.1	2023-11-27T23:09:35.3210345	Tags for minecraft:block mod id buildersaddition2
+// 1.20.1	2023-12-07T00:45:28.1569806	Tags for minecraft:block mod id buildersaddition2
 fd8888b4bbde427997c5c39e8f8b06fb1c4198e1 data/minecraft/tags/blocks/fences.json
 38472aa1bf70f115dc9d8dd8ba63ca23f5b87cca data/minecraft/tags/blocks/leaves.json
-fdc7b9c5bc7a8ab5bfdf3506594577463202093c data/minecraft/tags/blocks/mineable/axe.json
+db03a1fc3db6b42c5a91545e2450d9b464195f48 data/minecraft/tags/blocks/mineable/axe.json
 fd8888b4bbde427997c5c39e8f8b06fb1c4198e1 data/minecraft/tags/blocks/wooden_fences.json

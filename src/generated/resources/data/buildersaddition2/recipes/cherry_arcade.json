@@ -1,0 +1,18 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_cherry_log"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:comparator"
+    }
+  ],
+  "result": {
+    "item": "buildersaddition2:cherry_arcade"
+  }
+}

@@ -282,6 +282,17 @@
     "buildersaddition2:cherry_bookshelf",
     "buildersaddition2:bamboo_bookshelf",
     "buildersaddition2:crimson_bookshelf",
-    "buildersaddition2:warped_bookshelf"
+    "buildersaddition2:warped_bookshelf",
+    "buildersaddition2:oak_arcade",
+    "buildersaddition2:spruce_arcade",
+    "buildersaddition2:birch_arcade",
+    "buildersaddition2:jungle_arcade",
+    "buildersaddition2:acacia_arcade",
+    "buildersaddition2:dark_oak_arcade",
+    "buildersaddition2:mangrove_arcade",
+    "buildersaddition2:cherry_arcade",
+    "buildersaddition2:bamboo_arcade",
+    "buildersaddition2:crimson_arcade",
+    "buildersaddition2:warped_arcade"
   ]
 }

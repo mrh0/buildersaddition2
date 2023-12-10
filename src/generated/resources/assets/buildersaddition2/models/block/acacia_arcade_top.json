@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_arcade_top",
+  "textures": {
+    "particle": "minecraft:block/acacia_planks",
+    "sides": "minecraft:block/stripped_acacia_log"
+  }
+}

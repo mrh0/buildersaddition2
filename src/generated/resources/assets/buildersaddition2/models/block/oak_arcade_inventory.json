@@ -1,0 +1,7 @@
+{
+  "parent": "buildersaddition2:block/base_arcade_inventory",
+  "textures": {
+    "particle": "minecraft:block/oak_planks",
+    "sides": "minecraft:block/stripped_oak_log"
+  }
+}

@@ -1,7 +1,8 @@
 package github.mrh0.buildersaddition2;
 
-import github.mrh0.buildersaddition2.blocks.barrel_planter.BarrelPlanterBlock;
-import github.mrh0.buildersaddition2.blocks.barrel_planter.BarrelPlanterBlueprint;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeBlock;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeBlueprint;
+import github.mrh0.buildersaddition2.blocks.arcade.ArcadeMenu;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlockEntity;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlueprint;
@@ -68,9 +69,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.RegistryObject;
@@ -103,15 +102,14 @@ public class Index {
             registerMenuType("shelf_menu", ShelfBlockEntity::shelfMenu);
     public static final RegistryObject<MenuType<GenericStorageMenu>> BOOKSHELF_MENU =
             registerMenuType("bookshelf_menu", BookshelfBlockEntity::bookshelfMenu);
+    public static final RegistryObject<MenuType<ArcadeMenu>> ARCADE_MENU =
+            registerMenuType("arcade_menu", ArcadeBlock::createMenu);
 
     // Recipe
     public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
             BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
 
-
     // Block
-    // public static RegistryObject<Block> CARPENTER_TABLE = registerBlock("carpenter_table", () -> new CarpentersTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
-
     public static BlockBlueprint<WoodVariant, CarpentersTableBlock> CARPENTER_TABLE =
             new CarpentersTableBlueprint(WoodVariant.ALL);
 
@@ -174,6 +172,9 @@ public class Index {
 
     public static BlockBlueprint<WoodVariant, BookshelfBlock> BOOKSHELF =
             new BookshelfBlueprint(WoodVariant.ALL);
+
+    public static BlockBlueprint<WoodVariant, ArcadeBlock> ARCADE =
+            new ArcadeBlueprint(WoodVariant.ALL);
 
     // Block Entity
     public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
