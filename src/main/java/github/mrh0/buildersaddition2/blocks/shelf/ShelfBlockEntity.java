@@ -5,12 +5,18 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     public ShelfBlockEntity(BlockPos pos, BlockState state) {
@@ -43,5 +49,28 @@ public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory inv) {
         return new GenericStorageMenu(Index.SHELF_MENU.get(), id, inv, this.getLevel(), this.getBlockPos(), 2, 3, 0);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+        CompoundTag update = pkt.getTag();
+        handleUpdateTag(update);
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag() {
+        CompoundTag nbt = new CompoundTag();
+        saveAdditional(nbt);
+        return nbt;
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag nbt) {
+        load(nbt);
     }
 }

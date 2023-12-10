@@ -67,7 +67,6 @@ public class ShopSignBlockEntity extends BlockEntity {
     @Override
     public @NotNull CompoundTag getUpdateTag() {
         CompoundTag nbt = new CompoundTag();
-        //save(nbt);
         saveAdditional(nbt);
         return nbt;
     }

@@ -15,16 +15,14 @@ public class ArcadeCredits extends AbstractArcadeGame {
         display.clear();
 
         int ln = 1;
-        display.print(1, ln++, "Builders Crafts & Additions");
+        display.print(1, ln++, "Builders Crafts & Additions 2");
         ln++;
         display.print(1, ln++, "Programming: MRH0");
         display.print(1, ln++, "Models: MRH0");
         display.print(1, ln++, "Textures: MRH0");
-        display.print(1, ln++, "Translation: vanja-san, Mikeliro,");
-        display.print(1, ln++, "Pancakes0228, Yupoman, alierenreis,");
-        display.print(1, ln++, "spiderfromi, EdicionGamerYT, Lyaiya");
+        //display.print(1, ln++, "Translation:");
         ln++;
         display.print(1, ln++, "Source:");
-        display.print(1, ln++, "github.com/mrh0/buildersaddition/");
+        display.print(1, ln++, "github.com/mrh0/buildersaddition2/");
     }
 }
