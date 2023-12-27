@@ -1,5 +1,5 @@
 {
-  "tab.buildersaddition2.main": "Builders Crafts & Additions",
+  "tab.buildersaddition2.main": "Builders Crafts & Additions 2",
   "recipe.buildersaddition2.carpenter.title": "Carpentry",
   "container.buildersaddition2.carpenter_table": "Carpenter's Work Table",
   "container.buildersaddition2.bedside_table": "Bedside Table",
@@ -7,6 +7,7 @@
   "container.buildersaddition2.counter": "Counter",
   "container.buildersaddition2.cupboard": "Cupboard",
   "container.buildersaddition2.shelf": "Shelf",
+  "container.buildersaddition2.bookshelf": "Bookshelf",
   "container.buildersaddition2.arcade": "Arcade",
 
   "arcade.buildersaddition2.game.snake": "Snake",
