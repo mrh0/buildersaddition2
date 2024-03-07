@@ -1,4 +1,4 @@
-// 1.20.1	2023-12-07T00:45:28.1770104	Item Models: buildersaddition2
+// 1.20.1	2024-03-06T00:56:29.9430044	Item Models: buildersaddition2
 94e1375cf9c996a1da8197a1e775d3d3a5b8ea36 assets/buildersaddition2/models/item/acacia_andesite_counter.json
 2a72b4a14ca93166651fb728fb202151e544755d assets/buildersaddition2/models/item/acacia_arcade.json
 513ed80f40e543e295dd62fa182863158e7f95eb assets/buildersaddition2/models/item/acacia_basalt_counter.json
@@ -265,7 +265,6 @@ ecca26d7864c8c514d2ef2693b6a8f2d73e06b25 assets/buildersaddition2/models/item/sp
 4d31e8a14d8a1070a56ae66ee572d253af16542c assets/buildersaddition2/models/item/spruce_stripped_fence.json
 6c2577074278e5bfb0ad85592d96a361b5b13e02 assets/buildersaddition2/models/item/spruce_support_beam.json
 77a72db1cb2c5d5d499511a65b3f63711f2e0b57 assets/buildersaddition2/models/item/spruce_table.json
-4bde7268154f0be82f3354ddd38b7ebf0975607f assets/buildersaddition2/models/item/symbol.json
 0e7c2cb4a32dc2edf3d7e9169be98568abaee2a0 assets/buildersaddition2/models/item/warped_andesite_counter.json
 6f040a6a3705c696fb2131d171e6e29085878211 assets/buildersaddition2/models/item/warped_arcade.json
 c545fe134d212715c3c57002aaab4c0eba4db5b3 assets/buildersaddition2/models/item/warped_basalt_counter.json

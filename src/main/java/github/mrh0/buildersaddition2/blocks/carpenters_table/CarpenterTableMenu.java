@@ -64,13 +64,13 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
             }
 
             public void onTake(Player player, ItemStack stack) {
-                stack.onCraftedBy(player.level(), player, stack.getCount());
-                CarpenterTableMenu.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
-
                 if(selectedRecipeIndex.get() < 0) {
                     CarpenterTableMenu.this.setupResultSlot();
                     return;
                 }
+                stack.onCraftedBy(player.level(), player, stack.getCount());
+                CarpenterTableMenu.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
+
                 CarpenterTableMenu.this.recipes.get(selectedRecipeIndex.get()).getIngredients().forEach(ingredient -> {
                     for (Slot slot : CarpenterTableMenu.this.inputSlots) {
                         if(ingredient.test(slot.getItem())) {
@@ -148,6 +148,7 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
             if (!itemstack.is(this.inputCache.get(i).getItem())) {
                 this.inputCache.set(i, itemstack.copy());
                 changed = true;
+
             }
         }
         if(changed) this.setupRecipeList(container);
@@ -165,7 +166,7 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
             CarpenterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get());
             ItemStack itemstack = recipe.assemble(this.inputContainer, this.level.registryAccess());
             this.resultContainer.setRecipeUsed(recipe);
-            this.resultSlot.set(itemstack);
+            this.resultSlot.set(itemstack.copy());
         } else {
             this.resultSlot.set(ItemStack.EMPTY);
         }
@@ -184,44 +185,45 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
         return slot.container != this.resultContainer && super.canTakeItemForPickAll(stack, slot);
     }
 
-    public ItemStack quickMoveStack(Player player, int slotTo) {
+    public ItemStack quickMoveStack(Player player, int slotFrom) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(slotTo);
+        Slot slot = this.slots.get(slotFrom);
         if (slot != null && slot.hasItem()) {
-            ItemStack itemstack1 = slot.getItem();
-            Item item = itemstack1.getItem();
-            itemstack = itemstack1.copy();
-            if (slotTo == RESULT_SLOT) {
-                item.onCraftedBy(itemstack1, player.level(), player);
-                if (!this.moveItemStackTo(itemstack1, RESULT_SLOT, USE_ROW_SLOT_END, true)) {
+            ItemStack itemstackFrom = slot.getItem();
+            Item item = itemstackFrom.getItem();
+            itemstack = itemstackFrom.copy();
+            if (slotFrom == RESULT_SLOT) {
+                item.onCraftedBy(itemstackFrom, player.level(), player);
+                if (!this.moveItemStackTo(itemstackFrom, RESULT_SLOT+1, USE_ROW_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onQuickCraft(itemstack1, itemstack);
-            } else if (slotTo >= INPUT_SLOT && slotTo < RESULT_SLOT) {
-                if (!this.moveItemStackTo(itemstack1, INV_SLOT_START, USE_ROW_SLOT_END, false)) {
+                slot.onQuickCraft(itemstackFrom, itemstack);
+            } else if (slotFrom >= INPUT_SLOT && slotFrom < RESULT_SLOT) {
+                if (!this.moveItemStackTo(itemstackFrom, INV_SLOT_START, USE_ROW_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (slotTo >= INV_SLOT_START && slotTo < INV_SLOT_END) {
-                if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, RESULT_SLOT, false) && !this.moveItemStackTo(itemstack1, INV_SLOT_END, USE_ROW_SLOT_END, false)) {
+            } else if (slotFrom >= INV_SLOT_START && slotFrom < INV_SLOT_END) {
+                if (this.moveItemStackTo(itemstackFrom, INPUT_SLOT, RESULT_SLOT, false) || this.moveItemStackTo(itemstackFrom, INV_SLOT_END, USE_ROW_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (slotTo >= INV_SLOT_END && slotTo < USE_ROW_SLOT_END) {
-                if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, RESULT_SLOT, false) && !this.moveItemStackTo(itemstack1, INV_SLOT_START, INV_SLOT_END, false)) {
+            } else if (slotFrom >= INV_SLOT_END && slotFrom < USE_ROW_SLOT_END) {
+                if (this.moveItemStackTo(itemstackFrom, INPUT_SLOT, RESULT_SLOT, false) || this.moveItemStackTo(itemstackFrom, INV_SLOT_START, INV_SLOT_END, false)) {
                     return ItemStack.EMPTY;
                 }
             }
 
-            if (itemstack1.isEmpty()) {
+            if (itemstackFrom.isEmpty()) {
                 slot.setByPlayer(ItemStack.EMPTY);
             }
 
             slot.setChanged();
-            if (itemstack1.getCount() == itemstack.getCount()) {
+            if (itemstackFrom.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTake(player, itemstack1);
+
+            slot.onTake(player, itemstackFrom);
             this.broadcastChanges();
         }
 

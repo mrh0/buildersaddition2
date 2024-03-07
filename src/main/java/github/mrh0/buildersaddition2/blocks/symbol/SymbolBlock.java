@@ -1,5 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.symbol;
-
+/*
 import github.mrh0.buildersaddition2.blocks.blockstate.SymbolState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
@@ -37,3 +37,4 @@ public class SymbolBlock extends Block implements EntityBlock {
         return null;
     }
 }
+*/

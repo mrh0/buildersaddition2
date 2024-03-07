@@ -1,4 +1,4 @@
-// 1.20.1	2023-12-07T00:45:28.1539812	Loot Tables
+// 1.20.1	2024-03-06T00:56:29.9220035	Loot Tables
 cb952a9be9e33a6659b1a2bc7df26e18741ec534 data/buildersaddition2/loot_tables/blocks/acacia_andesite_counter.json
 736d2b51ad84c904e2f938388ef7b57dc52c74fe data/buildersaddition2/loot_tables/blocks/acacia_arcade.json
 098ee421756fd5c1db1c7fc21f1bc4a0e0783a23 data/buildersaddition2/loot_tables/blocks/acacia_basalt_counter.json
@@ -265,7 +265,6 @@ c1b7eb91f1bc8bfd78161a382228995a60bd8e0e data/buildersaddition2/loot_tables/bloc
 3b1592a31bbc21d79f6c2f71cf28f129f66a2815 data/buildersaddition2/loot_tables/blocks/spruce_stripped_fence.json
 a71ccc30c70f80dfc1bb5da061d6b054bc50cc7c data/buildersaddition2/loot_tables/blocks/spruce_support_beam.json
 1876bd2ccd4791d6a44ff829b7ebc5407d172b0e data/buildersaddition2/loot_tables/blocks/spruce_table.json
-54913ab053cd2ceb8d54f41c4dcc2a530600a3fc data/buildersaddition2/loot_tables/blocks/symbol.json
 15a0fa5c7c7a03850a30244fdedf02864fef8dce data/buildersaddition2/loot_tables/blocks/warped_andesite_counter.json
 4337350af2e6e4f1400e250b7cab5c580cc52170 data/buildersaddition2/loot_tables/blocks/warped_arcade.json
 dea719511b2598dbf705d997ad971d9a66cd7f43 data/buildersaddition2/loot_tables/blocks/warped_basalt_counter.json

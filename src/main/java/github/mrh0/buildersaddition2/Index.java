@@ -46,15 +46,11 @@ import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlock;
 import github.mrh0.buildersaddition2.blocks.stripped_fence.StrippedFenceBlueprint;
 import github.mrh0.buildersaddition2.blocks.support_beam.SupportBeamBlock;
 import github.mrh0.buildersaddition2.blocks.support_beam.SupportBeamBlueprint;
-import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlock;
-import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlockEntity;
-import github.mrh0.buildersaddition2.blocks.symbol.SymbolBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.Utils;
 import github.mrh0.buildersaddition2.common.variants.*;
-
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
@@ -161,8 +157,8 @@ public class Index {
     public static BlockBlueprint<WoodVariant, PostBlock> POST =
             new PostBlueprint(WoodVariant.ALL);
 
-    public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
-            new SymbolBlueprint(SingleVariant.SINGLE);
+    //public static BlockBlueprint<SingleVariant, SymbolBlock> SYMBOL =
+    //        new SymbolBlueprint(SingleVariant.SINGLE);
 
     //public static BlockBlueprint<SingleVariant, BarrelPlanterBlock> BARREL_PLANTER =
     //        new BarrelPlanterBlueprint(SingleVariant.SINGLE);
@@ -198,8 +194,8 @@ public class Index {
     public static RegistryObject<BlockEntityType<BookshelfBlockEntity>> BOOKSHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bookshelf", () ->
             BlockEntityType.Builder.of(BookshelfBlockEntity::new, BOOKSHELF.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
-            BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
+    //public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
+    //        BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
 
     // Painting
     public static final RegistryObject<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));

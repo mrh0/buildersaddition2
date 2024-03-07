@@ -1,5 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.symbol;
-
+/*
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
@@ -78,3 +78,4 @@ public class SymbolBlueprint extends BlockBlueprint<SingleVariant, SymbolBlock> 
         return false; // Dev
     }
 }
+*/

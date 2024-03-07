@@ -1,5 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.symbol;
-
+/*
 import github.mrh0.buildersaddition2.Index;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -11,3 +11,4 @@ public class SymbolBlockEntity extends BlockEntity {
         super(Index.SYMBOL_ENTITY_TYPE.get(), pos, state);
     }
 }
+*/
