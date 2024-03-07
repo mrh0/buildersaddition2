@@ -49,7 +49,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
 
     @Override
     protected Supplier<StoolBlock> getBlock(WoodVariant variant) {
-        return () -> new StoolBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new StoolBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

@@ -39,7 +39,7 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
 
     @Override
     protected Supplier<TableBlock> getBlock(WoodVariant variant) {
-        return () -> new TableBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new TableBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

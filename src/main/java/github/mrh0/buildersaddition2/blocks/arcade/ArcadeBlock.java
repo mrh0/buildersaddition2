@@ -29,7 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
 import javax.annotation.Nullable;
 
@@ -100,7 +100,8 @@ public class ArcadeBlock extends Block implements MenuProvider {
                                  InteractionHand hand, BlockHitResult hit) {
         if (player.isSpectator()) return InteractionResult.PASS;
         if (level.isClientSide()) return InteractionResult.SUCCESS;
-        NetworkHooks.openScreen((ServerPlayer) player, this, extraData -> {
+        if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+        fsp.openMenu((MenuProvider) this, extraData -> {
             extraData.writeBlockPos(pos);
         });
         return InteractionResult.SUCCESS;

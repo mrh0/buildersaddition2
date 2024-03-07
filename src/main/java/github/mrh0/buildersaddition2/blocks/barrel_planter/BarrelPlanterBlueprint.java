@@ -46,7 +46,7 @@ public class BarrelPlanterBlueprint extends BlockBlueprint<SingleVariant, Barrel
 
     @Override
     protected Supplier<BarrelPlanterBlock> getBlock(SingleVariant variant) {
-        return () -> new BarrelPlanterBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new BarrelPlanterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

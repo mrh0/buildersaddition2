@@ -41,7 +41,7 @@ public class ShopSignBlueprint extends BlockBlueprint<WoodVariant, ShopSignBlock
 
     @Override
     protected Supplier<ShopSignBlock> getBlock(WoodVariant variant) {
-        return () -> new ShopSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new ShopSignBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

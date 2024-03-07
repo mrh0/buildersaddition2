@@ -26,8 +26,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.network.Channel;
+import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.SimpleChannel;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -80,15 +82,20 @@ public class BA2 {
 
     private void commonSetup(final FMLCommonSetupEvent event) {}
 
-    private static final String PROTOCOL = "1";
-    public static final SimpleChannel Network = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(MODID, "main"))
-            .clientAcceptedVersions(PROTOCOL::equals)
-            .serverAcceptedVersions(PROTOCOL::equals)
-            .networkProtocolVersion(() -> PROTOCOL)
+    private static final int PROTOCOL = 1;
+
+    public static final SimpleChannel Network = ChannelBuilder.named(new ResourceLocation(MODID, "main"))
+            .clientAcceptedVersions(Channel.VersionTest.exact(PROTOCOL))
+            .serverAcceptedVersions(Channel.VersionTest.exact(PROTOCOL))
+            .networkProtocolVersion(PROTOCOL)
             .simpleChannel();
 
     public void postInit(FMLLoadCompleteEvent evt) {
-        Network.registerMessage(0, SyncContentPacket.class, SyncContentPacket::encode, SyncContentPacket::decode, SyncContentPacket::handle);
+        int i = 0;
+        Network.messageBuilder(SyncContentPacket.class, i++)
+                .encoder(SyncContentPacket::encode)
+                .decoder(SyncContentPacket::decode)
+                .consumerMainThread(SyncContentPacket::handle);
     }
 
     public void onClientSetup(TickEvent.ClientTickEvent event) {

@@ -26,7 +26,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
 
     @Override
     protected Supplier<SofaBlock> getBlock(WoolVariant variant) {
-        return () -> new SofaBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL));
+        return () -> new SofaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL));
     }
 
     @Override

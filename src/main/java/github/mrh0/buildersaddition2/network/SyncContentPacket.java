@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.network;
 
-import github.mrh0.buildersaddition2.BA2;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
@@ -9,10 +8,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.PacketDistributor;
-
-import java.util.function.Supplier;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 
 public class SyncContentPacket {
     private BlockPos pos;
@@ -43,10 +39,10 @@ public class SyncContentPacket {
         return new SyncContentPacket(pos, count, items);
     }
 
-    public static void handle(SyncContentPacket pkt, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
+    public static void handle(SyncContentPacket pkt, CustomPayloadEvent.Context ctx) {
+        ctx.enqueueWork(() -> {
             try {
-                ServerPlayer player = ctx.get().getSender();
+                ServerPlayer player = ctx.getSender();
                 if (player != null) sendUpdate(pkt.pos, player);
 
             } catch (Exception e) {
@@ -54,7 +50,7 @@ public class SyncContentPacket {
             }
         });
 
-        ctx.get().setPacketHandled(true);
+        ctx.setPacketHandled(true);
     }
 
     private static void sendUpdate(BlockPos pos, ServerPlayer player) {

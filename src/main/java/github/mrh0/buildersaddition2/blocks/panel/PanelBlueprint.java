@@ -52,7 +52,7 @@ public class PanelBlueprint extends BlockBlueprint<WoodVariant, PanelBlock> {
 
     @Override
     protected Supplier<PanelBlock> getBlock(WoodVariant variant) {
-        return () -> new PanelBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new PanelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

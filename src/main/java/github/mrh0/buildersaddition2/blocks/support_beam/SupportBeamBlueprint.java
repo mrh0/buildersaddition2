@@ -52,7 +52,7 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
 
     @Override
     protected Supplier<SupportBeamBlock> getBlock(WoodVariant variant) {
-        return () -> new SupportBeamBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new SupportBeamBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ArcadeBlueprint extends BlockBlueprint<WoodVariant, ArcadeBlock> {
 
     @Override
     protected Supplier<ArcadeBlock> getBlock(WoodVariant variant) {
-        return () -> new ArcadeBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new ArcadeBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

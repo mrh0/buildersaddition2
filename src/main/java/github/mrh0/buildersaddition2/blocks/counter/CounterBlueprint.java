@@ -41,7 +41,7 @@ public class CounterBlueprint extends BlockBlueprint<CounterVariant, CounterBloc
 
     @Override
     protected Supplier<CounterBlock> getBlock(CounterVariant variant) {
-        return () -> new CounterBlock(BlockBehaviour.Properties.copy(variant.wood.planks));
+        return () -> new CounterBlock(BlockBehaviour.Properties.ofFullCopy(variant.wood.planks));
     }
 
     @Override

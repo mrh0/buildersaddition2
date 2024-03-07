@@ -24,7 +24,7 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
 
     @Override
     protected Supplier<PillowBlock> getBlock(WoolVariant variant) {
-        return () -> new PillowBlock(BlockBehaviour.Properties.copy(Blocks.WHITE_WOOL));
+        return () -> new PillowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL));
     }
 
     @Override

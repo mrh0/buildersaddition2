@@ -1,10 +1,13 @@
 package github.mrh0.buildersaddition2.blocks.counter;
 
+import com.mojang.serialization.MapCodec;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -17,7 +20,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class CounterBlock extends AbstractStorageBlock {
-
+    public static final MapCodec<CounterBlock> CODEC = simpleCodec(CounterBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     private static final VoxelShape SHAPE_COUNTERTOP = Block.box(0d, 15d, 0d, 16d, 16d, 16d);
@@ -28,6 +31,11 @@ public class CounterBlock extends AbstractStorageBlock {
 
     public CounterBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override

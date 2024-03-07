@@ -5,8 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -73,8 +73,8 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
     }
 
     @Override
-    public CarpenterRecipeBuilder unlockedBy(String p_126197_, CriterionTriggerInstance trigger) {
-        this.advancement.addCriterion(p_126197_, trigger);
+    public RecipeBuilder unlockedBy(String p_176496_, Criterion<?> p_297505_) {
+        this.advancement.addCriterion(p_176496_, p_297505_);
         return this;
     }
 
@@ -87,10 +87,10 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
         return this.result;
     }
 
-    public void save(Consumer<FinishedRecipe> consumer, ResourceLocation rl) {
+    public void save(RecipeOutput out, ResourceLocation rl) {
         this.ensureValid(rl);
         this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl)).rewards(AdvancementRewards.Builder.recipe(rl)).requirements(RequirementsStrategy.OR);
-        consumer.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
+        out.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 
     private void ensureValid(ResourceLocation rl) {

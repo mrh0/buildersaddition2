@@ -1,5 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.bookshelf;
 
+import com.mojang.serialization.MapCodec;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -7,12 +8,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -23,10 +26,11 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import org.jetbrains.annotations.Nullable;
 
 public class BookshelfBlock extends AbstractStorageBlock {
+    public static final MapCodec<BookshelfBlock> CODEC = simpleCodec(BookshelfBlock::new);
     public static final BooleanProperty BOOK0 = BooleanProperty.create("book0");
     public static final BooleanProperty BOOK1 = BooleanProperty.create("book1");
     public static final BooleanProperty BOOK2 = BooleanProperty.create("book2");
@@ -53,6 +57,11 @@ public class BookshelfBlock extends AbstractStorageBlock {
     }
 
     @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, BOOK0, BOOK1, BOOK2, BOOK3, BOOK4, BOOK5, BOOK6, BOOK7);
     }
@@ -74,8 +83,9 @@ public class BookshelfBlock extends AbstractStorageBlock {
         //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
         //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
-            NetworkHooks.openScreen((ServerPlayer) player, be, extraData -> {
-                extraData.writeBlockPos(be.getBlockPos());
+            if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+            fsp.openMenu((MenuProvider) this, extraData -> {
+                extraData.writeBlockPos(pos);
             });
             PiglinAi.angerNearbyPiglins(player, true);
         }

@@ -40,7 +40,7 @@ public class ShelfBlueprint extends BlockBlueprint<WoodVariant, ShelfBlock> {
 
     @Override
     protected Supplier<ShelfBlock> getBlock(WoodVariant variant) {
-        return () -> new ShelfBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new ShelfBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

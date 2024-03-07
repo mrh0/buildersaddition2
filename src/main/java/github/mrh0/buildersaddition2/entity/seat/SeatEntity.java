@@ -16,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.fluids.FluidType;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 public class SeatEntity extends Entity {
@@ -55,7 +54,7 @@ public class SeatEntity extends Entity {
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        return super.getAddEntityPacket();
     }
 
     @Override
@@ -84,8 +83,8 @@ public class SeatEntity extends Entity {
     }
 
     @Override
-    public double getPassengersRidingOffset() {
-        return -.1d;
+    protected float ridingOffset(Entity entity) {
+        return -.1f;
     }
 
     public static InteractionResult createSeat(Level world, BlockPos pos, LivingEntity e, double y, SoundEvent sound) {

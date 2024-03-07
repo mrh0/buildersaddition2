@@ -51,7 +51,7 @@ public class PostBlueprint extends BlockBlueprint<WoodVariant, PostBlock> {
 
     @Override
     protected Supplier<PostBlock> getBlock(WoodVariant variant) {
-        return () -> new PostBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new PostBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

@@ -37,7 +37,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
 
     @Override
     protected Supplier<BenchBlock> getBlock(WoodVariant variant) {
-        return () -> new BenchBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS));
+        return () -> new BenchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     }
 
     @Override

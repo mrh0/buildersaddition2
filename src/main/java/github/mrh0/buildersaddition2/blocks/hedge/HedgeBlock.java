@@ -4,6 +4,7 @@ import github.mrh0.buildersaddition2.blocks.blockstate.HedgeState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -24,6 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IForgeShearable;
+import org.jetbrains.annotations.Nullable;
 
 public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -188,8 +190,8 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
     }
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter level, BlockPos pos, BlockState state, Fluid fluidIn) {
-        return SimpleWaterloggedBlock.super.canPlaceLiquid(level, pos, state, fluidIn);
+    public boolean canPlaceLiquid(@Nullable Player p_298313_, BlockGetter p_56301_, BlockPos p_56302_, BlockState p_56303_, Fluid p_56304_) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(p_298313_, p_56301_, p_56302_, p_56303_, p_56304_);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
 
     @Override
     protected Supplier<HedgeBlock> getBlock(LeavesVariant variant) {
-        return () -> new HedgeBlock(BlockBehaviour.Properties.copy(variant.leaves));
+        return () -> new HedgeBlock(BlockBehaviour.Properties.ofFullCopy(variant.leaves));
     }
 
     @Override

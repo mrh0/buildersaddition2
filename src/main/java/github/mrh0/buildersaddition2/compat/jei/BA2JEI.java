@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 
 import javax.annotation.Nonnull;
@@ -42,7 +43,7 @@ public class BA2JEI implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         ingredientManager = registration.getIngredientManager();
         var recipes = getLevel().getRecipeManager().getAllRecipesFor(CarpenterRecipe.Type.INSTANCE);
-        registration.addRecipes(CarpenterRecipeCategory.type, recipes);
+        registration.addRecipes(CarpenterRecipeCategory.type, recipes.stream().map(RecipeHolder::value).toList());
     }
 
     @Override

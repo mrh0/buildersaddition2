@@ -1,10 +1,13 @@
 package github.mrh0.buildersaddition2.blocks.cabinet;
 
+import com.mojang.serialization.MapCodec;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -16,6 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class CabinetBlock extends AbstractStorageBlock {
+    public static final MapCodec<CabinetBlock> CODEC = simpleCodec(CabinetBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
@@ -25,6 +29,11 @@ public class CabinetBlock extends AbstractStorageBlock {
 
     public CabinetBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override

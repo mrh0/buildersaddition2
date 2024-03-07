@@ -1,7 +1,9 @@
 package github.mrh0.buildersaddition2.blocks.shelf;
 
+import com.mojang.serialization.MapCodec;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
+import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -22,10 +25,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlock extends AbstractStorageBlock {
+    public static final MapCodec<ShelfBlock> CODEC = simpleCodec(ShelfBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     //protected static final VoxelShape NORTH_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16D, 16D, 8D);
@@ -45,6 +49,11 @@ public class ShelfBlock extends AbstractStorageBlock {
 
     public ShelfBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -73,8 +82,9 @@ public class ShelfBlock extends AbstractStorageBlock {
         //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
         //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
-            NetworkHooks.openScreen((ServerPlayer) player, be, extraData -> {
-                extraData.writeBlockPos(be.getBlockPos());
+            if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+            fsp.openMenu((MenuProvider) this, extraData -> {
+                extraData.writeBlockPos(pos);
             });
             PiglinAi.angerNearbyPiglins(player, true);
         }

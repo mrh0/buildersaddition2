@@ -4,6 +4,7 @@ import github.mrh0.buildersaddition2.blocks.blockstate.PanelState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -137,8 +138,8 @@ public class PanelBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter level, BlockPos pos, BlockState state, Fluid fluidIn) {
-        return state.getValue(SHAPE) != PanelState.DOUBLE_X && state.getValue(SHAPE) != PanelState.DOUBLE_Z && SimpleWaterloggedBlock.super.canPlaceLiquid(level, pos, state, fluidIn);
+    public boolean canPlaceLiquid(@org.jetbrains.annotations.Nullable Player p_298313_, BlockGetter p_56301_, BlockPos p_56302_, BlockState p_56303_, Fluid p_56304_) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(p_298313_, p_56301_, p_56302_, p_56303_, p_56304_);
     }
 
     @Override

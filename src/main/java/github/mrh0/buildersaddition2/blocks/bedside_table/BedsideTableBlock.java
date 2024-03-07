@@ -1,10 +1,13 @@
 package github.mrh0.buildersaddition2.blocks.bedside_table;
 
+import com.mojang.serialization.MapCodec;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BambooStalkBlock;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -16,6 +19,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BedsideTableBlock extends AbstractStorageBlock {
+    public static final MapCodec<BedsideTableBlock> CODEC = simpleCodec(BedsideTableBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     protected static final VoxelShape SHAPE_BASE = Block.box(0d, 14d, 0d, 16d, 16d, 16d);
@@ -32,6 +36,11 @@ public class BedsideTableBlock extends AbstractStorageBlock {
 
     public BedsideTableBlock(Properties props) {
         super(props);
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
 
     @Override
     protected Supplier<StrippedFenceBlock> getBlock(WoodVariant variant) {
-        return () -> new StrippedFenceBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new StrippedFenceBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

@@ -38,7 +38,7 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
 
     @Override
     protected Supplier<BedsideTableBlock> getBlock(WoodVariant variant) {
-        return () -> new BedsideTableBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new BedsideTableBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

@@ -48,7 +48,7 @@ public class ChairBlueprint extends BlockBlueprint<WoodVariant, ChairBlock> {
 
     @Override
     protected Supplier<ChairBlock> getBlock(WoodVariant variant) {
-        return () -> new ChairBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new ChairBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override
