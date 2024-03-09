@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         this.renderTooltip(gg, x, y);
     }
 
-    protected void renderBg(GuiGraphics gg, float a, int b, int c) {
-        this.renderBackground(gg);
+    protected void renderBg(GuiGraphics gg, float partial, int x, int y) {
+        this.renderTransparentBackground(gg);
         int i = this.leftPos;
         int j = this.topPos;
         gg.blit(BG_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
@@ -51,7 +52,7 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         int l = this.leftPos + 52;
         int i1 = this.topPos + 14;
         int j1 = this.startIndex + 12;
-        this.renderButtons(gg, b, c, l, i1, j1);
+        this.renderButtons(gg, x, y, l, i1, j1);
         this.renderRecipes(gg, l, i1, j1);
     }
 
@@ -61,14 +62,14 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         int i = this.leftPos + 52;
         int j = this.topPos + 14;
         int k = this.startIndex + 12;
-        List<CarpenterRecipe> list = this.menu.getRecipes();
+        List<RecipeHolder<CarpenterRecipe>> list = this.menu.getRecipes();
 
         for(int l = this.startIndex; l < k && l < this.menu.getNumRecipes(); ++l) {
             int i1 = l - this.startIndex;
             int j1 = i + i1 % 4 * 16;
             int k1 = j + i1 / 4 * 18 + 2;
             if (x >= j1 && x < j1 + 16 && y >= k1 && y < k1 + 18) {
-                gg.renderTooltip(this.font, list.get(l).getResultItem(this.minecraft.level.registryAccess()), x, y);
+                gg.renderTooltip(this.font, list.get(l).value().getResultItem(this.minecraft.level.registryAccess()), x, y);
             }
         }
     }
@@ -93,13 +94,13 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
 
     private void renderRecipes(GuiGraphics gg, int p_282658_, int p_282563_, int p_283352_) {
         if (!this.displayRecipes) return;
-        List<CarpenterRecipe> list = this.menu.getRecipes();
+        List<RecipeHolder<CarpenterRecipe>> list = this.menu.getRecipes();
         for(int i = this.startIndex; i < p_283352_ && i < this.menu.getNumRecipes(); ++i) {
             int j = i - this.startIndex;
             int k = p_282658_ + j % 4 * 16;
             int l = j / 4;
             int i1 = p_282563_ + l * 18 + 2;
-            gg.renderItem(list.get(i).getResultItem(this.minecraft.level.registryAccess()), k, i1);
+            gg.renderItem(list.get(i).value().getResultItem(this.minecraft.level.registryAccess()), k, i1);
         }
 
     }

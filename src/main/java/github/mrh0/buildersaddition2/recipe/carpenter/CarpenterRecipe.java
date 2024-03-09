@@ -2,11 +2,17 @@ package github.mrh0.buildersaddition2.recipe.carpenter;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import github.mrh0.buildersaddition2.BA2;
+import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
@@ -20,12 +26,14 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
-    private final ResourceLocation id;
 
-    public CarpenterRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public CarpenterRecipe(String group, NonNullList<Ingredient> inputItems, ItemStack output) {
         this.inputItems = inputItems;
         this.output = output;
-        this.id = id;
+    }
+
+    public CraftingBookCategory category() {
+        return CraftingBookCategory.BUILDING;
     }
 
     @Override
@@ -66,11 +74,6 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
     }
@@ -82,13 +85,31 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
     public static class Type implements RecipeType<CarpenterRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID = RECIPE_TYPE_NAME;
     }
 
     public static class Serializer implements RecipeSerializer<CarpenterRecipe> {
+        public static final Codec<CarpenterRecipe> CODEC = RecordCodecBuilder.create((builder) -> {
+            return builder.group(ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter((recipe) -> {
+                return ""; // group
+            }), Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap((p_297969_) -> {
+                Ingredient[] aingredient = p_297969_.stream().filter((p_298915_) -> {
+                    return !p_298915_.isEmpty();
+                }).toArray(Ingredient[]::new);
+                if (aingredient.length == 0) {
+                    return DataResult.error(() -> "No ingredients for shapeless recipe");
+                } else {
+                    return aingredient.length > 4 ? DataResult.error(() -> "Too many ingredients for shapeless recipe") : DataResult.success(NonNullList.of(Ingredient.EMPTY, aingredient));
+                }
+            }, DataResult::success).forGetter((recipe) -> {
+                return recipe.inputItems;
+            }), ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter((recipe) -> {
+                return recipe.output;
+            })).apply(builder, CarpenterRecipe::new);
+        });
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(BA2.MODID, RECIPE_TYPE_NAME);
 
+        /*
         @Override
         public CarpenterRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
@@ -102,7 +123,9 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
             return new CarpenterRecipe(inputs, output, recipeId);
         }
+        */
 
+        /*
         @Override
         public @Nullable
         CarpenterRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buff) {
@@ -114,6 +137,24 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
 
             ItemStack output = buff.readItem();
             return new CarpenterRecipe(inputs, output, recipeId);
+        }
+        */
+
+        @Override
+        public Codec<CarpenterRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public @org.jetbrains.annotations.Nullable CarpenterRecipe fromNetwork(FriendlyByteBuf buff) {
+            NonNullList<Ingredient> inputs = NonNullList.withSize(buff.readInt(), Ingredient.EMPTY);
+
+            for(int i = 0; i < inputs.size(); i++) {
+                inputs.set(i, Ingredient.fromNetwork(buff));
+            }
+
+            ItemStack output = buff.readItem();
+            return new CarpenterRecipe("", inputs, output);
         }
 
         @Override

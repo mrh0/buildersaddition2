@@ -84,7 +84,7 @@ public class BookshelfBlock extends AbstractStorageBlock {
         //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
             if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
-            fsp.openMenu((MenuProvider) this, extraData -> {
+            fsp.openMenu(be, extraData -> {
                 extraData.writeBlockPos(pos);
             });
             PiglinAi.angerNearbyPiglins(player, true);

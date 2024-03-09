@@ -58,6 +58,7 @@ public class BookshelfBlockEntity extends AbstractStorageBlockEntity {
     }
 
     public void onChange() {
+        if(level == null) return;
         if(level.isClientSide()) return;
         BlockState bs = level.getBlockState(this.getBlockPos());
         if(bs.getBlock() instanceof BookshelfBlock)

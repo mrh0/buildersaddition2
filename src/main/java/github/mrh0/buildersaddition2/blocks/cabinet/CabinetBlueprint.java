@@ -39,7 +39,7 @@ public class CabinetBlueprint extends BlockBlueprint<WoodVariant, CabinetBlock> 
 
     @Override
     protected Supplier<CabinetBlock> getBlock(WoodVariant variant) {
-        return () -> new CabinetBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new CabinetBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

@@ -48,12 +48,12 @@ public class GenericStorageMenu extends AbstractContainerMenu {
 
         for(int l = 0; l < 3; ++l) {
             for(int j1 = 0; j1 < 9; ++j1) {
-                this.addSlot(new FilteredSlot(inv, j1 + l * 9 + 9, 8 + j1 * slotSize, 103 + l * slotSize + i, filter));
+                this.addSlot(new Slot(inv, j1 + l * 9 + 9, 8 + j1 * slotSize, 103 + l * slotSize + i));
             }
         }
 
         for(int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new FilteredSlot(inv, i1, 8 + i1 * slotSize, 161 + i, filter));
+            this.addSlot(new Slot(inv, i1, 8 + i1 * slotSize, 161 + i));
         }
     }
 

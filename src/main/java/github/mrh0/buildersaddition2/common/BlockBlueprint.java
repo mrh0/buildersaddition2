@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.datagen.*;
 import github.mrh0.buildersaddition2.common.variants.ResourceVariant;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block> {
@@ -99,8 +98,8 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return 1;
     }
 
-    public void buildRecipe(BPRecipeProvider provider, Consumer<FinishedRecipe> consumer, RegistryObject<B> block, V variant) {
-        BPRecipeProvider.carpenter(consumer, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
+    public void buildRecipe(BPRecipeProvider provider, RecipeOutput out, RegistryObject<B> block, V variant) {
+        BPRecipeProvider.carpenter(out, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
     }
 
     // Backend
@@ -137,9 +136,9 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         });
     }
 
-    public final void generateAllRecipes(BPRecipeProvider provider, Consumer<FinishedRecipe> consumer) {
+    public final void generateAllRecipes(BPRecipeProvider provider, RecipeOutput out) {
         registryList.forEach((pair) -> {
-            buildRecipe(provider, consumer, pair.getFirst(), pair.getSecond());
+            buildRecipe(provider, out, pair.getFirst(), pair.getSecond());
         });
     }
 

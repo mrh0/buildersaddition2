@@ -25,7 +25,7 @@ public class GenericStorageScreen extends AbstractContainerScreen<GenericStorage
     }
 
     public void render(GuiGraphics gg, int x, int y, float partial) {
-        this.renderBackground(gg, x, y, partial);
+        //this.renderBackground(gg, x, y, partial);
         super.render(gg, x, y, partial);
         this.renderTooltip(gg, x, y);
     }

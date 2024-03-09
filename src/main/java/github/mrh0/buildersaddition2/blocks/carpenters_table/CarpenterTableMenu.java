@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
     private static final int USE_ROW_SLOT_END = 41;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    private List<CarpenterRecipe> recipes = Lists.newArrayList();
+    private List<RecipeHolder<CarpenterRecipe>> recipes = Lists.newArrayList();
     private List<ItemStack> inputCache = NonNullList.withSize(4, ItemStack.EMPTY);
     long lastSoundTime;
     final List<Slot> inputSlots;
@@ -71,7 +72,7 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
                 stack.onCraftedBy(player.level(), player, stack.getCount());
                 CarpenterTableMenu.this.resultContainer.awardUsedRecipes(player, this.getRelevantItems());
 
-                CarpenterTableMenu.this.recipes.get(selectedRecipeIndex.get()).getIngredients().forEach(ingredient -> {
+                CarpenterTableMenu.this.recipes.get(selectedRecipeIndex.get()).value().getIngredients().forEach(ingredient -> {
                     for (Slot slot : CarpenterTableMenu.this.inputSlots) {
                         if(ingredient.test(slot.getItem())) {
                             ItemStack itemstack = slot.remove(1);
@@ -113,7 +114,7 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
         return this.selectedRecipeIndex.get();
     }
 
-    public List<CarpenterRecipe> getRecipes() {
+    public List<RecipeHolder<CarpenterRecipe>> getRecipes() {
         return this.recipes;
     }
 
@@ -163,8 +164,8 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
-            CarpenterRecipe recipe = this.recipes.get(this.selectedRecipeIndex.get());
-            ItemStack itemstack = recipe.assemble(this.inputContainer, this.level.registryAccess());
+            RecipeHolder<CarpenterRecipe> recipe = this.recipes.get(this.selectedRecipeIndex.get());
+            ItemStack itemstack = recipe.value().assemble(this.inputContainer, this.level.registryAccess());
             this.resultContainer.setRecipeUsed(recipe);
             this.resultSlot.set(itemstack.copy());
         } else {

@@ -5,6 +5,8 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipeBuilder;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -20,7 +22,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class BPRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -58,20 +62,26 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
         builder.unlockedBy(getHasName(Index.CARPENTER_TABLE.getBlock(0)), has(Index.CARPENTER_TABLE.getBlock(0))).save(out, BA2.get(name));
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(MinMaxBounds.Ints bound, ItemLike itemLike) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike).withCount(bound).build());
+    public static Criterion<InventoryChangeTrigger.TriggerInstance> has(MinMaxBounds.Ints p_176521_, ItemLike p_176522_) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(p_176522_).withCount(p_176521_));
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(ItemLike itemLike) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(itemLike).build());
+    public static Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike p_298497_) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(p_298497_));
     }
 
-    public static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tagKey) {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(tagKey).build());
+    public static Criterion<InventoryChangeTrigger.TriggerInstance> has(TagKey<Item> p_299059_) {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(p_299059_));
     }
 
-    public static InventoryChangeTrigger.TriggerInstance inventoryTrigger(ItemPredicate... predicate) {
-        return new InventoryChangeTrigger.TriggerInstance(ContextAwarePredicate.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, predicate);
+    public static Criterion<InventoryChangeTrigger.TriggerInstance> inventoryTrigger(ItemPredicate.Builder... p_299527_) {
+        return inventoryTrigger((ItemPredicate[]) Arrays.stream(p_299527_).map(ItemPredicate.Builder::build).toArray((int p_296364_) -> {
+            return new ItemPredicate[p_296364_];
+        }));
+    }
+
+    public static Criterion<InventoryChangeTrigger.TriggerInstance> inventoryTrigger(ItemPredicate... p_297226_) {
+        return CriteriaTriggers.INVENTORY_CHANGED.createCriterion(new InventoryChangeTrigger.TriggerInstance(Optional.empty(), InventoryChangeTrigger.TriggerInstance.Slots.ANY, List.of(p_297226_)));
     }
 
     public static String getHasName(ItemLike itemLike) {

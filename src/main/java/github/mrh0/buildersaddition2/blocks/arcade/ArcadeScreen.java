@@ -29,7 +29,7 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
 
     @Override
     protected void renderBg(GuiGraphics gg, float partial, int x, int y) {
-        renderBackground(gg);
+        renderTransparentBackground(gg);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         int i = (this.width - this.imageWidth) / 2;

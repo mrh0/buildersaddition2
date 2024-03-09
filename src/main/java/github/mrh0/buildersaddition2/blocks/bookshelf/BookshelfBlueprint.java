@@ -39,7 +39,7 @@ public class BookshelfBlueprint extends BlockBlueprint<WoodVariant, BookshelfBlo
 
     @Override
     protected Supplier<BookshelfBlock> getBlock(WoodVariant variant) {
-        return () -> new BookshelfBlock(BlockBehaviour.Properties.copy(variant.planks));
+        return () -> new BookshelfBlock(BlockBehaviour.Properties.ofFullCopy(variant.planks));
     }
 
     @Override

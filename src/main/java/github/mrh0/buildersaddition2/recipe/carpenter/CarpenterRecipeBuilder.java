@@ -3,32 +3,37 @@ package github.mrh0.buildersaddition2.recipe.carpenter;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements RecipeBuilder {
+public class CarpenterRecipeBuilder implements RecipeBuilder {
     private final RecipeCategory category;
     private final Item result;
     private final int count;
-    private final List<Ingredient> ingredients = Lists.newArrayList();
+    private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final Advancement.Builder advancement = Advancement.Builder.recipeAdvancement();
+    private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+    @Nullable
+    private String group;
 
     public CarpenterRecipeBuilder(RecipeCategory category, ItemLike item, int count) {
         this.category = category;
@@ -74,7 +79,7 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
 
     @Override
     public RecipeBuilder unlockedBy(String p_176496_, Criterion<?> p_297505_) {
-        this.advancement.addCriterion(p_176496_, p_297505_);
+        this.criteria.put(p_176496_, p_297505_);
         return this;
     }
 
@@ -89,16 +94,22 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
 
     public void save(RecipeOutput out, ResourceLocation rl) {
         this.ensureValid(rl);
-        this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl)).rewards(AdvancementRewards.Builder.recipe(rl)).requirements(RequirementsStrategy.OR);
-        out.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
+        //this.advancement.parent(ROOT_RECIPE_ADVANCEMENT).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl)).rewards(AdvancementRewards.Builder.recipe(rl)).requirements(AdvancementRequirements.Strategy.OR);
+        //out.accept(new CarpenterRecipeBuilder.Result(rl, this.result, this.count, RecipeBuilder.determineBookCategory(this.category), this.ingredients, this.advancement, rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
+
+        Advancement.Builder advancement$builder = out.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(rl)).rewards(AdvancementRewards.Builder.recipe(rl)).requirements(AdvancementRequirements.Strategy.OR);
+        this.criteria.forEach(advancement$builder::addCriterion);
+        CarpenterRecipe recipe = new CarpenterRecipe(Objects.requireNonNullElse(this.group, ""), this.ingredients, new ItemStack(this.result, this.count));
+        out.accept(rl, recipe, advancement$builder.build(rl.withPrefix("recipes/" + this.category.getFolderName() + "/")));
     }
 
     private void ensureValid(ResourceLocation rl) {
-        if (this.advancement.getCriteria().isEmpty()) {
+        if (this.criteria.isEmpty()) {
             //throw new IllegalStateException("No way of obtaining recipe " + rl);
         }
     }
 
+    /*
     public static class Result extends CarpenterRecipeBuilder.CraftingResult {
         private final ResourceLocation id;
         private final Item result;
@@ -154,4 +165,5 @@ public class CarpenterRecipeBuilder extends CraftingRecipeBuilder implements Rec
             return this.advancementId;
         }
     }
+    */
 }
