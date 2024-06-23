@@ -25,7 +25,7 @@ public class SeatEntity extends Entity {
         this.noPhysics = true;
     }
 
-    public SeatEntity(EntityType<?> entityTypeIn, Level worldIn, BlockPos pos) {
+    public SeatEntity(Level worldIn, BlockPos pos) {
         super(Index.SEAT_ENTITY_TYPE.get(), worldIn);
         this.setPos(pos.getX(), pos.getY(), pos.getZ());
     }
@@ -84,14 +84,17 @@ public class SeatEntity extends Entity {
 
     @Override
     protected float ridingOffset(Entity entity) {
-        return -.1f;
+        return 1f;
+    }
+
+    @Override
+    public float getMyRidingOffset(Entity entity) {
+        return 1f;
     }
 
     public static InteractionResult createSeat(Level world, BlockPos pos, LivingEntity e, double y, SoundEvent sound) {
-        if(e instanceof Player)
-            world.playSound((Player)e, pos, sound, SoundSource.BLOCKS, 1f, 1f);
-        if(world.isClientSide())
-            return InteractionResult.SUCCESS;
+        if(e instanceof Player) world.playSound((Player)e, pos, sound, SoundSource.BLOCKS, 1f, 1f);
+        if(world.isClientSide()) return InteractionResult.SUCCESS;
         if(world.getEntitiesOfClass(SeatEntity.class, new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1)).isEmpty()) {
             SeatEntity seat = new SeatEntity(world, pos, y);//.35d
             world.addFreshEntity(seat);
@@ -103,6 +106,21 @@ public class SeatEntity extends Entity {
 
     public static InteractionResult createSeat(Level world, BlockPos pos, LivingEntity e, SoundEvent sound) {
         return createSeat(world, pos, e, .45d, sound);
+    }
+
+    @Override
+    protected boolean canRide(Entity entity) {
+        return true;
+    }
+
+    @Override
+    public boolean canCollideWith(Entity entity) {
+        return false;
+    }
+
+    @Override
+    public boolean shouldRiderSit() {
+        return true;
     }
 
     @Override
