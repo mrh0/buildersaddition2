@@ -66,43 +66,48 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.network.IContainerFactory;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.network.IContainerFactory;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import java.util.function.Supplier;
 
 public class Index {
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
-        RegistryObject<T> toReturn = BA2.BLOCKS.register(name, block);
+    private static <T extends Block> DeferredHolder<Block, T> registerBlock(String name, Supplier<T> block) {
+        DeferredHolder<Block, T> toReturn = BA2.BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        return BA2.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> DeferredHolder<Item, T> registerBlockItem(String name, DeferredHolder<Block, T> block) {
+        return BA2.ITEMS.registerItem(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
-        return BA2.MENUS.register(name, () -> IForgeMenuType.create(factory));
+    private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
+        return BA2.MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }
 
     // Entity
-    public static RegistryObject<EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
-            .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
+    //public static DeferredHolder<EntityType<?>, EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
+    //        .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
+
+    public static DeferredHolder<EntityType<?>, EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () ->
+            EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
+            .build(BA2.MODID+":seat"));
 
     // Menu
-    public static final RegistryObject<MenuType<CarpenterTableMenu>> CARPENTER_TABLE_MENU =
+    public static final DeferredHolder<MenuType<?>, MenuType<CarpenterTableMenu>> CARPENTER_TABLE_MENU =
             registerMenuType("carpenter_table_menu", CarpenterTableMenu::new);
-    public static final RegistryObject<MenuType<GenericStorageMenu>> SHELF_MENU =
+    public static final DeferredHolder<MenuType<?>, MenuType<GenericStorageMenu>> SHELF_MENU =
             registerMenuType("shelf_menu", ShelfBlockEntity::shelfMenu);
-    public static final RegistryObject<MenuType<GenericStorageMenu>> BOOKSHELF_MENU =
+    public static final DeferredHolder<MenuType<?>, MenuType<GenericStorageMenu>> BOOKSHELF_MENU =
             registerMenuType("bookshelf_menu", BookshelfBlockEntity::bookshelfMenu);
-    public static final RegistryObject<MenuType<ArcadeMenu>> ARCADE_MENU =
+    public static final DeferredHolder<MenuType<?>, MenuType<ArcadeMenu>> ARCADE_MENU =
             registerMenuType("arcade_menu", ArcadeBlock::createMenu);
 
     // Recipe
-    public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
             BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
 
     // Block
@@ -173,41 +178,42 @@ public class Index {
             new ArcadeBlueprint(WoodVariant.ALL);
 
     // Block Entity
-    public static RegistryObject<BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CupboardBlockEntity>> CUPBOARD_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cupboard", () ->
             BlockEntityType.Builder.of(CupboardBlockEntity::new, CUPBOARD.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<BedsideTableBlockEntity>> BEDSIDE_TABLE_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bedside_table", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BedsideTableBlockEntity>> BEDSIDE_TABLE_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bedside_table", () ->
             BlockEntityType.Builder.of(BedsideTableBlockEntity::new, BEDSIDE_TABLE.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<CabinetBlockEntity>> CABINET_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cabinet", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CabinetBlockEntity>> CABINET_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("cabinet", () ->
             BlockEntityType.Builder.of(CabinetBlockEntity::new, CABINET.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<CounterBlockEntity>> COUNTER_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("counter", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<CounterBlockEntity>> COUNTER_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("counter", () ->
             BlockEntityType.Builder.of(CounterBlockEntity::new, COUNTER.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<ShelfBlockEntity>> SHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shelf", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ShelfBlockEntity>> SHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shelf", () ->
             BlockEntityType.Builder.of(ShelfBlockEntity::new, SHELF.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<ShopSignBlockEntity>> SHOP_SIGN_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shop_sign", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<ShopSignBlockEntity>> SHOP_SIGN_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("shop_sign", () ->
             BlockEntityType.Builder.of(ShopSignBlockEntity::new, SHOP_SIGN.getAllBlocks()).build(null));
 
-    public static RegistryObject<BlockEntityType<BookshelfBlockEntity>> BOOKSHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bookshelf", () ->
+    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<BookshelfBlockEntity>> BOOKSHELF_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("bookshelf", () ->
             BlockEntityType.Builder.of(BookshelfBlockEntity::new, BOOKSHELF.getAllBlocks()).build(null));
 
     //public static RegistryObject<BlockEntityType<SymbolBlockEntity>> SYMBOL_ENTITY_TYPE = BA2.BLOCK_ENTITIES.register("symbol", () ->
     //        BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
 
     // Painting
-    public static final RegistryObject<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> SHARD_PAINTING = BA2.PAINTINGS.register("modern_shard", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> SKARGARD_PAINTING = BA2.PAINTINGS.register("skargard", () -> Utils.createPainting(2, 1));
-    public static final RegistryObject<PaintingVariant> HORIZONS_PAINTING = BA2.PAINTINGS.register("ocean_horizon", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> PORTRAIT_PAINTING = BA2.PAINTINGS.register("steve_portrait", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> PROMO_PAINTING = BA2.PAINTINGS.register("promotional", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> HEROBRINE_PAINTING = BA2.PAINTINGS.register("herobrine_portrait", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> ENDERMAN_PAINTING = BA2.PAINTINGS.register("enderman_approaching", () -> Utils.createPainting(1, 2));
-    public static final RegistryObject<PaintingVariant> WINTER_PAINTING = BA2.PAINTINGS.register("winter_forest", () -> Utils.createPainting(2, 2));
-
+    /*
+    public static final DeferredHolder<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> SHARD_PAINTING = BA2.PAINTINGS.register("modern_shard", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> SKARGARD_PAINTING = BA2.PAINTINGS.register("skargard", () -> Utils.createPainting(2, 1));
+    public static final DeferredHolder<PaintingVariant> HORIZONS_PAINTING = BA2.PAINTINGS.register("ocean_horizon", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> PORTRAIT_PAINTING = BA2.PAINTINGS.register("steve_portrait", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> PROMO_PAINTING = BA2.PAINTINGS.register("promotional", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> HEROBRINE_PAINTING = BA2.PAINTINGS.register("herobrine_portrait", () -> Utils.createPainting(1, 1));
+    public static final DeferredHolder<PaintingVariant> ENDERMAN_PAINTING = BA2.PAINTINGS.register("enderman_approaching", () -> Utils.createPainting(1, 2));
+    public static final DeferredHolder<PaintingVariant> WINTER_PAINTING = BA2.PAINTINGS.register("winter_forest", () -> Utils.createPainting(2, 2));
+    */
     public static void load() {
 
     }
