@@ -40,7 +40,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
     }
 
     public ResourceLocation resource(String path) {
-        return new ResourceLocation(BA2.MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(BA2.MODID, path);
     }
 
     public ResourceLocation resource(V variant) {

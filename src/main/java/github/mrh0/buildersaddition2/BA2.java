@@ -84,7 +84,7 @@ public class BA2 {
 
     private static final int PROTOCOL = 1;
 
-    public static final SimpleChannel Network = ChannelBuilder.named(new ResourceLocation(MODID, "main"))
+    public static final SimpleChannel Network = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath(MODID, "main"))
             .clientAcceptedVersions(Channel.VersionTest.exact(PROTOCOL))
             .serverAcceptedVersions(Channel.VersionTest.exact(PROTOCOL))
             .networkProtocolVersion(PROTOCOL)
@@ -115,7 +115,7 @@ public class BA2 {
     public static class ModEvents { }
 
     public static ResourceLocation get(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 
     public static Component translatable(String type, String path) {

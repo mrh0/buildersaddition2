@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 
 public class BPLootTableProvider extends BlockLootSubProvider {
     public BPLootTableProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), () -> null);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BPLootTableProvider extends BlockLootSubProvider {
                 this.applyExplosionDecay(pBlock,
                         LootItem.lootTableItem(item)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
-                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.FORTUNE))));
     }
 
     public void add(Block block, Function<Block, LootTable.Builder> builder) {
