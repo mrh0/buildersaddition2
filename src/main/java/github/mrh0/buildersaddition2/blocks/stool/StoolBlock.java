@@ -9,8 +9,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -48,21 +50,26 @@ public class StoolBlock extends Block implements ISeatBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
-                                 InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        boolean type = state.getValue(PILLOW) == PillowState.NONE;
+        return SeatEntity.createSeat(level, pos, player, type ? .45 - 1d/16d : .45d, type ? SoundEvents.WOOD_HIT : SoundEvents.WOOL_HIT);
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         boolean type = state.getValue(PILLOW) == PillowState.NONE;
         if(type) {
-            Item item = player.getItemInHand(hand).getItem();
+            Item item = stack.getItem();
             for(int i = 0; i < Index.PILLOW.getBlockCount(); i++) {
                 if(item == Index.PILLOW.getBlock(i).asItem()) {
                     if(!player.isCreative())
-                        player.getItemInHand(hand).shrink(1);
-                    world.setBlockAndUpdate(pos, state.setValue(PILLOW, PillowState.fromIndex(i)));
-                    world.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1f, 1f);
-                    return InteractionResult.CONSUME;
+                        stack.shrink(1);
+                    level.setBlockAndUpdate(pos, state.setValue(PILLOW, PillowState.fromIndex(i)));
+                    level.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1f, 1f);
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
-        return SeatEntity.createSeat(world, pos, player, type ? .45 - 1d/16d : .45d, type ? SoundEvents.WOOD_HIT : SoundEvents.WOOL_HIT);
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 }

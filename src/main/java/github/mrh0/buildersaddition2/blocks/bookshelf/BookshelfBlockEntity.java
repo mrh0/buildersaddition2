@@ -48,7 +48,7 @@ public class BookshelfBlockEntity extends AbstractStorageBlockEntity {
         Item i = stack.getItem();
         String n = ForgeRegistries.ITEMS.getKey(i).getPath();
 
-        TagKey<Item> FORGE_BOOKS_TAG = ItemTags.create(new ResourceLocation("forge", "books"));
+        TagKey<Item> FORGE_BOOKS_TAG = ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "books"));
 
         return (i instanceof EnchantedBookItem) || (i instanceof KnowledgeBookItem) || i == Items.BOOK || i == Items.WRITABLE_BOOK || i == Items.WRITTEN_BOOK
                 || n.endsWith("book") || n.endsWith("manual") || n.endsWith("journal") || n.endsWith("tome")  || n.startsWith("tome") || n.endsWith("lexicon")  || n.endsWith("codex")

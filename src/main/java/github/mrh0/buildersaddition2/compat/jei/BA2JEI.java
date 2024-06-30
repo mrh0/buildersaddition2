@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 @JeiPlugin
 public class BA2JEI implements IModPlugin {
 
-    private static final ResourceLocation ID = new ResourceLocation(BA2.MODID, "jei_plugin");
+    private static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(BA2.MODID, "jei_plugin");
 
     @Override
     @Nonnull
@@ -42,7 +42,7 @@ public class BA2JEI implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         ingredientManager = registration.getIngredientManager();
-        var recipes = getLevel().getRecipeManager().getAllRecipesFor(CarpenterRecipe.Type.INSTANCE);
+        var recipes = getLevel().getRecipeManager().getAllRecipesFor(Index.CARPENTER_TYPE.get());
         registration.addRecipes(CarpenterRecipeCategory.type, recipes.stream().map(RecipeHolder::value).toList());
     }
 

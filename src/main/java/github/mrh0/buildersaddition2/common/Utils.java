@@ -114,9 +114,9 @@ public class Utils {
         return new ItemStack(selected);
     }
 
-    public static PaintingVariant createPainting(int w, int h) {
-        return new PaintingVariant(16*w, 16*h);
-    }
+    //public static PaintingVariant createPainting(int w, int h) {
+    //    return new PaintingVariant(16*w, 16*h);
+    //}
 
     public static boolean isntSolid(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;

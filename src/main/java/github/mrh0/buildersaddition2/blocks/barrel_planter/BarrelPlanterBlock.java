@@ -7,6 +7,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
@@ -43,17 +45,16 @@ public class BarrelPlanterBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
-                                 InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
+                                              InteractionHand hand, BlockHitResult hit) {
         if(state.getValue(STATE) == PlanterState.FARMLAND)
-            return InteractionResult.PASS;
-        ItemStack i = player.getItemInHand(hand);
-        if (i.getItem() instanceof HoeItem) {
-            i.hurtAndBreak(1, player, (Player e) -> {});
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (stack.getItem() instanceof HoeItem) {
+            stack.hurtAndBreak(1, player, EquipmentSlot.byName(hand.name())); // Not sure this is correct
             level.setBlockAndUpdate(pos, defaultBlockState().setValue(STATE, PlanterState.FARMLAND));
             level.playSound(player, pos, SoundEvents.GRAVEL_PLACE, SoundSource.BLOCKS, 1f, 1f);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 }

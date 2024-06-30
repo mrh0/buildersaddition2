@@ -2,6 +2,7 @@ package github.mrh0.buildersaddition2.blocks.shop_sign;
 
 import github.mrh0.buildersaddition2.Index;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
@@ -41,22 +42,22 @@ public class ShopSignBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        nbt.put("item", item.save(new CompoundTag()));
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.saveAdditional(nbt, provider);
+        if (!item.isEmpty()) nbt.put("item", item.save(provider, new CompoundTag()));
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        item = ItemStack.of(nbt.getCompound("item"));
-        if(item == null) item = ItemStack.EMPTY;
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
+        item = ItemStack.parse(provider, nbt.getCompound("item")).orElseGet(() -> ItemStack.EMPTY);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider provider) {
+        super.onDataPacket(connection, pkt, provider);
         CompoundTag update = pkt.getTag();
-        handleUpdateTag(update);
+        handleUpdateTag(update, provider);
     }
 
     @Override
@@ -65,14 +66,14 @@ public class ShopSignBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag nbt = new CompoundTag();
-        saveAdditional(nbt);
+        saveAdditional(nbt, provider);
         return nbt;
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag nbt) {
-        load(nbt);
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider provider) {
+        loadAdditional(tag, provider);
     }
 }

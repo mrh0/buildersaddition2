@@ -5,6 +5,7 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.FriendlyByteBuf;
@@ -52,9 +53,10 @@ public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider provider) {
+        super.onDataPacket(connection, pkt, provider);
         CompoundTag update = pkt.getTag();
-        handleUpdateTag(update);
+        handleUpdateTag(update, provider);
     }
 
     @Override
@@ -63,14 +65,14 @@ public class ShelfBlockEntity extends AbstractStorageBlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag nbt = new CompoundTag();
-        saveAdditional(nbt);
+        saveAdditional(nbt, provider);
         return nbt;
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag nbt) {
-        load(nbt);
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider provider) {
+        loadAdditional(tag, provider);
     }
 }

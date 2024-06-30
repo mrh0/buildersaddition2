@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +24,11 @@ public class SeatEntity extends Entity {
     public SeatEntity(EntityType<?> entityTypeIn, Level worldIn) {
         super(Index.SEAT_ENTITY_TYPE.get(), worldIn);
         this.noPhysics = true;
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.build();
     }
 
     public SeatEntity(Level worldIn, BlockPos pos) {
@@ -53,11 +59,6 @@ public class SeatEntity extends Entity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return super.getAddEntityPacket();
-    }
-
-    @Override
     protected boolean canAddPassenger(@NotNull Entity entity) {
         return true;
     }
@@ -80,16 +81,6 @@ public class SeatEntity extends Entity {
     @Override
     public boolean canRiderInteract() {
         return false;
-    }
-
-    @Override
-    protected float ridingOffset(Entity entity) {
-        return 1f;
-    }
-
-    @Override
-    public float getMyRidingOffset(Entity entity) {
-        return 1f;
     }
 
     public static InteractionResult createSeat(Level world, BlockPos pos, LivingEntity e, double y, SoundEvent sound) {
@@ -122,9 +113,6 @@ public class SeatEntity extends Entity {
     public boolean shouldRiderSit() {
         return true;
     }
-
-    @Override
-    protected void defineSynchedData() {}
 
     @Override
     protected void readAdditionalSaveData(@NotNull CompoundTag tag) {}

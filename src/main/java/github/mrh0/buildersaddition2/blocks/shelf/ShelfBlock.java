@@ -82,7 +82,7 @@ public class ShelfBlock extends AbstractStorageBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
         //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
         //    return InteractionResult.CONSUME;

@@ -3,6 +3,7 @@ package github.mrh0.buildersaddition2.blocks.carpenters_table;
 import com.google.common.collect.Lists;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
+import github.mrh0.buildersaddition2.recipe.carpenter.SimpleContainerInput;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -14,7 +15,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -159,13 +162,17 @@ public class CarpenterTableMenu extends AbstractContainerMenu {
         this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
-        this.recipes = this.level.getRecipeManager().getRecipesFor(CarpenterRecipe.Type.INSTANCE, container, this.level);
+        this.recipes = this.level.getRecipeManager().getRecipesFor(Index.CARPENTER_TYPE.get(), getRecipeInput(), this.level);
+    }
+
+    private CraftingInput getRecipeInput() {
+        return CraftingInput.of(2, 2, this.inputContainer.getItems());
     }
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
             RecipeHolder<CarpenterRecipe> recipe = this.recipes.get(this.selectedRecipeIndex.get());
-            ItemStack itemstack = recipe.value().assemble(this.inputContainer, this.level.registryAccess());
+            ItemStack itemstack = recipe.value().assemble(this.getRecipeInput(), this.level.registryAccess());
             this.resultContainer.setRecipeUsed(recipe);
             this.resultSlot.set(itemstack.copy());
         } else {

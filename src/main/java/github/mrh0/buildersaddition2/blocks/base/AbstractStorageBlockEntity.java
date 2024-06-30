@@ -1,9 +1,6 @@
 package github.mrh0.buildersaddition2.blocks.base;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -81,18 +78,18 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(nbt))
-            ContainerHelper.loadAllItems(nbt, this.inventory);
+            ContainerHelper.loadAllItems(nbt, this.inventory, provider);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.saveAdditional(nbt, provider);
         if (!this.trySaveLootTable(nbt))
-            ContainerHelper.saveAllItems(nbt, this.inventory);
-        super.saveAdditional(nbt);
+            ContainerHelper.saveAllItems(nbt, this.inventory, provider);
     }
 
     private LazyOptional<IItemHandlerModifiable> storageHandler;

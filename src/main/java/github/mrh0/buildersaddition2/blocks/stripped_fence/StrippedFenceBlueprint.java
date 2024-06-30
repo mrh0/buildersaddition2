@@ -48,7 +48,7 @@ public class StrippedFenceBlueprint extends BlockBlueprint<WoodVariant, Stripped
 
     @Override
     protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<StrippedFenceBlock> block, WoodVariant variant) {
-        bsp.fenceBlock(block.get(), new ResourceLocation(variant.textureStripped));
+        bsp.fenceBlock(block.get(), ResourceLocation.withDefaultNamespace(variant.textureStripped));
     }
 
     @Override

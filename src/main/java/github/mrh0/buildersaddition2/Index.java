@@ -62,7 +62,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -91,6 +93,14 @@ public class Index {
     public static RegistryObject<EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
             .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
 
+    private static <T extends Recipe<?>> Supplier<RecipeType<T>> registerRecipeType(String id) {
+        return BA2.RECIPE_TYPES.register(id, () -> new RecipeType<>() {
+            public String toString() {
+                return id;
+            }
+        });
+    }
+
     // Menu
     public static final RegistryObject<MenuType<CarpenterTableMenu>> CARPENTER_TABLE_MENU =
             registerMenuType("carpenter_table_menu", CarpenterTableMenu::new);
@@ -102,8 +112,9 @@ public class Index {
             registerMenuType("arcade_menu", ArcadeBlock::createMenu);
 
     // Recipe
+    public static final Supplier<RecipeType<CarpenterRecipe>> CARPENTER_TYPE = registerRecipeType(CarpenterRecipe.RECIPE_TYPE_NAME);
     public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
-            BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
+            BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, CarpenterRecipe.Serializer::new);
 
     // Block
     public static BlockBlueprint<WoodVariant, CarpentersTableBlock> CARPENTER_TABLE =
@@ -198,15 +209,15 @@ public class Index {
     //        BlockEntityType.Builder.of(SymbolBlockEntity::new, SYMBOL.getAllBlocks()).build(null));
 
     // Painting
-    public static final RegistryObject<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> SHARD_PAINTING = BA2.PAINTINGS.register("modern_shard", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> SKARGARD_PAINTING = BA2.PAINTINGS.register("skargard", () -> Utils.createPainting(2, 1));
-    public static final RegistryObject<PaintingVariant> HORIZONS_PAINTING = BA2.PAINTINGS.register("ocean_horizon", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> PORTRAIT_PAINTING = BA2.PAINTINGS.register("steve_portrait", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> PROMO_PAINTING = BA2.PAINTINGS.register("promotional", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> HEROBRINE_PAINTING = BA2.PAINTINGS.register("herobrine_portrait", () -> Utils.createPainting(1, 1));
-    public static final RegistryObject<PaintingVariant> ENDERMAN_PAINTING = BA2.PAINTINGS.register("enderman_approaching", () -> Utils.createPainting(1, 2));
-    public static final RegistryObject<PaintingVariant> WINTER_PAINTING = BA2.PAINTINGS.register("winter_forest", () -> Utils.createPainting(2, 2));
+    //public static final RegistryObject<PaintingVariant> SUMMER_PAINTING = BA2.PAINTINGS.register("summer_field", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> SHARD_PAINTING = BA2.PAINTINGS.register("modern_shard", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> SKARGARD_PAINTING = BA2.PAINTINGS.register("skargard", () -> Utils.createPainting(2, 1));
+    //public static final RegistryObject<PaintingVariant> HORIZONS_PAINTING = BA2.PAINTINGS.register("ocean_horizon", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> PORTRAIT_PAINTING = BA2.PAINTINGS.register("steve_portrait", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> PROMO_PAINTING = BA2.PAINTINGS.register("promotional", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> HEROBRINE_PAINTING = BA2.PAINTINGS.register("herobrine_portrait", () -> Utils.createPainting(1, 1));
+    //public static final RegistryObject<PaintingVariant> ENDERMAN_PAINTING = BA2.PAINTINGS.register("enderman_approaching", () -> Utils.createPainting(1, 2));
+    //public static final RegistryObject<PaintingVariant> WINTER_PAINTING = BA2.PAINTINGS.register("winter_forest", () -> Utils.createPainting(2, 2));
 
     public static void load() {
 

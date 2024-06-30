@@ -25,11 +25,9 @@ public abstract class AbstractStorageBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
 
-        //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
-        //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
             player.openMenu(be);
             PiglinAi.angerNearbyPiglins(player, true);
@@ -55,14 +53,6 @@ public abstract class AbstractStorageBlock extends BaseEntityBlock {
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         BlockEntity blockentity = level.getBlockEntity(pos);
         if (blockentity instanceof AbstractStorageBlockEntity be) be.recheckOpen();
-    }
-
-    @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity ent, ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
-            if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be)
-                be.setCustomName(stack.getDisplayName());
-        }
     }
 
     @Override

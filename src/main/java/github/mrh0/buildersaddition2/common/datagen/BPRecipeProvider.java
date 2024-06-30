@@ -11,6 +11,7 @@ import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -25,11 +26,12 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class BPRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public BPRecipeProvider(String modid, PackOutput output) {
-        super(output);
+    public BPRecipeProvider(String modid, PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     @Override

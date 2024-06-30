@@ -131,8 +131,7 @@ public class SofaBlock extends Block implements ISeatBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
-                                 InteractionHand hand, BlockHitResult hit) {
-        return SeatEntity.createSeat(world, pos, player, .45d, SoundEvents.WOOL_HIT);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        return SeatEntity.createSeat(level, pos, player, .45d, SoundEvents.WOOL_HIT);
     }
 }
