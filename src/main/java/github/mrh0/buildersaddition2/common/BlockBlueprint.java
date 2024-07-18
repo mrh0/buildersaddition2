@@ -11,9 +11,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         registerAll(variants);
     }
 
-    private final List<Pair<RegistryObject<B>, V>> registryList = new ArrayList<>();
+    private final List<Pair<DeferredHolder<Block, B>, V>> registryList = new ArrayList<>();
 
     // Frontend
     protected abstract Supplier<B> getBlock(V variant);
@@ -47,24 +47,24 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return resource(getRegistryName(variant));
     }
 
-    protected abstract void buildBlockState(BPBlockStateProvider bsp, RegistryObject<B> block, V variant);
+    protected abstract void buildBlockState(BPBlockStateProvider bsp, DeferredHolder<Block, B> block, V variant);
 
     public boolean hasItem(V variant) {
         return true;
     }
 
-    protected boolean addToCreativeTab(RegistryObject<B> block, V variant) {
+    protected boolean addToCreativeTab(DeferredHolder<Block, B> block, V variant) {
         return true;
     }
 
-    protected void onCreativeTab(BuildCreativeModeTabContentsEvent event, RegistryObject<B> block, V variant) {
+    protected void onCreativeTab(BuildCreativeModeTabContentsEvent event, DeferredHolder<Block, B> block, V variant) {
         if(event.getTabKey() == BA2.MAIN_TAB.getKey() && addToCreativeTab(block, variant))
             event.accept(block.get());
     }
 
-    protected abstract void buildBlockModel(BPBlockModelProvider provider, RegistryObject<B> block, V variant);
+    protected abstract void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, B> block, V variant);
 
-    protected abstract void buildItemModel(BPItemModelProvider provider, RegistryObject<B> block, V variant);
+    protected abstract void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, B> block, V variant);
 
     public abstract String getBaseName();
 
@@ -86,7 +86,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
 
     public abstract String getLangName(V variant);
 
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<B> block, V variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, B> block, V variant) {
         provider.dropSelf(block.get());
     }
 
@@ -98,12 +98,12 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         return 1;
     }
 
-    public void buildRecipe(BPRecipeProvider provider, RecipeOutput out, RegistryObject<B> block, V variant) {
+    public void buildRecipe(BPRecipeProvider provider, RecipeOutput out, DeferredHolder<Block, B> block, V variant) {
         BPRecipeProvider.carpenter(out, getRegistryName(variant), block.get().asItem(), getRecipeResultCount(variant), getRecipeRequired(variant));
     }
 
     // Backend
-    private RegistryObject<B> registerOne(V variant) {
+    private DeferredHolder<Block, B> registerOne(V variant) {
         var name = getRegistryName(variant);
         var block = BA2.BLOCKS.register(name, getBlock(variant));
         if(hasItem(variant))
@@ -148,7 +148,7 @@ public abstract class BlockBlueprint<V extends ResourceVariant, B extends Block>
         });
     }
 
-    public Iterable<Pair<RegistryObject<B>, V>> iterable() {
+    public Iterable<Pair<DeferredHolder<Block, B>, V>> iterable() {
         return registryList;
     }
 

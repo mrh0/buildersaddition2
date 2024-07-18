@@ -12,7 +12,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -43,12 +43,12 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
     }
 
     @Override
-    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<PillowBlock> block, WoolVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, DeferredHolder<Block, PillowBlock> block, WoolVariant variant) {
         bsp.simpleBlock(block.get(), model(getBlockModelPath(variant)));
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<PillowBlock> block, WoolVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, PillowBlock> block, WoolVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
@@ -58,7 +58,7 @@ public class PillowBlueprint extends BlockBlueprint<WoolVariant, PillowBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<PillowBlock> block, WoolVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, PillowBlock> block, WoolVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 

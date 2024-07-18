@@ -4,8 +4,6 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.ISeatBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -16,8 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 
 public class SeatEntity extends Entity {
@@ -32,9 +29,6 @@ public class SeatEntity extends Entity {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.build();
     }
-
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder p_333664_) {}
 
     public SeatEntity(Level worldIn, BlockPos pos) {
         super(Index.SEAT_ENTITY_TYPE.get(), worldIn);

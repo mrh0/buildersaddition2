@@ -6,6 +6,7 @@ import github.mrh0.buildersaddition2.blocks.blockstate.PillowState;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;

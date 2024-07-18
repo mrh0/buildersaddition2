@@ -17,11 +17,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
 public abstract class AbstractStorageBlockEntity extends RandomizableContainerBlockEntity implements IComparatorOverride {
     protected NonNullList<ItemStack> inventory = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
@@ -92,6 +89,7 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
             ContainerHelper.saveAllItems(nbt, this.inventory, provider);
     }
 
+    /* TODO: Re-implement caps
     private LazyOptional<IItemHandlerModifiable> storageHandler;
     @Override
     public void setBlockState(BlockState state) {
@@ -121,6 +119,7 @@ public abstract class AbstractStorageBlockEntity extends RandomizableContainerBl
             storageHandler = null;
         }
     }
+    */
 
     protected void onOpenClose(BlockState state, boolean open) {
 

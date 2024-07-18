@@ -24,7 +24,7 @@ public abstract class AbstractArcadeGame {
     public void onMouseReleased(int key) {}
 
     public void playSound(int note) {
-        Notes.playClientNote(SoundEvents.NOTE_BLOCK_BIT.get(), note);
+        Notes.playClientNote(SoundEvents.NOTE_BLOCK_BIT.value(), note);
     }
 
     public static final int NOTE_BASS = 0;
@@ -33,15 +33,15 @@ public abstract class AbstractArcadeGame {
 
     public void playSound(int sound, int note) {
         switch (sound) {
-            case 0 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_BASS.get(), note);
+            case 0 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_BASS.value(), note);
 
             //case 1:
             //	Notes.playClientNote(SoundEvents.BLOCK_NOTE_BLOCK_SNARE, note);break;
-            case 2 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_HAT.get(), note);
+            case 2 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_HAT.value(), note);
 
             //case 3:
             //	Notes.playClientNote(SoundEvents.BLOCK_NOTE_BLOCK_BASEDRUM, note);break;
-            case 12 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_BIT.get(), note);
+            case 12 -> Notes.playClientNote(SoundEvents.NOTE_BLOCK_BIT.value(), note);
         }
     }
 

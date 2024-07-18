@@ -49,44 +49,28 @@ import github.mrh0.buildersaddition2.blocks.support_beam.SupportBeamBlueprint;
 import github.mrh0.buildersaddition2.blocks.table.TableBlock;
 import github.mrh0.buildersaddition2.blocks.table.TableBlueprint;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
-import github.mrh0.buildersaddition2.common.Utils;
 import github.mrh0.buildersaddition2.common.variants.*;
 import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
-import net.minecraft.world.entity.EntityAttachments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.RegistryBuilder;
 
 import java.util.function.Supplier;
 
 public class Index {
-    private static <T extends Block> DeferredHolder<Block, T> registerBlock(String name, Supplier<T> block) {
-        DeferredHolder<Block, T> toReturn = BA2.BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
-    }
-
-    private static <T extends Block> DeferredHolder<Item, T> registerBlockItem(String name, DeferredHolder<Block, T> block) {
-        return BA2.ITEMS.registerItem(name, () -> new BlockItem(block.get(), new Item.Properties()));
-    }
-
     private static <T extends AbstractContainerMenu>DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return BA2.MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }
@@ -94,7 +78,8 @@ public class Index {
     // Entity
     public static DeferredHolder<EntityType<?>, EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () ->
             EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
-            .build(BA2.MODID+":seat"));
+                    .passengerAttachments(new Vec3(0d, 0.4d, 0d))
+                    .build(BA2.MODID + ":seat"));
 
 
     private static <T extends Recipe<?>> Supplier<RecipeType<T>> registerRecipeType(String id) {
@@ -116,9 +101,8 @@ public class Index {
             registerMenuType("arcade_menu", ArcadeBlock::createMenu);
 
     // Recipe
+    public static final Supplier<RecipeType<CarpenterRecipe>> CARPENTER_TYPE = registerRecipeType(CarpenterRecipe.RECIPE_TYPE_NAME);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
-            BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, () -> CarpenterRecipe.Serializer.INSTANCE);
-    public static final RegistryObject<RecipeSerializer<CarpenterRecipe>> CARPENTER_SERIALIZER =
             BA2.SERIALIZERS.register(CarpenterRecipe.RECIPE_TYPE_NAME, CarpenterRecipe.Serializer::new);
 
     // Block

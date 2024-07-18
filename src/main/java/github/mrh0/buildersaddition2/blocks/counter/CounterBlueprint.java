@@ -1,20 +1,17 @@
 package github.mrh0.buildersaddition2.blocks.counter;
 
-import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.blocks.cabinet.CabinetBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.variants.CounterVariant;
-import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -45,7 +42,7 @@ public class CounterBlueprint extends BlockBlueprint<CounterVariant, CounterBloc
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CounterBlock> block, CounterVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, CounterBlock> block, CounterVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("top", variant.textureTop)
                 .texture("planks", variant.wood.texturePlanks)
@@ -54,12 +51,12 @@ public class CounterBlueprint extends BlockBlueprint<CounterVariant, CounterBloc
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CounterBlock> block, CounterVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, CounterBlock> block, CounterVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<CounterBlock> block, CounterVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, CounterBlock> block, CounterVariant variant) {
         provider.horizontalBlock(block.get(), model(getBlockModelPath(variant)));
     }
 

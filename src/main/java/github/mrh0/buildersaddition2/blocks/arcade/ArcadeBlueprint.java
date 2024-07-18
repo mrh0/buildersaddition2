@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.arcade;
 
-import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
@@ -14,9 +13,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -48,7 +47,7 @@ public class ArcadeBlueprint extends BlockBlueprint<WoodVariant, ArcadeBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<ArcadeBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, ArcadeBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_top"), resource("block/base_arcade_top"))
                 .texture("sides", variant.textureStripped)
                 .texture("particle", variant.texturePlanks);
@@ -61,12 +60,12 @@ public class ArcadeBlueprint extends BlockBlueprint<WoodVariant, ArcadeBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<ArcadeBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, ArcadeBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_inventory")));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<ArcadeBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, ArcadeBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) ->  switch(state.getValue(ArcadeBlock.HALF)) {
                 case UPPER -> blockModel(variant + "_arcade_top");
                 case LOWER -> blockModel(variant + "_arcade_bottom");

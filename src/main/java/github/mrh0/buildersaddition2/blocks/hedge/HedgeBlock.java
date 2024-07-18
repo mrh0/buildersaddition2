@@ -24,10 +24,10 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IForgeShearable;
+import net.neoforged.neoforge.common.IShearable;
 import org.jetbrains.annotations.Nullable;
 
-public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeShearable {
+public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IShearable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<HedgeState> STATE = EnumProperty.<HedgeState>create("state", HedgeState.class);
 
@@ -84,7 +84,7 @@ public class HedgeBlock extends Block implements SimpleWaterloggedBlock, IForgeS
     }
 
     @Override
-    public boolean isShearable(ItemStack item, Level level, BlockPos pos) {
+    public boolean isShearable(@Nullable Player player, ItemStack item, Level level, BlockPos pos) {
         return true;
     }
 

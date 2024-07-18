@@ -6,7 +6,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +28,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 
 import javax.annotation.Nullable;
 
@@ -99,7 +97,7 @@ public class ArcadeBlock extends Block implements MenuProvider {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (player.isSpectator()) return InteractionResult.PASS;
         if (level.isClientSide()) return InteractionResult.SUCCESS;
-        if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+        if(!(player instanceof ServerPlayer fsp)) return InteractionResult.SUCCESS;
         fsp.openMenu((MenuProvider) this, extraData -> {
             extraData.writeBlockPos(pos);
         });

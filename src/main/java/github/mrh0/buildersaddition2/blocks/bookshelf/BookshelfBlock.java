@@ -6,9 +6,7 @@ import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -26,7 +24,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import org.jetbrains.annotations.Nullable;
 
 public class BookshelfBlock extends AbstractStorageBlock {
@@ -83,7 +80,7 @@ public class BookshelfBlock extends AbstractStorageBlock {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
-            if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+            if(!(player instanceof ServerPlayer fsp)) return InteractionResult.SUCCESS;
             fsp.openMenu(be, extraData -> {
                 extraData.writeBlockPos(pos);
             });

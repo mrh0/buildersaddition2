@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.bedside_table;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -11,7 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -42,7 +41,7 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, BedsideTableBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -50,12 +49,12 @@ public class BedsideTableBlueprint extends BlockBlueprint<WoodVariant, BedsideTa
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, BedsideTableBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<BedsideTableBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, BedsideTableBlock> block, WoodVariant variant) {
         provider.multipartHorizontalFacing(
                 provider.getMultipartBuilder(block.get()),
                 model(getBlockModelPath(variant)),

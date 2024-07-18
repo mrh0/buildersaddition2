@@ -12,7 +12,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -43,7 +43,7 @@ public class BookshelfBlueprint extends BlockBlueprint<WoodVariant, BookshelfBlo
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BookshelfBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, BookshelfBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -51,12 +51,12 @@ public class BookshelfBlueprint extends BlockBlueprint<WoodVariant, BookshelfBlo
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BookshelfBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, BookshelfBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<BookshelfBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, BookshelfBlock> block, WoodVariant variant) {
         var bs = provider.multipartHorizontalFacing(
                 provider.getMultipartBuilder(block.get()),
                 model(getBlockModelPath(variant)),

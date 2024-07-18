@@ -21,9 +21,9 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -55,7 +55,7 @@ public class PostBlueprint extends BlockBlueprint<WoodVariant, PostBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<PostBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, PostBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant) + "_xyz", resource("block/base_" + getBaseName() + "_xyz"))
                 .texture("0", variant.textureStripped)
                 .texture("1", variant.textureStrippedTop)
@@ -83,12 +83,12 @@ public class PostBlueprint extends BlockBlueprint<WoodVariant, PostBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<PostBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, PostBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_y")));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<PostBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, PostBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> {
             boolean x = state.getValue(PostBlock.AXIS_X);
             boolean y = state.getValue(PostBlock.AXIS_Y);
@@ -110,7 +110,7 @@ public class PostBlueprint extends BlockBlueprint<WoodVariant, PostBlock> {
     }
 
     @Override
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<PostBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, PostBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1.0F))

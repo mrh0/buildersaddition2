@@ -22,9 +22,9 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -56,7 +56,7 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<SupportBeamBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, SupportBeamBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant) + "_xyz", resource("block/base_" + getBaseName() + "_xyz"))
                 .texture("0", variant.textureStripped)
                 .texture("1", variant.textureStrippedTop)
@@ -84,12 +84,12 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SupportBeamBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, SupportBeamBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_y")));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<SupportBeamBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, SupportBeamBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> {
             boolean x = state.getValue(SupportBeamBlock.AXIS_X);
             boolean y = state.getValue(SupportBeamBlock.AXIS_Y);
@@ -111,7 +111,7 @@ public class SupportBeamBlueprint extends BlockBlueprint<WoodVariant, SupportBea
     }
 
     @Override
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<SupportBeamBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, SupportBeamBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1.0F))

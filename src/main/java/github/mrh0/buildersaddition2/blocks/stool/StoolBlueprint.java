@@ -22,7 +22,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -53,7 +53,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, StoolBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -61,12 +61,12 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, StoolBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, StoolBlock> block, WoodVariant variant) {
         var bs = provider.getMultipartBuilder(block.get())
                 .part().modelFile(model(getBlockModelPath(variant))).addModel().end();
 
@@ -77,7 +77,7 @@ public class StoolBlueprint extends BlockBlueprint<WoodVariant, StoolBlock> {
     }
 
     @Override
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<StoolBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, StoolBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

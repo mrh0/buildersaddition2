@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.StairsShape;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -45,7 +45,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, DeferredHolder<Block, SofaBlock> block, WoolVariant variant) {
         boolean uvLock = true;
         int offset = 180;
         var straight = model(getBlockModelPath(variant, "_none"));
@@ -92,7 +92,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, SofaBlock> block, WoolVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_inner_corner"), resource("block/base_" + getBaseName() + "_inner_corner"))
                 .texture("wool", variant.textureWool)
                 .texture("particle", variant.textureWool);
@@ -108,7 +108,7 @@ public class SofaBlueprint extends BlockBlueprint<WoolVariant, SofaBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<SofaBlock> block, WoolVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, SofaBlock> block, WoolVariant variant) {
         provider.withParent(getRegistryName(variant),  resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("wool", variant.textureWool);
     }

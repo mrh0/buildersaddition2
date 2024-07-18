@@ -5,6 +5,7 @@ import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class BookshelfBlockEntity extends AbstractStorageBlockEntity {
     public BookshelfBlockEntity(BlockPos pos, BlockState state) {
@@ -46,7 +46,7 @@ public class BookshelfBlockEntity extends AbstractStorageBlockEntity {
 
     public static boolean isBook(ItemStack stack) {
         Item i = stack.getItem();
-        String n = ForgeRegistries.ITEMS.getKey(i).getPath();
+        String n = BuiltInRegistries.ITEM.getKey(i).getPath();
 
         TagKey<Item> FORGE_BOOKS_TAG = ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "books"));
 

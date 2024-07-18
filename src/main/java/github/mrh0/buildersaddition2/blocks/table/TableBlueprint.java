@@ -1,6 +1,5 @@
 package github.mrh0.buildersaddition2.blocks.table;
 
-import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
@@ -12,7 +11,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -43,7 +42,7 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<TableBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, TableBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("texture", variant.texturePlanks)
                 .texture("particle", variant.texturePlanks);
@@ -53,7 +52,7 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<TableBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, TableBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("tex", variant.texturePlanks)
                 .texture("leg", variant.textureStripped)
@@ -61,7 +60,7 @@ public class TableBlueprint extends BlockBlueprint<WoodVariant, TableBlock> {
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<TableBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, TableBlock> block, WoodVariant variant) {
         provider.getMultipartBuilder(block.get())
                 .part().modelFile(model(getBlockModelPath(variant))).addModel().end()
                 .part().modelFile(model(getBlockModelPath(variant) + "_leg")).addModel().condition(TableBlock.NE, true).end()

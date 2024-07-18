@@ -22,9 +22,9 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -56,7 +56,7 @@ public class PanelBlueprint extends BlockBlueprint<WoodVariant, PanelBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<PanelBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, PanelBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("texture", variant.texturePlanks)
                 .texture("particle", variant.texturePlanks);
@@ -67,12 +67,12 @@ public class PanelBlueprint extends BlockBlueprint<WoodVariant, PanelBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<PanelBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, PanelBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<PanelBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, PanelBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> switch(state.getValue(PanelBlock.SHAPE)) {
                 case DOUBLE_X, DOUBLE_Z -> blockModel(variant + "_panel_double");
                 default -> blockModel(variant + "_panel");
@@ -88,7 +88,7 @@ public class PanelBlueprint extends BlockBlueprint<WoodVariant, PanelBlock> {
     }
 
     @Override
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<PanelBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, PanelBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

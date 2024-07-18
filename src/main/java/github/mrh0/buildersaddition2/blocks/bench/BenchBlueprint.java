@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -56,7 +56,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
     }
 
     @Override
-    public void buildLootTable(BPLootTableProvider provider, RegistryObject<BenchBlock> block, WoodVariant variant) {
+    public void buildLootTable(BPLootTableProvider provider, DeferredHolder<Block, BenchBlock> block, WoodVariant variant) {
         var builder = LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
@@ -76,7 +76,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
     }
 
     @Override
-    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<BenchBlock> block, WoodVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, DeferredHolder<Block, BenchBlock> block, WoodVariant variant) {
         boolean uvLock = true;
         int offset = 90;
         var base = model(getBlockModelPath(variant));
@@ -111,7 +111,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BenchBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, BenchBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -123,7 +123,7 @@ public class BenchBlueprint extends BlockBlueprint<WoodVariant, BenchBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BenchBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, BenchBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant),  resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped);

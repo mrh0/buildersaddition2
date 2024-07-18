@@ -2,9 +2,6 @@ package github.mrh0.buildersaddition2.event;
 
 import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
-import github.mrh0.buildersaddition2.blocks.arcade.ArcadeDisplay;
-import github.mrh0.buildersaddition2.blocks.arcade.ArcadeManager;
-import github.mrh0.buildersaddition2.blocks.arcade.ArcadeMenu;
 import github.mrh0.buildersaddition2.blocks.arcade.ArcadeScreen;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableScreen;
 import github.mrh0.buildersaddition2.blocks.shelf.ShelfRenderer;
@@ -24,25 +21,31 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@Mod.EventBusSubscriber(modid = BA2.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod(value = BA2.MODID, dist = Dist.CLIENT)
 public class ClientEventHandler {
-    @SubscribeEvent
-    public static void registerColor(RegisterColorHandlersEvent.Block evt){
+
+    public ClientEventHandler(IEventBus modEventBus) {
+        modEventBus.addListener(ClientEventHandler::registerColorBlock);
+        modEventBus.addListener(ClientEventHandler::registerColorItem);
+        modEventBus.addListener(ClientEventHandler::registerMenuScreen);
+        modEventBus.addListener(ClientEventHandler::onClientSetup);
+    }
+
+    public static void registerColorBlock(RegisterColorHandlersEvent.Block evt){
         BlockColor bc = (a, b, c, d) ->
                 b != null && c != null ? BiomeColors.getAverageFoliageColor(b, c) : FoliageColor.getDefaultColor();
 
         evt.getBlockColors().register(bc, Index.HEDGE.getAllBlocks());
     }
 
-    @SubscribeEvent
-    public static void registerColor(RegisterColorHandlersEvent.Item evt){
+    public static void registerColorItem(RegisterColorHandlersEvent.Item evt){
         ItemColor ic = (a, b) -> {
             BlockState blockstate = ((BlockItem)a.getItem()).getBlock().defaultBlockState();
             return Minecraft.getInstance().getBlockColors().getColor(blockstate, null, (BlockPos)null, b);
@@ -51,13 +54,14 @@ public class ClientEventHandler {
         evt.getItemColors().register(ic, Index.HEDGE.getAllBlocks());
     }
 
-    @SubscribeEvent
-    public static void onClientSetup(FMLClientSetupEvent event) {
-        MenuScreens.register(Index.CARPENTER_TABLE_MENU.get(), CarpenterTableScreen::new);
-        MenuScreens.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
-        MenuScreens.register(Index.BOOKSHELF_MENU.get(), GenericStorageScreen::new);
-        MenuScreens.register(Index.ARCADE_MENU.get(), ArcadeScreen::new);
+    public static void registerMenuScreen(RegisterMenuScreensEvent evt) {
+        evt.register(Index.CARPENTER_TABLE_MENU.get(), CarpenterTableScreen::new);
+        evt.register(Index.SHELF_MENU.get(), GenericStorageScreen::new);
+        evt.register(Index.BOOKSHELF_MENU.get(), GenericStorageScreen::new);
+        evt.register(Index.ARCADE_MENU.get(), ArcadeScreen::new);
+    }
 
+    public static void onClientSetup(FMLClientSetupEvent event) {
         BlockEntityRenderers.register(Index.SHELF_ENTITY_TYPE.get(), c -> new ShelfRenderer(c.getBlockEntityRenderDispatcher()));
         BlockEntityRenderers.register(Index.SHOP_SIGN_ENTITY_TYPE.get(), c -> new ShopSignRenderer(c.getBlockEntityRenderDispatcher()));
 

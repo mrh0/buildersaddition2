@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -45,7 +45,7 @@ public class ShopSignBlueprint extends BlockBlueprint<WoodVariant, ShopSignBlock
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<ShopSignBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, ShopSignBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("texture", variant.textureStripped)
                 .texture("particle", variant.textureStripped);
@@ -56,12 +56,12 @@ public class ShopSignBlueprint extends BlockBlueprint<WoodVariant, ShopSignBlock
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<ShopSignBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, ShopSignBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<ShopSignBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, ShopSignBlock> block, WoodVariant variant) {
         provider.getVariantBuilder(block.get())
                 .forAllStatesExcept(state -> ConfiguredModel.builder()
                                 .modelFile(state.getValue(ShopSignBlock.TYPE).isHorizontal() ? blockModel(variant + "_shop_sign") : blockModel(variant + "_shop_sign_hanging"))

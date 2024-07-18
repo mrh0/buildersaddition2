@@ -13,9 +13,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -47,7 +47,7 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, CupboardBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_single"), resource("block/base_cupboard_single"))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -75,12 +75,12 @@ public class CupboardBlueprint extends BlockBlueprint<WoodVariant, CupboardBlock
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, CupboardBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_single")));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<CupboardBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, CupboardBlock> block, WoodVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> {
             boolean mirror = state.getValue(CupboardBlock.MIRROR);
              return switch(state.getValue(CupboardBlock.VARIANT)) {

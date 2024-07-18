@@ -9,11 +9,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -44,7 +43,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
     }
 
     @Override
-    protected void buildBlockState(BPBlockStateProvider bsp, RegistryObject<HedgeBlock> block, LeavesVariant variant) {
+    protected void buildBlockState(BPBlockStateProvider bsp, DeferredHolder<Block, HedgeBlock> block, LeavesVariant variant) {
         bsp.getVariantBuilder(block.get()).forAllStatesExcept((BlockState state) -> ConfiguredModel.builder()
                 .modelFile(model(getBlockModelPath(variant, "_" + state.getValue(HedgeBlock.STATE).getModelName())))
                 .rotationY(state.getValue(HedgeBlock.STATE).getModelYRotation())
@@ -53,7 +52,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<HedgeBlock> block, LeavesVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, HedgeBlock> block, LeavesVariant variant) {
         provider.withParent(getBlockModelPath(variant, "_corner"), resource("block/base_" + getBaseName() + "_corner"))
                 .texture("leaves", variant.textureLeaves)
                 .texture("particles", variant.textureLeaves);
@@ -72,7 +71,7 @@ public class HedgeBlueprint extends BlockBlueprint<LeavesVariant, HedgeBlock> {
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<HedgeBlock> block, LeavesVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, HedgeBlock> block, LeavesVariant variant) {
         provider.withParent(getRegistryName(variant), resource("block/base_" + getBaseName() + "_inventory"))
                 .texture("leaves", variant.textureLeaves);
     }

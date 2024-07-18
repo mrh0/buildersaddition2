@@ -16,7 +16,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -48,7 +48,7 @@ public class CarpentersTableBlueprint extends BlockBlueprint<WoodVariant, Carpen
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<CarpentersTableBlock> block, WoodVariant variant) {
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, CarpentersTableBlock> block, WoodVariant variant) {
         provider.withParent(getBlockModelPath(variant), resource("block/base_" + getBaseName()))
                 .texture("planks", variant.texturePlanks)
                 .texture("stripped", variant.textureStripped)
@@ -57,12 +57,12 @@ public class CarpentersTableBlueprint extends BlockBlueprint<WoodVariant, Carpen
     }
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<CarpentersTableBlock> block, WoodVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, CarpentersTableBlock> block, WoodVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant)));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<CarpentersTableBlock> block, WoodVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, CarpentersTableBlock> block, WoodVariant variant) {
         provider.multipartHorizontalFacing(
                 provider.getMultipartBuilder(block.get()),
                 model(getBlockModelPath(variant)),
@@ -72,7 +72,7 @@ public class CarpentersTableBlueprint extends BlockBlueprint<WoodVariant, Carpen
     }
 
     @Override
-    public void buildRecipe(BPRecipeProvider provider, RecipeOutput out, RegistryObject<CarpentersTableBlock> block, WoodVariant variant) {
+    public void buildRecipe(BPRecipeProvider provider, RecipeOutput out, DeferredHolder<Block, CarpentersTableBlock> block, WoodVariant variant) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
                 .define('A', Items.IRON_AXE)
                 .define('S', variant.stripped)

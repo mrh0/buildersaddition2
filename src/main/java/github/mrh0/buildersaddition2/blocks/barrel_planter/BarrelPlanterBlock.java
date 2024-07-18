@@ -6,7 +6,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -19,8 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 
 public class BarrelPlanterBlock extends Block {
     public static final EnumProperty<PlanterState> STATE = EnumProperty.<PlanterState>create("soil", PlanterState.class);
@@ -35,14 +32,15 @@ public class BarrelPlanterBlock extends Block {
         builder.add(STATE);
     }
 
+    /*
     @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter level, BlockPos pos, Direction facing,
-                                   IPlantable plantable) {
+    public boolean canSustainPlant(BlockState state, BlockGetter level, BlockPos pos, Direction facing, IPlantable plantable) {
         if(state.getValue(STATE) == PlanterState.FARMLAND)
             return plantable.getPlantType(level, pos) == PlantType.CROP || super.canSustainPlant(state, level, pos, facing, plantable);
         else
             return plantable.getPlantType(level, pos) != PlantType.CROP && !super.canSustainPlant(state, level, pos, facing, plantable);
     }
+    */
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,

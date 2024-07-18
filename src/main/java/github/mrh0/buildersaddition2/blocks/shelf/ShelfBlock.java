@@ -1,21 +1,13 @@
 package github.mrh0.buildersaddition2.blocks.shelf;
 
 import com.mojang.serialization.MapCodec;
-import github.mrh0.buildersaddition2.BA2;
-import github.mrh0.buildersaddition2.blocks.arcade.ArcadeMenu;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlock;
 import github.mrh0.buildersaddition2.blocks.base.AbstractStorageBlockEntity;
-import github.mrh0.buildersaddition2.blocks.bookshelf.BookshelfBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -30,7 +22,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeServerPlayer;
 import org.jetbrains.annotations.Nullable;
 
 public class ShelfBlock extends AbstractStorageBlock {
@@ -87,7 +78,7 @@ public class ShelfBlock extends AbstractStorageBlock {
         //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
         //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
-            if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
+            if(!(player instanceof ServerPlayer fsp)) return InteractionResult.SUCCESS;
             fsp.openMenu( be, extraData -> {
                 extraData.writeBlockPos(pos);
             });

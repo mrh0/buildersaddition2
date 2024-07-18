@@ -8,7 +8,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.event.network.CustomPayloadEvent;
 
 public class SyncContentPacket {
     private BlockPos pos;
@@ -39,6 +38,7 @@ public class SyncContentPacket {
         return new SyncContentPacket(pos, count, items);
     }
 
+    /*
     public static void handle(SyncContentPacket pkt, CustomPayloadEvent.Context ctx) {
         ctx.enqueueWork(() -> {
             try {
@@ -52,6 +52,7 @@ public class SyncContentPacket {
 
         ctx.setPacketHandled(true);
     }
+    */
 
     private static void sendUpdate(BlockPos pos, ServerPlayer player) {
         try {

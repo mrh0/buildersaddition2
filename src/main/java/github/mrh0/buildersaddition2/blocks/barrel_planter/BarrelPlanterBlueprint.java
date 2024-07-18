@@ -1,13 +1,10 @@
 package github.mrh0.buildersaddition2.blocks.barrel_planter;
 
-import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
-import github.mrh0.buildersaddition2.blocks.cupboard.CupboardBlock;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockModelProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPBlockStateProvider;
 import github.mrh0.buildersaddition2.common.datagen.BPItemModelProvider;
 import github.mrh0.buildersaddition2.common.variants.SingleVariant;
-import github.mrh0.buildersaddition2.common.variants.WoodVariant;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
@@ -15,10 +12,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.function.Function;
@@ -50,15 +46,15 @@ public class BarrelPlanterBlueprint extends BlockBlueprint<SingleVariant, Barrel
     }
 
     @Override
-    protected void buildBlockModel(BPBlockModelProvider provider, RegistryObject<BarrelPlanterBlock> block, SingleVariant variant) {}
+    protected void buildBlockModel(BPBlockModelProvider provider, DeferredHolder<Block, BarrelPlanterBlock> block, SingleVariant variant) {}
 
     @Override
-    protected void buildItemModel(BPItemModelProvider provider, RegistryObject<BarrelPlanterBlock> block, SingleVariant variant) {
+    protected void buildItemModel(BPItemModelProvider provider, DeferredHolder<Block, BarrelPlanterBlock> block, SingleVariant variant) {
         provider.withParent(getRegistryName(variant), resource(getBlockModelPath(variant, "_dirt")));
     }
 
     @Override
-    public void buildBlockState(BPBlockStateProvider provider, RegistryObject<BarrelPlanterBlock> block, SingleVariant variant) {
+    public void buildBlockState(BPBlockStateProvider provider, DeferredHolder<Block, BarrelPlanterBlock> block, SingleVariant variant) {
         Function<BlockState, ModelFile> modelFunc = (state) -> switch(state.getValue(BarrelPlanterBlock.STATE)) {
                 case DIRT -> blockModel("barrel_planter_dirt");
                 case FARMLAND -> blockModel("barrel_planter_farmland");

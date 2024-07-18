@@ -2,6 +2,7 @@ package github.mrh0.buildersaddition2.blocks.carpenters_table;
 
 import github.mrh0.buildersaddition2.BA2;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -48,6 +49,7 @@ public class CarpentersTableBlock extends Block {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        System.out.println("Hello");
         if (level.isClientSide) return InteractionResult.SUCCESS;
         player.openMenu(state.getMenuProvider(level, pos));
         player.awardStat(Stats.INTERACT_WITH_STONECUTTER);
