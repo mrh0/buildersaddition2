@@ -7,10 +7,14 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import github.mrh0.buildersaddition2.BA2;
+import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.blocks.bedside_table.BedsideTableBlock;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.GsonHelper;
@@ -18,12 +22,12 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class CarpenterRecipe implements Recipe<SimpleContainer> {
+public class CarpenterRecipe implements Recipe<CraftingInput> {
     public static final String RECIPE_TYPE_NAME = "carpenter";
-
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
 
@@ -42,20 +46,22 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean matches(SimpleContainer container, Level pLevel) {
-        for (int i = 0; i < inputItems.size(); i++) {
-            if(inputItems.get(i).isEmpty()) break;
+    public boolean matches(CraftingInput container, Level level) {
+        if (container.size() < inputItems.size()) return false;
+        for (Ingredient inputItem : inputItems) {
+            if (inputItem.isEmpty()) break;
+
             boolean match = false;
-            for(int j = 0; j < 4; j++) {
-                if(inputItems.get(i).test(container.getItem(j))) match = true;
+            for (int j = 0; j < container.size(); j++) {
+                if (inputItem.test(container.getItem(j))) match = true;
             }
-            if(!match) return false;
+            if (!match) return false;
         }
         return true;
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer container, RegistryAccess registry) {
+    public ItemStack assemble(CraftingInput container, HolderLookup.Provider registry) {
         return output.copy();
     }
 
@@ -65,8 +71,8 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registry) {
-        return output.copy();
+    public ItemStack getResultItem(HolderLookup.Provider p_331967_) {
+        return output;
     }
 
     public ItemStack getResultItem() {
@@ -74,98 +80,75 @@ public class CarpenterRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        return Serializer.INSTANCE;
+    public @NotNull RecipeSerializer<?> getSerializer() {
+        return Index.CARPENTER_SERIALIZER.get();
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
-    }
-
-    public static class Type implements RecipeType<CarpenterRecipe> {
-        public static final Type INSTANCE = new Type();
+    public @NotNull RecipeType<?> getType() {
+        return Index.CARPENTER_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<CarpenterRecipe> {
-        public static final Codec<CarpenterRecipe> CODEC = RecordCodecBuilder.create((builder) -> {
-            return builder.group(ExtraCodecs.strictOptionalField(Codec.STRING, "group", "").forGetter((recipe) -> {
-                return ""; // group
-            }), Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap((p_297969_) -> {
-                Ingredient[] aingredient = p_297969_.stream().filter((p_298915_) -> {
-                    return !p_298915_.isEmpty();
-                }).toArray(Ingredient[]::new);
-                if (aingredient.length == 0) {
-                    return DataResult.error(() -> "No ingredients for shapeless recipe");
-                } else {
-                    return aingredient.length > 4 ? DataResult.error(() -> "Too many ingredients for shapeless recipe") : DataResult.success(NonNullList.of(Ingredient.EMPTY, aingredient));
-                }
-            }, DataResult::success).forGetter((recipe) -> {
-                return recipe.inputItems;
-            }), ItemStack.ITEM_WITH_COUNT_CODEC.fieldOf("result").forGetter((recipe) -> {
-                return recipe.output;
-            })).apply(builder, CarpenterRecipe::new);
-        });
-        public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(BA2.MODID, RECIPE_TYPE_NAME);
-
-        /*
-        @Override
-        public CarpenterRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-
-            JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(4, Ingredient.EMPTY);
-
-            for(int i = 0; i < ingredients.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new CarpenterRecipe(inputs, output, recipeId);
-        }
-        */
-
-        /*
-        @Override
-        public @Nullable
-        CarpenterRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buff) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buff.readInt(), Ingredient.EMPTY);
-
-            for(int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buff));
-            }
-
-            ItemStack output = buff.readItem();
-            return new CarpenterRecipe(inputs, output, recipeId);
-        }
-        */
+        private static final MapCodec<CarpenterRecipe> CODEC = RecordCodecBuilder.mapCodec(
+                p_327212_ -> p_327212_.group(
+                                Codec.STRING.optionalFieldOf("group", "").forGetter(Recipe::getGroup),
+                                CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(CarpenterRecipe::category),
+                                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_300770_ -> p_300770_.output),
+                                Ingredient.CODEC_NONEMPTY
+                                        .listOf()
+                                        .fieldOf("ingredients")
+                                        .flatXmap(
+                                                p_297969_ -> {
+                                                    Ingredient[] aingredient = p_297969_.stream().filter(p_298915_ -> !p_298915_.isEmpty()).toArray(Ingredient[]::new);
+                                                    if (aingredient.length == 0) {
+                                                        return DataResult.error(() -> "No ingredients for shapeless recipe");
+                                                    } else {
+                                                        return aingredient.length > 4
+                                                                ? DataResult.error(() -> "Too many ingredients for shapeless recipe")
+                                                                : DataResult.success(NonNullList.of(Ingredient.EMPTY, aingredient));
+                                                    }
+                                                },
+                                                DataResult::success
+                                        )
+                                        .forGetter(recipe -> recipe.inputItems)
+                        )
+                        .apply(p_327212_, (group, category, result, ingredients) -> new CarpenterRecipe(group, ingredients, result))
+        );
+        public static final StreamCodec<RegistryFriendlyByteBuf, CarpenterRecipe> STREAM_CODEC = StreamCodec.of(
+                CarpenterRecipe.Serializer::toNetwork, CarpenterRecipe.Serializer::fromNetwork
+        );
 
         @Override
-        public Codec<CarpenterRecipe> codec() {
+        public MapCodec<CarpenterRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public @org.jetbrains.annotations.Nullable CarpenterRecipe fromNetwork(FriendlyByteBuf buff) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buff.readInt(), Ingredient.EMPTY);
-
-            for(int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buff));
-            }
-
-            ItemStack output = buff.readItem();
-            return new CarpenterRecipe("", inputs, output);
+        public StreamCodec<RegistryFriendlyByteBuf, CarpenterRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buff, CarpenterRecipe recipe) {
-            buff.writeInt(recipe.inputItems.size());
+        private static CarpenterRecipe fromNetwork(RegistryFriendlyByteBuf p_335962_) {
+            String s = p_335962_.readUtf();
+            CraftingBookCategory craftingbookcategory = p_335962_.readEnum(CraftingBookCategory.class);
+            int i = p_335962_.readVarInt();
+            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
+            nonnulllist.replaceAll(p_327214_ -> Ingredient.CONTENTS_STREAM_CODEC.decode(p_335962_));
+            ItemStack itemstack = ItemStack.STREAM_CODEC.decode(p_335962_);
+            return new CarpenterRecipe(s, nonnulllist, itemstack);
+        }
 
-            for (Ingredient ingredient : recipe.getIngredients()) {
-                ingredient.toNetwork(buff);
+        private static void toNetwork(RegistryFriendlyByteBuf p_329239_, CarpenterRecipe p_44282_) {
+            p_329239_.writeUtf(p_44282_.getGroup());
+            p_329239_.writeEnum(p_44282_.category());
+            p_329239_.writeVarInt(p_44282_.inputItems.size());
+
+            for (Ingredient ingredient : p_44282_.inputItems) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(p_329239_, ingredient);
             }
 
-            buff.writeItemStack(recipe.getResultItem(null), false);
+            ItemStack.STREAM_CODEC.encode(p_329239_, p_44282_.output);
         }
     }
 }

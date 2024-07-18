@@ -17,7 +17,7 @@ public class CarpenterRecipeCategory implements IRecipeCategory<CarpenterRecipe>
 
     private final IDrawable background;
     private final IDrawable icon;
-    public static final RecipeType<CarpenterRecipe> type = new RecipeType<>(CarpenterRecipe.Serializer.ID, CarpenterRecipe.class);
+    public static final RecipeType<CarpenterRecipe> type = new RecipeType<>(Index.CARPENTER_SERIALIZER.getId(), CarpenterRecipe.class);
 
     public CarpenterRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.drawableBuilder(BA2.get("textures/gui/container/jei_carpenter.png"), 0, 0, 125, 32)

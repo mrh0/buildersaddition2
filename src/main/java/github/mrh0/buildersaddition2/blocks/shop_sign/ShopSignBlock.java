@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -86,29 +87,42 @@ public class ShopSignBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player,
-                                 InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if(level.isClientSide()) return InteractionResult.SUCCESS;
         if(level.getBlockEntity(pos) instanceof ShopSignBlockEntity be) {
-            ItemStack held = player.getItemInHand(hand);
-            if(player.isCrouching()) {
-                if(!player.isCreative())
+            if (player.isCrouching()) {
+                if (!player.isCreative())
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), be.getDisplayItem());
                 be.setDisplayItem(ItemStack.EMPTY);
                 level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F, false);
                 return InteractionResult.CONSUME;
             }
-            else if(held != ItemStack.EMPTY) {
-                if(be.hasDisplayItem()) return InteractionResult.PASS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if(level.isClientSide()) return ItemInteractionResult.SUCCESS;
+        if(level.getBlockEntity(pos) instanceof ShopSignBlockEntity be) {
+            if(player.isCrouching()) {
+                if(!player.isCreative())
+                    Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), be.getDisplayItem());
+                be.setDisplayItem(ItemStack.EMPTY);
+                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+                return ItemInteractionResult.CONSUME;
+            }
+            else if(stack != ItemStack.EMPTY) {
+                if(be.hasDisplayItem()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 else {
-                    be.setDisplayItem(held);
-                    if(!player.isCreative()) held.shrink(1);
+                    be.setDisplayItem(stack);
+                    if(!player.isCreative()) stack.shrink(1);
                     level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

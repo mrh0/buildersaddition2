@@ -16,6 +16,9 @@ public class WoodVariant extends ResourceVariant{
     public final Block fence;
     public final Block door;
     public final Block trapDoor;
+    public final Block button;
+    public final Block plate;
+    public final Block gate;
 
     public final String texturePlanks;
     public final String textureLog;
@@ -34,6 +37,9 @@ public class WoodVariant extends ResourceVariant{
             Block fence,
             Block door,
             Block trapDoor,
+            Block button,
+            Block plate,
+            Block gate,
             String texturePlanks,
             String textureLog,
             String textureStripped,
@@ -49,6 +55,9 @@ public class WoodVariant extends ResourceVariant{
         this.fence = fence;
         this.door = door;
         this.trapDoor = trapDoor;
+        this.button = button;
+        this.plate = plate;
+        this.gate = gate;
 
         this.texturePlanks = texturePlanks;
         this.textureLog = textureLog;
@@ -66,7 +75,10 @@ public class WoodVariant extends ResourceVariant{
             Block stairs,
             Block fence,
             Block door,
-            Block trapDoor
+            Block trapDoor,
+            Block button,
+            Block plate,
+            Block gate
     ) {
         super(name, Utils.capitalizeWords(name));
         this.planks = planks;
@@ -78,6 +90,9 @@ public class WoodVariant extends ResourceVariant{
         this.fence = fence;
         this.door = door;
         this.trapDoor = trapDoor;
+        this.button = button;
+        this.plate = plate;
+        this.gate = gate;
 
         this.texturePlanks = "minecraft:block/"+name+"_planks";
         this.textureLog = "minecraft:block/"+name+"_log";
@@ -95,7 +110,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.OAK_STAIRS,
             Blocks.OAK_FENCE,
             Blocks.OAK_DOOR,
-            Blocks.OAK_TRAPDOOR
+            Blocks.OAK_TRAPDOOR,
+            Blocks.OAK_BUTTON,
+            Blocks.OAK_PRESSURE_PLATE,
+            Blocks.OAK_FENCE_GATE
     );
 
     public static WoodVariant SPRUCE = new WoodVariant(
@@ -108,7 +126,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.SPRUCE_STAIRS,
             Blocks.SPRUCE_FENCE,
             Blocks.SPRUCE_DOOR,
-            Blocks.SPRUCE_TRAPDOOR
+            Blocks.SPRUCE_TRAPDOOR,
+            Blocks.SPRUCE_BUTTON,
+            Blocks.SPRUCE_PRESSURE_PLATE,
+            Blocks.SPRUCE_FENCE_GATE
     );
 
     public static WoodVariant BIRCH = new WoodVariant(
@@ -121,7 +142,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.BIRCH_STAIRS,
             Blocks.BIRCH_FENCE,
             Blocks.BIRCH_DOOR,
-            Blocks.BIRCH_TRAPDOOR
+            Blocks.BIRCH_TRAPDOOR,
+            Blocks.BIRCH_BUTTON,
+            Blocks.BIRCH_PRESSURE_PLATE,
+            Blocks.BIRCH_FENCE_GATE
     );
 
     public static WoodVariant JUNGLE = new WoodVariant(
@@ -134,7 +158,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.JUNGLE_STAIRS,
             Blocks.JUNGLE_FENCE,
             Blocks.JUNGLE_DOOR,
-            Blocks.JUNGLE_TRAPDOOR
+            Blocks.JUNGLE_TRAPDOOR,
+            Blocks.JUNGLE_BUTTON,
+            Blocks.JUNGLE_PRESSURE_PLATE,
+            Blocks.JUNGLE_FENCE_GATE
     );
 
     public static WoodVariant ACACIA = new WoodVariant(
@@ -146,8 +173,11 @@ public class WoodVariant extends ResourceVariant{
             Blocks.ACACIA_SLAB,
             Blocks.ACACIA_STAIRS,
             Blocks.ACACIA_FENCE,
-            Blocks.JUNGLE_DOOR,
-            Blocks.JUNGLE_TRAPDOOR
+            Blocks.ACACIA_DOOR,
+            Blocks.ACACIA_TRAPDOOR,
+            Blocks.ACACIA_BUTTON,
+            Blocks.ACACIA_PRESSURE_PLATE,
+            Blocks.ACACIA_FENCE_GATE
     );
 
     public static WoodVariant DARK_OAK = new WoodVariant(
@@ -160,7 +190,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.DARK_OAK_STAIRS,
             Blocks.DARK_OAK_FENCE,
             Blocks.DARK_OAK_DOOR,
-            Blocks.DARK_OAK_TRAPDOOR
+            Blocks.DARK_OAK_TRAPDOOR,
+            Blocks.DARK_OAK_BUTTON,
+            Blocks.DARK_OAK_PRESSURE_PLATE,
+            Blocks.DARK_OAK_FENCE_GATE
     );
 
     public static WoodVariant MANGROVE = new WoodVariant(
@@ -173,7 +206,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.MANGROVE_STAIRS,
             Blocks.MANGROVE_FENCE,
             Blocks.MANGROVE_DOOR,
-            Blocks.MANGROVE_TRAPDOOR
+            Blocks.MANGROVE_TRAPDOOR,
+            Blocks.MANGROVE_BUTTON,
+            Blocks.MANGROVE_PRESSURE_PLATE,
+            Blocks.MANGROVE_FENCE_GATE
     );
 
     public static WoodVariant CHERRY = new WoodVariant(
@@ -186,7 +222,10 @@ public class WoodVariant extends ResourceVariant{
             Blocks.CHERRY_STAIRS,
             Blocks.CHERRY_FENCE,
             Blocks.CHERRY_DOOR,
-            Blocks.CHERRY_TRAPDOOR
+            Blocks.CHERRY_TRAPDOOR,
+            Blocks.CHERRY_BUTTON,
+            Blocks.CHERRY_PRESSURE_PLATE,
+            Blocks.CHERRY_FENCE_GATE
     );
 
     public static WoodVariant BAMBOO = new WoodVariant(
@@ -201,6 +240,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.BAMBOO_FENCE,
             Blocks.BAMBOO_DOOR,
             Blocks.BAMBOO_TRAPDOOR,
+            Blocks.BAMBOO_BUTTON,
+            Blocks.BAMBOO_PRESSURE_PLATE,
+            Blocks.BAMBOO_FENCE_GATE,
             "minecraft:block/bamboo_planks",
             "minecraft:block/bamboo_block",
             "minecraft:block/stripped_bamboo_block",
@@ -219,6 +261,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.CRIMSON_FENCE,
             Blocks.CRIMSON_DOOR,
             Blocks.CRIMSON_TRAPDOOR,
+            Blocks.CRIMSON_BUTTON,
+            Blocks.CRIMSON_PRESSURE_PLATE,
+            Blocks.CRIMSON_FENCE_GATE,
             "minecraft:block/crimson_planks",
             "minecraft:block/crimson_stem",
             "minecraft:block/stripped_crimson_stem",
@@ -237,6 +282,9 @@ public class WoodVariant extends ResourceVariant{
             Blocks.WARPED_FENCE,
             Blocks.WARPED_DOOR,
             Blocks.WARPED_TRAPDOOR,
+            Blocks.WARPED_BUTTON,
+            Blocks.WARPED_PRESSURE_PLATE,
+            Blocks.WARPED_FENCE_GATE,
             "minecraft:block/warped_planks",
             "minecraft:block/warped_stem",
             "minecraft:block/stripped_warped_stem",

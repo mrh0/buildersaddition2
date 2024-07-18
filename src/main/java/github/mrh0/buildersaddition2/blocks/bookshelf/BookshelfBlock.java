@@ -77,11 +77,11 @@ public class BookshelfBlock extends AbstractStorageBlock {
         return new BookshelfBlockEntity(pos, state);
     }
 
+    // TODO: Allow placing books with r-click
+
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide()) return InteractionResult.SUCCESS;
-        //if(!Util.accessCheck(world, pos, state.getValue(FACING).getOpposite()))
-        //    return InteractionResult.CONSUME;
         if (level.getBlockEntity(pos) instanceof AbstractStorageBlockEntity be) {
             if(!(player instanceof IForgeServerPlayer fsp)) return InteractionResult.SUCCESS;
             fsp.openMenu(be, extraData -> {

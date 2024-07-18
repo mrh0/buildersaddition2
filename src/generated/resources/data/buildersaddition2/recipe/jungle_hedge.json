@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_leaves"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "buildersaddition2:jungle_hedge"
+  }
+}

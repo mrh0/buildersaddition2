@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_wool"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "buildersaddition2:blue_pillow"
+  }
+}

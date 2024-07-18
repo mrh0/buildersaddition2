@@ -1,0 +1,19 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:cherry_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:stripped_cherry_log"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:cherry_counter"
+  }
+}

@@ -25,7 +25,7 @@ public class SyncContentPacket {
         tag.writeBlockPos(pkt.pos);
         tag.writeInt(pkt.count);
         for(int i = 0; i < pkt.count; i++) {
-            tag.writeItem(pkt.items.get(i));
+            //tag.writeItem(pkt.items.get(i)); // TODO: FIX
         }
     }
 
@@ -34,7 +34,7 @@ public class SyncContentPacket {
         int count = buf.readInt();
         NonNullList<ItemStack> items = NonNullList.createWithCapacity(count);
         for(int i = 0; i < count; i++) {
-            items.set(i, buf.readItem());
+            //items.set(i, buf.readItem()); // TODO: FIX
         }
         return new SyncContentPacket(pos, count, items);
     }
@@ -54,12 +54,15 @@ public class SyncContentPacket {
     }
 
     private static void sendUpdate(BlockPos pos, ServerPlayer player) {
-        BlockEntity be = player.level().getBlockEntity(pos);
+        try {
+            BlockEntity be = player.level().getBlockEntity(pos);
 
-        if(be instanceof IContentProvider provider) {
-            //provider.updateData(data);
-            Packet<ClientGamePacketListener> packet = be.getUpdatePacket();
-            if (packet != null) player.connection.send(packet);
+            if(be instanceof IContentProvider provider) {
+                Packet<ClientGamePacketListener> packet = be.getUpdatePacket();
+                if (packet != null) player.connection.send(packet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

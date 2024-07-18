@@ -14,10 +14,10 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class BPDataGenerator {
-    public static LootTableProvider createLootTableProvider(PackOutput output) {
+    public static LootTableProvider createLootTableProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         return new LootTableProvider(output, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(BPLootTableProvider::new, LootContextParamSets.BLOCK)
-        ));
+        ), lookupProvider);
     }
     public static void gatherData(String modid, GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
@@ -25,8 +25,8 @@ public class BPDataGenerator {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeServer(), new BPRecipeProvider(modid, packOutput));
-        generator.addProvider(event.includeServer(), createLootTableProvider(packOutput));
+        generator.addProvider(event.includeServer(), new BPRecipeProvider(modid, packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), createLootTableProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new BPBlockStateProvider(modid, packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new BPItemModelProvider(modid, packOutput, existingFileHelper));

@@ -11,6 +11,7 @@ import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -25,11 +26,12 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class BPRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public BPRecipeProvider(String modid, PackOutput output) {
-        super(output);
+    public BPRecipeProvider(String modid, PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+        super(output, provider);
     }
 
     @Override
@@ -45,6 +47,9 @@ public class BPRecipeProvider extends RecipeProvider implements IConditionBuilde
             carpenter(out, wood.getName() + "_fence_carpentry", wood.fence, 1, wood.planks, Items.STICK);
             carpenter(out, wood.getName() + "_door_carpentry", wood.door, 1, wood.planks);
             carpenter(out, wood.getName() + "_trap_door_carpentry", wood.trapDoor, 1, wood.planks);
+            carpenter(out, wood.getName() + "_button_carpentry", wood.button, 4, wood.planks);
+            carpenter(out, wood.getName() + "_pressure_plate_carpentry", wood.plate, 2, wood.planks);
+            carpenter(out, wood.getName() + "_fence_gate_carpentry", wood.gate, 1, wood.planks, Items.STICK);
             //if(wood != WoodVariant.BAMBOO)
             //    carpenter(consumer, wood.name + "_stripped_variant_carpentry", wood.stripped2, 1, wood.stripped);
         });

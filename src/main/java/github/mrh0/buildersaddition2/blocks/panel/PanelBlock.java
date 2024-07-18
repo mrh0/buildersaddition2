@@ -149,8 +149,7 @@ public class PanelBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
-        if (type == PathComputationType.WATER) return level.getFluidState(pos).is(FluidTags.WATER);
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return false;
     }
 }

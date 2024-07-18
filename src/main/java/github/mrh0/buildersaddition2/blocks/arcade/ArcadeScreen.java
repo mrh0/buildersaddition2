@@ -16,7 +16,7 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
     private ArcadeDisplay display = new ArcadeDisplay();
     private AbstractArcadeGame game;
 
-    private static final ResourceLocation GUI = new ResourceLocation(BA2.MODID,
+    private static final ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(BA2.MODID,
             "textures/gui/container/arcade.png");
 
     public ArcadeScreen(ArcadeMenu containerMenu, Inventory inv, Component tc) {

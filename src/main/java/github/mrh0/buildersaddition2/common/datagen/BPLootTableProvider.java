@@ -4,6 +4,7 @@ import github.mrh0.buildersaddition2.BA2;
 import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.common.variants.ResourceVariant;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -23,8 +24,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class BPLootTableProvider extends BlockLootSubProvider {
-    public BPLootTableProvider() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    public BPLootTableProvider(HolderLookup.Provider provider) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
     }
 
     @Override
@@ -43,13 +44,13 @@ public class BPLootTableProvider extends BlockLootSubProvider {
         return BA2.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;//BlockBlueprint.getAllBlueprintBlocks();
     }
 
-    protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
-        return createSilkTouchDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock,
-                        LootItem.lootTableItem(item)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
-                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
-    }
+    //protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
+    //    return createSilkTouchDispatchTable(pBlock,
+    //            this.applyExplosionDecay(pBlock,
+    //                    LootItem.lootTableItem(item)
+    //                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
+    //                            .apply(ApplyBonusCount.addOreBonusCount(Enchantments.FORTUNE))));
+    //}
 
     public void add(Block block, Function<Block, LootTable.Builder> builder) {
         this.add(block, builder.apply(block));
