@@ -3,11 +3,11 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "minecraft:acacia_planks"
+      "item": "minecraft:mangrove_planks"
     }
   ],
   "result": {
-    "count": 1,
-    "id": "minecraft:acacia_door"
+    "count": 2,
+    "id": "minecraft:mangrove_pressure_plate"
   }
 }

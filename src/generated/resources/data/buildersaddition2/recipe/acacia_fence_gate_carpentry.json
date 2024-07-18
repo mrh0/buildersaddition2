@@ -4,10 +4,13 @@
   "ingredients": [
     {
       "item": "minecraft:acacia_planks"
+    },
+    {
+      "item": "minecraft:stick"
     }
   ],
   "result": {
     "count": 1,
-    "id": "minecraft:acacia_door"
+    "id": "minecraft:acacia_fence_gate"
   }
 }

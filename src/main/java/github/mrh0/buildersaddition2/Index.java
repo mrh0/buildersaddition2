@@ -55,6 +55,7 @@ import github.mrh0.buildersaddition2.entity.seat.SeatEntity;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import github.mrh0.buildersaddition2.blocks.carpenters_table.CarpenterTableMenu;
 import github.mrh0.buildersaddition2.ui.GenericStorageMenu;
+import net.minecraft.world.entity.EntityAttachments;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.decoration.PaintingVariant;
@@ -68,6 +69,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.RegistryObject;
@@ -91,7 +93,7 @@ public class Index {
 
     // Entity
     public static RegistryObject<EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () -> EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
-            .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).build(BA2.MODID+":seat"));
+            .setCustomClientFactory((packet, world) -> new SeatEntity(Index.SEAT_ENTITY_TYPE.get(), world)).passengerAttachments(new Vec3(0.0, 0.1, 0)).build(BA2.MODID+":seat"));
 
     private static <T extends Recipe<?>> Supplier<RecipeType<T>> registerRecipeType(String id) {
         return BA2.RECIPE_TYPES.register(id, () -> new RecipeType<>() {

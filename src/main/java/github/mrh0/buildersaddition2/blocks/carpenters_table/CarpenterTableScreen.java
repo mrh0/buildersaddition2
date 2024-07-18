@@ -173,8 +173,6 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
 
     private void containerChanged() {
         this.displayRecipes = this.menu.hasInputItem();
-        System.out.println("displayRecipes");
-        System.out.println(displayRecipes);
         if (!this.displayRecipes) {
             this.scrollOffs = 0.0F;
             this.startIndex = 0;

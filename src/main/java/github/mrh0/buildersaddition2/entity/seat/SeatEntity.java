@@ -16,6 +16,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,6 +25,7 @@ public class SeatEntity extends Entity {
     public SeatEntity(EntityType<?> entityTypeIn, Level worldIn) {
         super(Index.SEAT_ENTITY_TYPE.get(), worldIn);
         this.noPhysics = true;
+        this.setNoGravity(true);
     }
 
     @Override
@@ -96,22 +98,17 @@ public class SeatEntity extends Entity {
     }
 
     public static InteractionResult createSeat(Level world, BlockPos pos, LivingEntity e, SoundEvent sound) {
-        return createSeat(world, pos, e, .45d, sound);
+        return createSeat(world, pos, e, 0, sound);
     }
 
     @Override
-    protected boolean canRide(Entity entity) {
+    protected boolean canRide(@NotNull Entity entity) {
         return true;
     }
 
     @Override
-    public boolean canCollideWith(Entity entity) {
+    public boolean canCollideWith(@NotNull Entity entity) {
         return false;
-    }
-
-    @Override
-    public boolean shouldRiderSit() {
-        return true;
     }
 
     @Override

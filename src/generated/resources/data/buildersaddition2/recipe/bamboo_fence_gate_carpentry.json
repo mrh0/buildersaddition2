@@ -3,11 +3,14 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "minecraft:acacia_planks"
+      "item": "minecraft:bamboo_planks"
+    },
+    {
+      "item": "minecraft:stick"
     }
   ],
   "result": {
     "count": 1,
-    "id": "minecraft:acacia_door"
+    "id": "minecraft:bamboo_fence_gate"
   }
 }

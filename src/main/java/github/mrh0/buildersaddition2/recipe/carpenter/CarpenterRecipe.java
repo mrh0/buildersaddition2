@@ -46,14 +46,16 @@ public class CarpenterRecipe implements Recipe<CraftingInput> {
     }
 
     @Override
-    public boolean matches(CraftingInput container, Level pLevel) {
-        for (int i = 0; i < inputItems.size(); i++) {
-            if(inputItems.get(i).isEmpty()) break;
+    public boolean matches(CraftingInput container, Level level) {
+        if (container.size() < inputItems.size()) return false;
+        for (Ingredient inputItem : inputItems) {
+            if (inputItem.isEmpty()) break;
+
             boolean match = false;
-            for(int j = 0; j < 4; j++) {
-                if(inputItems.get(i).test(container.getItem(j))) match = true;
+            for (int j = 0; j < container.size(); j++) {
+                if (inputItem.test(container.getItem(j))) match = true;
             }
-            if(!match) return false;
+            if (!match) return false;
         }
         return true;
     }
