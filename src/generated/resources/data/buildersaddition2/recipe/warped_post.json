@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "buildersaddition2:warped_post"
+  }
+}

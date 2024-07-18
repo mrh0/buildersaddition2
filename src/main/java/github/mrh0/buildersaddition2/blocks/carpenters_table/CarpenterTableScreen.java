@@ -1,6 +1,7 @@
 package github.mrh0.buildersaddition2.blocks.carpenters_table;
 
 import github.mrh0.buildersaddition2.BA2;
+import github.mrh0.buildersaddition2.Index;
 import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -37,11 +38,13 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         --this.titleLabelY;
     }
 
+    @Override
     public void render(GuiGraphics gg, int x, int y, float partial) {
         super.render(gg, x, y, partial);
         this.renderTooltip(gg, x, y);
     }
 
+    @Override
     protected void renderBg(GuiGraphics gg, float partial, int x, int y) {
         this.renderTransparentBackground(gg);
         int i = this.leftPos;
@@ -56,6 +59,7 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         this.renderRecipes(gg, l, i1, j1);
     }
 
+    @Override
     protected void renderTooltip(GuiGraphics gg, int x, int y) {
         super.renderTooltip(gg, x, y);
         if (!this.displayRecipes) return;
@@ -105,6 +109,7 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
 
     }
 
+    @Override
     public boolean mouseClicked(double x, double y, int p_99320_) {
         this.scrolling = false;
         if (!this.displayRecipes) return super.mouseClicked(x, y, p_99320_);
@@ -132,6 +137,7 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         return super.mouseClicked(x, y, p_99320_);
     }
 
+    @Override
     public boolean mouseDragged(double x1, double y1, int p_99324_, double p_99325_, double p_99326_) {
         if (this.scrolling && this.isScrollBarActive()) {
             int i = this.topPos + 14;
@@ -145,7 +151,8 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
         }
     }
 
-    public boolean mouseScrolled(double p_99314_, double p_99315_, double p_99316_) {
+    @Override
+    public boolean mouseScrolled(double p_99314_, double p_99315_, double p_99316_, double unknown) {
         if (this.isScrollBarActive()) {
             int i = this.getOffscreenRows();
             float f = (float)p_99316_ / (float)i;
@@ -166,6 +173,8 @@ public class CarpenterTableScreen extends AbstractContainerScreen<CarpenterTable
 
     private void containerChanged() {
         this.displayRecipes = this.menu.hasInputItem();
+        System.out.println("displayRecipes");
+        System.out.println(displayRecipes);
         if (!this.displayRecipes) {
             this.scrollOffs = 0.0F;
             this.startIndex = 0;

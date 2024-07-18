@@ -1,0 +1,16 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_oak_log"
+    },
+    {
+      "item": "minecraft:oak_planks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "buildersaddition2:oak_stripped_fence"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:birch_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:polished_andesite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:birch_andesite_counter"
+  }
+}

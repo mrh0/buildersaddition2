@@ -1,0 +1,16 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_jungle_log"
+    },
+    {
+      "item": "minecraft:jungle_planks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "buildersaddition2:jungle_stripped_fence"
+  }
+}

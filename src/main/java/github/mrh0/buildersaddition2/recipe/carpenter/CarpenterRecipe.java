@@ -129,7 +129,7 @@ public class CarpenterRecipe implements Recipe<CraftingInput> {
 
         private static CarpenterRecipe fromNetwork(RegistryFriendlyByteBuf p_335962_) {
             String s = p_335962_.readUtf();
-            //CraftingBookCategory craftingbookcategory = p_335962_.readEnum(CraftingBookCategory.class);
+            CraftingBookCategory craftingbookcategory = p_335962_.readEnum(CraftingBookCategory.class);
             int i = p_335962_.readVarInt();
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
             nonnulllist.replaceAll(p_327214_ -> Ingredient.CONTENTS_STREAM_CODEC.decode(p_335962_));

@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_bamboo_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:bamboo_stool"
+  }
+}

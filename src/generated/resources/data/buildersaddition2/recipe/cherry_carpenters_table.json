@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "S": {
+      "item": "minecraft:stripped_cherry_log"
+    }
+  },
+  "pattern": [
+    "A",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:cherry_carpenters_table"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:polished_blackstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:crimson_blackstone_counter"
+  }
+}

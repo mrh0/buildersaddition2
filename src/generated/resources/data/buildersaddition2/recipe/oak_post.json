@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_oak_log"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "buildersaddition2:oak_post"
+  }
+}

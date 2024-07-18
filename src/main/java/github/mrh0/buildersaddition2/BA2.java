@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import github.mrh0.buildersaddition2.blocks.arcade.ArcadeManager;
 import github.mrh0.buildersaddition2.common.BlockBlueprint;
 import github.mrh0.buildersaddition2.network.SyncContentPacket;
+import github.mrh0.buildersaddition2.recipe.carpenter.CarpenterRecipe;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -61,7 +63,6 @@ public class BA2 {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::postInit);
-        //modEventBus.addListener(this::onClientSetup);
 
         Index.load();
 
@@ -99,10 +100,6 @@ public class BA2 {
                 .encoder(SyncContentPacket::encode)
                 .decoder(SyncContentPacket::decode)
                 .consumerMainThread(SyncContentPacket::handle);
-    }
-
-    public void onClientSetup(TickEvent.ClientTickEvent event) {
-
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {

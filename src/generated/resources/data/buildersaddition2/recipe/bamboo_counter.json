@@ -1,0 +1,19 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:bamboo_planks"
+    },
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "minecraft:stripped_bamboo_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:bamboo_counter"
+  }
+}

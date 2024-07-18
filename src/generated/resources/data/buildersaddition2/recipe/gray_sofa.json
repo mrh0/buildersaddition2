@@ -1,0 +1,16 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:gray_wool"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:gray_sofa"
+  }
+}

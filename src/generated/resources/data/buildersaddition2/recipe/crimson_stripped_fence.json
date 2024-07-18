@@ -1,0 +1,16 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_crimson_stem"
+    },
+    {
+      "item": "minecraft:crimson_planks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "buildersaddition2:crimson_stripped_fence"
+  }
+}

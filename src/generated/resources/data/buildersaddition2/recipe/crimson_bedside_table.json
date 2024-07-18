@@ -1,0 +1,13 @@
+{
+  "type": "buildersaddition2:carpenter",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_crimson_stem"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "buildersaddition2:crimson_bedside_table"
+  }
+}
