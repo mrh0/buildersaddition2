@@ -8,7 +8,7 @@ Available under MIT the license more info at: https://tldrlegal.com/license/mit-
 
 MIT License
 
-Copyright 2022 MRH0
+Copyright 2024 MRH0
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
