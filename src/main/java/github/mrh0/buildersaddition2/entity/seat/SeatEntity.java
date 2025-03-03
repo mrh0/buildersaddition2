@@ -14,10 +14,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 
 public class SeatEntity extends Entity {
+    public Vec3 dismountLocation = position();
 
     public SeatEntity(EntityType<?> entityTypeIn, Level worldIn) {
         super(Index.SEAT_ENTITY_TYPE.get(), worldIn);
@@ -73,6 +75,11 @@ public class SeatEntity extends Entity {
     }
 
     @Override
+    public @NotNull Vec3 getDismountLocationForPassenger(LivingEntity pPassenger) {
+        return dismountLocation;
+    }
+
+    @Override
     public boolean canBeCollidedWith() {
         return false;
     }
@@ -87,6 +94,7 @@ public class SeatEntity extends Entity {
         if(world.isClientSide()) return InteractionResult.SUCCESS;
         if(world.getEntitiesOfClass(SeatEntity.class, new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1)).isEmpty()) {
             SeatEntity seat = new SeatEntity(world, pos, y);//.35d
+            seat.dismountLocation = e.position().add(0f, .1f, 0f);
             world.addFreshEntity(seat);
             e.startRiding(seat);
             return InteractionResult.CONSUME;

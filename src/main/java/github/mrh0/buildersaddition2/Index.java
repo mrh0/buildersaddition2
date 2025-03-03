@@ -78,9 +78,8 @@ public class Index {
     // Entity
     public static DeferredHolder<EntityType<?>, EntityType<SeatEntity>> SEAT_ENTITY_TYPE = BA2.ENTITIES.register("seat", () ->
             EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
-                    .passengerAttachments(new Vec3(0d, 0.4d, 0d))
+                    .passengerAttachments(new Vec3(0d, 0.15d, 0d))
                     .build(BA2.MODID + ":seat"));
-
 
     private static <T extends Recipe<?>> Supplier<RecipeType<T>> registerRecipeType(String id) {
         return BA2.RECIPE_TYPES.register(id, () -> new RecipeType<>() {

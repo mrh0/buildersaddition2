@@ -67,14 +67,18 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
 
     long steps = 0;
     float partialAccumulator = 0f;
+    private long lastTime = System.nanoTime();
     @Override
     public void render(GuiGraphics gg, int x, int y, float partial) {
         super.render(gg, x, y, partial);
-        if((partialAccumulator += partial) > 1f) {
+        long currentTime = System.nanoTime();
+        float deltaTime = (currentTime - lastTime) / 1_000_000_000f;
+        if((partialAccumulator += deltaTime) > 1f/20f) {
             steps += 1;
-            partialAccumulator -= 1f;
+            partialAccumulator = 0f;
+            clientTick(steps, deltaTime);
         }
-        clientTick(steps, partial);
+        lastTime = currentTime;
 
         display.renderBackground(gg, this.width, this.height);
         display.renderForeground(gg, this.font, this.width, this.height);
@@ -83,9 +87,9 @@ public class ArcadeScreen extends AbstractContainerScreen<ArcadeMenu> {
         this.renderTooltip(gg, x, y);
     }
 
-    public void clientTick(long steps, float partial) {
+    public void clientTick(long steps, float deltaTime) {
         if(game == null) return;
-        game.frame(steps, partial);
+        game.frame(steps, deltaTime);
     }
 
     @Override
